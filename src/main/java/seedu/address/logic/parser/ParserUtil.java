@@ -153,21 +153,4 @@ public class ParserUtil {
         }
         return new Points(trimmedPoints);
     }
-
-    /**
-     * Parses a {@code String order} into an {@code Order}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code order} is invalid.
-     */
-    public static Order parseOrder(String order) throws ParseException {
-        requireNonNull(order);
-        String trimmedOrder = order.trim();
-        if (!Address.isValidAddress(trimmedOrder)) {
-            throw new ParseException(Order.MESSAGE_CONSTRAINTS);
-        }
-        return new Order(trimmedOrder);
-    }
-
-
 }

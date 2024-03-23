@@ -23,25 +23,26 @@ public class AddOrderCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an order to the order list of the person identified by the given Name.\n"
-            + "Parameters: n/MEMBER_NAME (must match the name of an existing member) "
-            + "o/[ORDER_DETAILS]]\n"
-            + "Example: " + COMMAND_WORD + " Alex Yeoh "
-            + "o/Chocolate Chip Cookies 100g x 3";
+            + "Parameters: n/MEMBER_NAME i/ITEM_NAME [q/QUANTITY]\n"
+            + "Example: " + COMMAND_WORD + " n/Alex Yeoh i/Chocolate Chip Cookies 100g q/3";
 
     public static final String MESSAGE_ADD_ORDER_SUCCESS = "Added order to Person: %1$s";
 
     public final NameContainsKeywordsPredicate personNamePredicate;
-    public final Order order;
+    public final String itemName;
+    public final int quantity;
 
     /**
      * @param personNamePredicate of the person to add the order to
-     * @param order to add to the list of orders of the person
+     * @param itemName name of item ordered
+     * @param quantity of specified item ordered
      */
-    public AddOrderCommand(NameContainsKeywordsPredicate personNamePredicate, Order order) {
-        requireAllNonNull(personNamePredicate, order);
+    public AddOrderCommand(NameContainsKeywordsPredicate personNamePredicate, String itemName, int quantity) {
+        requireAllNonNull(personNamePredicate, itemName, quantity);
 
         this.personNamePredicate = personNamePredicate;
-        this.order = order;
+        this.itemName = itemName;
+        this.quantity = quantity;
     }
 
     @Override
@@ -49,6 +50,7 @@ public class AddOrderCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
+        // Find first person in filtered list matching the personNamePredicate
         Person personToUpdate = null;
         for (Person person : lastShownList) {
             if (!personNamePredicate.test(person)) {
@@ -58,12 +60,15 @@ public class AddOrderCommand extends Command {
                 break;
             }
         }
-
         if (isNull(personToUpdate)) {
             throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
         }
 
-        personToUpdate.addOrders(order);
+        // Create an Item by searching the catalogue for an item matching itemName
+        //TODO
+        Item item = null;
+
+        personToUpdate.addOrders(new Order(item, quantity));
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(generateSuccessMessage(personToUpdate));
     }
@@ -89,6 +94,6 @@ public class AddOrderCommand extends Command {
 
         AddOrderCommand e = (AddOrderCommand) other;
         return personNamePredicate.equals(e.personNamePredicate)
-                && order.equals(e.order);
+                && itemName.equals(e.itemName) && (quantity == e.quantity);
     }
 }
