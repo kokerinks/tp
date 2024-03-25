@@ -6,6 +6,8 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.item.Catalogue;
+import seedu.address.model.item.Item;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -17,6 +19,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
 
+    private final Catalogue items;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -26,6 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        items = new Catalogue();
     }
 
     public AddressBook() {}
@@ -48,13 +53,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    public void setItems(List<Item> items) {
+        this.items.setItems(items);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setPersons(newData.getPersonList());
+        setItems(newData.getItemList());
     }
 
     //// person-level operations
@@ -94,6 +103,22 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    public Item findItem(String name) {
+        return items.findItem(name);
+    }
+
+    public boolean addItem(Item item) {
+        return items.addItem(item);
+    }
+
+    public boolean removeItem(String name) {
+        return items.removeItem(name);
+    }
+
+    public boolean hasItem(String name) {
+        return items.findItem(name) != null;
+    }
+
     //// util methods
 
     @Override
@@ -107,6 +132,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
     }
+
+    @Override
+    public ObservableList<Item> getItemList() {
+        return items.asUnmodifiableObservableList();
+    }
+
 
     @Override
     public boolean equals(Object other) {

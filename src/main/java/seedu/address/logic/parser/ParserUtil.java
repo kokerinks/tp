@@ -15,7 +15,6 @@ import seedu.address.model.person.Membership;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Points;
-import seedu.address.model.person.orders.Order;
 import seedu.address.model.tag.Tag;
 
 /**

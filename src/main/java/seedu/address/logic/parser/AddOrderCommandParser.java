@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -40,12 +39,19 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
 
         // Item name should not be empty
         String trimmedItemName = argMultimap.getValue(PREFIX_ITEM).get().trim();
-        checkArgument(trimmedItemName.isBlank(), Order.MESSAGE_CONSTRAINTS);
+        if (!Order.isValidItems(trimmedItemName)) {
+            throw new ParseException(Order.MESSAGE_CONSTRAINTS);
+        }
 
         // if quantity not specified, default to 1
         int quantity = argMultimap.getValue(PREFIX_QTY).isPresent()
                 ? Integer.parseInt(argMultimap.getValue(PREFIX_QTY).get())
                 : 1;
+
+        // Quantity should be a positive integer
+        if (quantity <= 0) {
+            throw new ParseException(Order.MESSAGE_INVALID_QUANTITY);
+        }
 
         return new AddOrderCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)),
                 trimmedItemName, quantity);

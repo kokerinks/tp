@@ -9,7 +9,9 @@ import java.util.List;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.item.Item;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.orders.Order;
@@ -27,6 +29,8 @@ public class AddOrderCommand extends Command {
             + "Example: " + COMMAND_WORD + " n/Alex Yeoh i/Chocolate Chip Cookies 100g q/3";
 
     public static final String MESSAGE_ADD_ORDER_SUCCESS = "Added order to Person: %1$s";
+
+    public static final String MESSAGE_ITEM_NOT_FOUND = "Item not found in the inventory";
 
     public final NameContainsKeywordsPredicate personNamePredicate;
     public final String itemName;
@@ -64,9 +68,12 @@ public class AddOrderCommand extends Command {
             throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
         }
 
-        // Create an Item by searching the catalogue for an item matching itemName
-        //TODO
-        Item item = null;
+
+        AddressBook addressBook = (AddressBook) model.getAddressBook();
+        Item item = addressBook.findItem(itemName);
+        if (isNull(item)) {
+            throw new CommandException(MESSAGE_ITEM_NOT_FOUND);
+        }
 
         personToUpdate.addOrders(new Order(item, quantity));
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
