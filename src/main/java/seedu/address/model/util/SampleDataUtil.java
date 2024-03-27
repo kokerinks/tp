@@ -76,7 +76,7 @@ public class SampleDataUtil {
     public static ArrayList<Order> getOrderArrayList(String... strings) {
         return Arrays.stream(strings)
                 .map(str -> {
-                    String[] parts = str.split("|");
+                    String[] parts = str.split("\\|");
                     Item newItem = new Item(parts[0], Integer.parseInt(parts[1]));
                     int newQty = Integer.parseInt(parts[2]);
                     return new Order(newItem, newQty, LocalDateTime.parse(parts[3]));
