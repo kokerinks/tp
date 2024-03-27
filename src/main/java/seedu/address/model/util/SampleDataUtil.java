@@ -75,8 +75,15 @@ public class SampleDataUtil {
     public static ArrayList<Order> getOrderArrayList(String... strings) {
         return Arrays.stream(strings)
                 .map(str -> {
+<<<<<<< Updated upstream
                     String[] parts = str.split("@");
                     return new Order(parts[0], LocalDateTime.parse(parts[1]));
+=======
+                    String[] parts = str.split("\\|");
+                    Item newItem = new Item(parts[0], Integer.parseInt(parts[1]));
+                    int newQty = Integer.parseInt(parts[2]);
+                    return new Order(newItem, newQty, LocalDateTime.parse(parts[3]));
+>>>>>>> Stashed changes
                 })
                 .collect(Collectors.toCollection(ArrayList::new));
     }
