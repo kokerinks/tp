@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.item.Item;
 import seedu.address.model.person.Person;
 
 /**
@@ -84,4 +85,26 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Searches the address book for an item with the given name.
+     * @param name of the item to search for.
+     * @return Item with the given name.
+     */
+    Item findItem(String name);
+
+    /**
+     * Adds an item to the address book.
+     * @param item to be added.
+     * @return true if the item was added successfully.
+     */
+    boolean addItem(Item item);
+
+    /**
+     * Removes an item from the address book.
+     * @param name of the item to be removed.
+     * @return true if the item was removed successfully.
+     */
+    boolean removeItem(String name);
+
 }

@@ -1,8 +1,11 @@
 package seedu.address.model.person.orders;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.item.Item.ITEM_NAME_VALIDATION_REGEX;
 
 import java.time.LocalDateTime;
+
+import seedu.address.model.item.Item;
 
 /**
  * Represents an order made by a Person
@@ -10,8 +13,8 @@ import java.time.LocalDateTime;
 public class Order implements Cloneable {
 
     public static final String MESSAGE_CONSTRAINTS = "Item name should not be blank";
+    public static final String MESSAGE_INVALID_QUANTITY = "Quantity should be a positive integer";
     public static final String MESSAGE_INVALID_DATETIME = "Order DateTime is invalid";
-
     public final Item item;
     public final int quantity;
     public final LocalDateTime orderDateTime;
@@ -19,25 +22,28 @@ public class Order implements Cloneable {
     /**
      * Constructs an {@code Order}.
      *
-     * @param items A valid order
+     * @param item A valid order
      */
     public Order(Item item, int quantity) {
-        this.item = requireNonNull(item);
+        requireNonNull(item);
+        this.item = item;
         this.quantity = quantity;
-        assert(quantity != 0);
         this.orderDateTime = LocalDateTime.now();
     }
 
     /**
      * Constructs an {@code Order} with a specific {@code LocalDateTime} ordered.
      *
-     * @param items A valid order
+     * @param item A valid order
+     * @param quantity The quantity of this order
      * @param orderDateTime The time of this order
      */
     public Order(Item item, int quantity, LocalDateTime orderDateTime) {
-        this.item = requireNonNull(item);
+        requireNonNull(item);
+        requireNonNull(orderDateTime);
+        this.item = item;
         this.quantity = quantity;
-        this.orderDateTime = requireNonNull(orderDateTime);
+        this.orderDateTime = orderDateTime;
         assert(quantity != 0);
     }
 
@@ -45,7 +51,8 @@ public class Order implements Cloneable {
      * Returns true if a given string is a valid item.
      */
     public static boolean isValidItems(String test) {
-        return test.matches(VALIDATION_REGEX);
+
+        return test.matches(ITEM_NAME_VALIDATION_REGEX);
     }
 
     @Override
