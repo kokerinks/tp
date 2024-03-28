@@ -28,7 +28,7 @@ public class Catalogue implements Iterable<Item> {
     public Catalogue() {}
 
     /**
-     * Returns true if the list contains an item with the same name.
+     * Returns false if the list contains an item with the same name.
      */
     public boolean addItem(Item newItem) {
         for (Item item: internalList) {
@@ -41,7 +41,7 @@ public class Catalogue implements Iterable<Item> {
     }
 
     /**
-     * Returns true if the list contains an item with the same name.
+     * Returns a clone of the item in this catalogue that has a name matching the given String
      */
     public Item findItem(String name) {
         for (Item item: internalList) {

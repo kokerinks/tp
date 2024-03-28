@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
@@ -19,7 +20,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
 
-    private final Catalogue items;
+    private final Catalogue catalogue;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -30,7 +31,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        items = new Catalogue();
+        catalogue = new Catalogue();
     }
 
     public AddressBook() {}
@@ -54,7 +55,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public void setItems(List<Item> items) {
-        this.items.setItems(items);
+        this.catalogue.setItems(items);
     }
 
     /**
@@ -104,19 +105,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public Item findItem(String name) {
-        return items.findItem(name);
+        return catalogue.findItem(name);
     }
 
     public boolean addItem(Item item) {
-        return items.addItem(item);
+        return catalogue.addItem(item);
     }
 
     public boolean removeItem(String name) {
-        return items.removeItem(name);
+        return catalogue.removeItem(name);
     }
 
     public boolean hasItem(String name) {
-        return items.findItem(name) != null;
+        return catalogue.findItem(name) != null;
     }
 
     //// util methods
@@ -135,7 +136,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public ObservableList<Item> getItemList() {
-        return items.asUnmodifiableObservableList();
+        return catalogue.asUnmodifiableObservableList();
     }
 
 
@@ -151,11 +152,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons);
+        return persons.equals(otherAddressBook.persons) && catalogue.equals(otherAddressBook.catalogue);
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return Objects.hash(persons, catalogue);
     }
 }
