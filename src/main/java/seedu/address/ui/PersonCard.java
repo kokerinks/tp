@@ -43,7 +43,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label membership;
     @FXML
-    private FlowPane tags;
+    private FlowPane allergens;
     @FXML
     private Label points;
     @FXML
@@ -63,8 +63,8 @@ public class PersonCard extends UiPart<Region> {
         membership.setText("Membership Tier: \t" + person.getMembershipPoints().toString());
         orders.setText(buildOrderString(person.getOrders()));
         person.getAllergens().stream()
-                .sorted(Comparator.comparing(tag -> tag.allergenName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.allergenName)));
+                .sorted(Comparator.comparing(allergen -> allergen.allergenName))
+                .forEach(allergen -> allergens.getChildren().add(new Label(allergen.allergenName)));
         points.setText("Redeem Pts: \t" + String.valueOf(person.getPoints().value));
     }
 
