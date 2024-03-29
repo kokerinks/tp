@@ -28,11 +28,11 @@ public class Order implements Cloneable {
         requireNonNull(item);
         this.item = item;
         this.quantity = quantity;
-        this.orderDateTime = LocalDateTime.now();
+        this.orderDateTime = LocalDateTime.now().withNano(0);
     }
 
     /**
-     * Constructs an {@code Order} with a specific {@code LocalDateTime} ordered.
+     * Constructs an {@code Order} with a specific {@code LocalDateTime} ordered. Time is rounded down to the second
      *
      * @param item A valid order
      * @param quantity The quantity of this order
@@ -43,7 +43,7 @@ public class Order implements Cloneable {
         requireNonNull(orderDateTime);
         this.item = item;
         this.quantity = quantity;
-        this.orderDateTime = orderDateTime;
+        this.orderDateTime = orderDateTime.withNano(0);
         assert(quantity != 0);
     }
 
