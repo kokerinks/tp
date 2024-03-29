@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.item.Item;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -103,8 +104,10 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withOrders(String... orders) {
         ArrayList<Order> orderList = Arrays.stream(orders)
                 .map(str -> {
-                    String[] parts = str.split("@");
-                    return new Order(parts[0], LocalDateTime.parse(parts[1]));
+                    String[] parts = str.split("\\|");
+                    Item item = new Item(parts[0], Integer.parseInt(parts[1]));
+                    int quantity = Integer.parseInt(parts[2]);
+                    return new Order(item, quantity, LocalDateTime.parse(parts[3]));
                 })
                 .collect(Collectors.toCollection(ArrayList::new));
         descriptor.setOrders(orderList);

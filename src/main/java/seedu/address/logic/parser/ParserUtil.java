@@ -25,6 +25,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
+    public static final String MESSAGE_INVALID_POINTS = "Points should be a non-negative integer.";
+
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -160,5 +162,27 @@ public class ParserUtil {
             throw new ParseException(Points.MESSAGE_CONSTRAINTS);
         }
         return new Points(trimmedPoints);
+    }
+
+    /**
+     * Parses a {@code String membershipPoints} into a {@code MembershipPoints}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code membershipPoints} is invalid (not a non-negative integer).
+     */
+    public static MembershipPoints parseMembershipPoints(String membershipPoints) throws ParseException {
+        requireNonNull(membershipPoints);
+        String trimmedMembershipPoints = membershipPoints.trim();
+        int membershipPointsInt;
+
+        try {
+            membershipPointsInt = Integer.parseInt(trimmedMembershipPoints);
+        } catch (NumberFormatException e) {
+            throw new ParseException(MESSAGE_INVALID_POINTS);
+        }
+
+        if (!MembershipPoints.isValidMembershipPoints(membershipPointsInt)) {
+            throw new ParseException(MESSAGE_INVALID_POINTS);
+        }
+        return new MembershipPoints(trimmedMembershipPoints);
     }
 }

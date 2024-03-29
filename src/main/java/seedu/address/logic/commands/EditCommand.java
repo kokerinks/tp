@@ -1,12 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_POINTS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
@@ -51,6 +46,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ADDRESS + "MEMBER_ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]"
             + "[" + PREFIX_POINTS + "POINTS]...\n"
+            + "[" + PREFIX_MEMSHIP_PTS + "MEMBERSHIP_POINTS]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -107,7 +103,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        MembershipPoints updatedMembershipPoints = personToEdit.getMembershipPoints();
+        MembershipPoints updatedMembershipPoints = editPersonDescriptor.getMembershipPoints().orElse(personToEdit.getMembershipPoints());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Points updatedPoints = editPersonDescriptor.getPoints().orElse(personToEdit.getPoints());
         ArrayList<Order> updatedOrders = editPersonDescriptor.getOrders().orElse(personToEdit.getOrders());
@@ -153,6 +149,8 @@ public class EditCommand extends Command {
         private Points points;
         private ArrayList<Order> orders;
 
+        private MembershipPoints membershipPoints;
+
         public EditPersonDescriptor() {}
 
         /**
@@ -166,14 +164,14 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setPoints(toCopy.points);
-            setOrders(toCopy.orders);
+            setMembershipPoints(toCopy.membershipPoints);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, points);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, points, membershipPoints);
         }
 
         public void setName(Name name) {
@@ -233,7 +231,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(points);
         }
 
-
         /**
          * Sets {@code orders} to this object's {@code orders}.
          * A defensive copy of {@code orders} is used internally.
@@ -248,6 +245,14 @@ public class EditCommand extends Command {
          */
         public Optional<ArrayList<Order>> getOrders() {
             return (orders != null) ? Optional.of(orders) : Optional.empty();
+        }
+
+        public void setMembershipPoints(MembershipPoints membershipPoints) {
+            this.membershipPoints = membershipPoints;
+        }
+
+        public Optional<MembershipPoints> getMembershipPoints() {
+            return Optional.ofNullable(membershipPoints);
         }
 
         @Override
@@ -279,6 +284,7 @@ public class EditCommand extends Command {
                     .add("address", address)
                     .add("tags", tags)
                     .add("points", points)
+                    .add("membershipPoints", membershipPoints)
                     .toString();
         }
 
