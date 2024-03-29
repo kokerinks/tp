@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.item.Item;
 import seedu.address.model.person.Person;
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -29,23 +30,23 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withTags("friends").withPoints("50")
-            .withOrders("Cupcake x 3@2007-12-03T10:15:30").build();
+            .withOrders("Cupcake|100|3|2007-12-03T10:15:30").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withMembershipPoints("10")
             .withTags("owesMoney", "friends").withPoints("70")
-            .withOrders("Cookies x 5@2012-03-21T07:45:01", "Cupcake x 2@2014-12-11T13:01:02").build();
+            .withOrders("Cookies|100|5|2012-03-21T07:45:01", "Cupcake|150|2|2014-12-11T13:01:02").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").withMembershipPoints("20").withPoints("0")
-            .withOrders("Kaya Toast x 1@2024-01-01T07:00:00").build();
+            .withOrders("Kaya Toast|200|1|2024-01-01T07:00:00").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withMembershipPoints("30").withTags("friends")
-            .withPoints("100").withOrders("Cheese Tart x 6@2023-06-30T23:23:23").build();
+            .withPoints("100").withOrders("Cheese Tart|300|3|2023-06-30T23:23:23").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").withMembershipPoints("100").withPoints("50")
-            .withOrders("Chocolate Waffle x 1@2023-01-01T13:13:13",
-                    "Peanut Butter Waffle x 1@2023-01-02T14:14:14",
-                    "Kaya Waffle x 1@2023-01-03T15:15:15").build();
+            .withOrders("Chocolate Waffle|120|2|2023-01-01T13:13:13",
+                    "Peanut Butter Waffle|100|3|2023-01-02T14:14:14",
+                    "Kaya Waffle|110|1|2023-01-03T15:15:15").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo").withMembershipPoints("110")
             .withPoints("20").build();
@@ -79,6 +80,9 @@ public class TypicalPersons {
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }
+        for (Item item : getTypicalItems()) {
+            ab.addItem(item);
+        }
         return ab;
     }
 
@@ -92,4 +96,17 @@ public class TypicalPersons {
                 new PersonBuilder(FIONA).build(),
                 new PersonBuilder(GEORGE).build()));
     }
+
+    public static List<Item> getTypicalItems() {
+        return new ArrayList<>(Arrays.asList(
+                new Item("Cupcake", 100),
+                new Item("Cookies", 100),
+                new Item("Cupcake", 150),
+                new Item("Cheese Tart", 300),
+                new Item("Chocolate Waffle", 120),
+                new Item("Peanut Butter Waffle", 100),
+                new Item("Kaya Waffle", 110),
+                new Item("Kaya Toast", 200)));
+    }
+
 }

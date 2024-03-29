@@ -37,4 +37,19 @@ public class Item implements Cloneable {
     public String toString() {
         return name + " (" + points + " points)";
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Item // instanceof handles nulls
+                && name.equals(((Item) other).name)
+                && points == ((Item) other).points); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        //combine both names and points, then hash
+        String hashString = String.format("%s%d", name, points);
+        return hashString.hashCode();
+    }
 }

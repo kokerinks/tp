@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POINTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -42,8 +42,11 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_POINTS_AMY = "50";
     public static final String VALID_POINTS_BOB = "75";
-    public static final String VALID_ORDER_COOKIES = "Cookies x 3";
-    public static final String VALID_ORDER_CUPCAKES = "Cupcakes x 1";
+    public static final String VALID_ORDER_COOKIES = "Cookies";
+    public static final String VALID_ORDER_COOKIES_QTY = "5";
+    public static final String VALID_ORDER_CUPCAKES = "Cupcakes";
+    public static final String VALID_ORDER_CUPCAKES_QTY = "2";
+
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -57,8 +60,9 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String POINTS_DESC_AMY = " " + PREFIX_POINTS + VALID_POINTS_AMY;
     public static final String POINTS_DESC_BOB = " " + PREFIX_POINTS + VALID_POINTS_BOB;
-    public static final String ORDER_ITEM_COOKIES = " " + PREFIX_ORDER + VALID_ORDER_COOKIES;
-    public static final String ORDER_ITEM_CUPCAKES = " " + PREFIX_ORDER + VALID_ORDER_CUPCAKES;
+    public static final String ORDER_ITEM_COOKIES = " " + PREFIX_ITEM + VALID_ORDER_COOKIES;
+
+    public static final String ORDER_ITEM_CUPCAKES = " " + PREFIX_ITEM + VALID_ORDER_CUPCAKES;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -66,7 +70,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_POINTS_DESC = " " + PREFIX_POINTS + "-20"; // negative int not allows in points
-    public static final String INVALID_ORDER_ITEM = " " + PREFIX_ORDER; // empty string not allowed for order items
+    public static final String INVALID_ORDER_ITEM = " " + PREFIX_ITEM; // empty string not allowed for order items
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

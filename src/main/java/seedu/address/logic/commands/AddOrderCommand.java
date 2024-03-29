@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import seedu.address.logic.Messages;
@@ -36,6 +37,8 @@ public class AddOrderCommand extends Command {
     public final String itemName;
     public final int quantity;
 
+    public final LocalDateTime orderDateTime;
+
     /**
      * @param personNamePredicate of the person to add the order to
      * @param itemName name of item ordered
@@ -47,6 +50,23 @@ public class AddOrderCommand extends Command {
         this.personNamePredicate = personNamePredicate;
         this.itemName = itemName;
         this.quantity = quantity;
+        this.orderDateTime = null;
+    }
+
+    /**
+     * @param personNamePredicate of the person to add the order to
+     * @param itemName name of item ordered
+     * @param quantity of specified item ordered
+     * @param orderDateTime of the order
+     */
+    public AddOrderCommand(NameContainsKeywordsPredicate personNamePredicate, String itemName,
+                           int quantity, LocalDateTime orderDateTime) {
+        requireAllNonNull(personNamePredicate, itemName, quantity, orderDateTime);
+
+        this.personNamePredicate = personNamePredicate;
+        this.itemName = itemName;
+        this.quantity = quantity;
+        this.orderDateTime = orderDateTime;
     }
 
     @Override
@@ -75,7 +95,12 @@ public class AddOrderCommand extends Command {
             throw new CommandException(MESSAGE_ITEM_NOT_FOUND);
         }
 
-        personToUpdate.addOrders(new Order(item, quantity));
+        if (orderDateTime != null) {
+            personToUpdate.addOrders(new Order(item, quantity, orderDateTime));
+        } else {
+            personToUpdate.addOrders(new Order(item, quantity));
+        }
+
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(generateSuccessMessage(personToUpdate));
     }
@@ -102,5 +127,15 @@ public class AddOrderCommand extends Command {
         AddOrderCommand e = (AddOrderCommand) other;
         return personNamePredicate.equals(e.personNamePredicate)
                 && itemName.equals(e.itemName) && (quantity == e.quantity);
+    }
+
+    @Override
+    public String toString() {
+        return "AddOrderCommand{"
+                + "personNamePredicate=" + personNamePredicate
+                + ", itemName='" + itemName + '\''
+                + ", quantity=" + quantity
+                + ", orderDateTime=" + orderDateTime
+                + '}';
     }
 }

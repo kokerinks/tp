@@ -45,6 +45,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setTags(person.getTags());
         descriptor.setPoints(person.getPoints());
         descriptor.setOrders(person.getOrders());
+        descriptor.setMembershipPoints(person.getMembershipPoints());
     }
 
     /**

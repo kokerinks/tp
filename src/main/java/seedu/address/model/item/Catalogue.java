@@ -98,4 +98,21 @@ public class Catalogue implements Iterable<Item> {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return internalList.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Catalogue // instanceof handles nulls
+                && internalList.equals(((Catalogue) other).internalList));
+    }
+
+    @Override
+    public int hashCode() {
+        return internalList.hashCode();
+    }
 }
