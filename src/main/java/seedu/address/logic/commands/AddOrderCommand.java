@@ -68,7 +68,7 @@ public class AddOrderCommand extends Command {
             throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
         }
 
-
+        //Find matching item in catalogue
         AddressBook addressBook = (AddressBook) model.getAddressBook();
         Item item = addressBook.findItem(itemName);
         if (isNull(item)) {
