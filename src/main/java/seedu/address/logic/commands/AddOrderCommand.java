@@ -101,6 +101,8 @@ public class AddOrderCommand extends Command {
             personToUpdate.addOrders(new Order(item, quantity));
         }
 
+        personToUpdate.addPoints(quantity * item.getPoints());
+
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(generateSuccessMessage(personToUpdate));
     }

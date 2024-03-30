@@ -59,11 +59,14 @@ public class AddOrderCommandTest {
                 new AddOrderCommand(bensonPredicate, itemName, quantity, orderDateTime);
 
         Person bensonWithAddedOrder = new PersonBuilder(BENSON).withOrders(
-                //existing orders
+                // existing orders
                 "Cookies|100|5|2012-03-21T07:45:01",
                 "Cupcake|150|2|2014-12-11T13:01:02",
-                //new order
-                String.format("%s|%d|%d|%s", itemName, points, quantity, orderDateTime)).build();
+                // new order
+                String.format("%s|%d|%d|%s", itemName, points, quantity, orderDateTime))
+                // existing 10 points + 200 * 3 quantity
+                .withMembershipPoints("610")
+                .withPoints("670").build();
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.addItem(new Item(itemName, points));

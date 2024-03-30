@@ -25,10 +25,12 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final MembershipPoints membershipPoints;
     private final Set<Allergen> allergens = new HashSet<>();
-    private final Points points;
     private final ArrayList<Order> orders = new ArrayList<>();
+
+    // Points and Membership Points can be updated by {@code addPoints} method only
+    private Points points;
+    private MembershipPoints membershipPoints;
 
     /**
      * Every field must be present and not null.
@@ -94,6 +96,14 @@ public class Person {
      */
     public void addOrders(Order order) {
         this.orders.add(order);
+    }
+
+    /**
+     * Adds points to the current points and membership points.
+     */
+    public void addPoints(int pointsToAdd) {
+        this.points = this.points.addPoints(pointsToAdd);
+        this.membershipPoints = this.membershipPoints.addPoints(pointsToAdd);
     }
 
     /**
