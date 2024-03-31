@@ -69,7 +69,7 @@ public class PersonCard extends UiPart<Region> {
     }
 
     private static String buildOrderString(ArrayList<Order> orders) {
-        StringBuilder orderStringBuilder = new StringBuilder("Orders:\n");
+        StringBuilder orderStringBuilder = new StringBuilder("Order History:\n");
         for (Order order : orders) {
             orderStringBuilder.append(order.toString());
             orderStringBuilder.append("\n");
