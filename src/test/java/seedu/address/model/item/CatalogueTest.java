@@ -1,0 +1,84 @@
+package seedu.address.model.item;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.item.exceptions.DuplicateItemException;
+
+public class CatalogueTest {
+    @Test
+    public void addItem_validItem_True(){
+        assertTrue(new Catalogue().addItem(new Item("valid", 20)));
+    }
+
+    @Test
+    public void addItem_sameItem_False(){
+        Catalogue test = new Catalogue();
+        test.addItem(new Item("valid", 20));
+        assertFalse(test.addItem(new Item("valid", 20)));
+
+        Catalogue expected = new Catalogue();
+        expected.addItem(new Item("valid", 20));
+        assertEquals(test, expected);
+    }
+
+    @Test
+    public void delItem(){
+        Catalogue actual = new Catalogue();
+        actual.addItem(new Item("test", 20));
+
+        assertFalse(actual.removeItem("Not In Cat"));
+
+        Catalogue expected = new Catalogue();
+        expected.addItem(new Item("test", 20));
+        assertEquals(actual, expected);
+
+        assertTrue(actual.removeItem("test"));
+        Catalogue empty = new Catalogue();
+        assertEquals(actual, empty);
+
+
+    }
+
+    @Test
+    public void setItems_Catalogue_EmptyToFilled_Success() {
+        Catalogue actual = new Catalogue();
+        Catalogue expected = new Catalogue();
+        expected.addItem(new Item("Hi", 200));
+        actual.setItems(expected);
+
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    public void setItems_Catalogue_FilledToEmpty_Success() {
+        Catalogue actual = new Catalogue();
+        Catalogue expected = new Catalogue();
+        actual.addItem(new Item("Hi", 200));
+        actual.setItems(expected);
+
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    public void setItems_ItemList_FilledToEmpty_Failure() {
+        Catalogue test = new Catalogue();
+        List<Item> itemList = FXCollections.observableArrayList();
+
+        //Add two items with same name
+        itemList.add(new Item("Hello", 2));
+        itemList.add(new Item("Hello", 3));
+
+        assertThrows(DuplicateItemException.class, () -> test.setItems(itemList));
+    }
+
+
+}
