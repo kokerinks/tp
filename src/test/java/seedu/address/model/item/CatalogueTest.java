@@ -10,17 +10,16 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import seedu.address.model.item.exceptions.DuplicateItemException;
 
 public class CatalogueTest {
     @Test
-    public void addItem_validItem_True(){
+    public void addItem_validItem_true() {
         assertTrue(new Catalogue().addItem(new Item("valid", 20)));
     }
 
     @Test
-    public void addItem_sameItem_False(){
+    public void addItem_sameItem_false() {
         Catalogue test = new Catalogue();
         test.addItem(new Item("valid", 20));
         assertFalse(test.addItem(new Item("valid", 20)));
@@ -31,7 +30,7 @@ public class CatalogueTest {
     }
 
     @Test
-    public void delItem(){
+    public void delItem() {
         Catalogue actual = new Catalogue();
         actual.addItem(new Item("test", 20));
 
@@ -49,7 +48,7 @@ public class CatalogueTest {
     }
 
     @Test
-    public void setItems_Catalogue_EmptyToFilled_Success() {
+    public void setItems_catalogueEmptyToFilled_success() {
         Catalogue actual = new Catalogue();
         Catalogue expected = new Catalogue();
         expected.addItem(new Item("Hi", 200));
@@ -59,7 +58,7 @@ public class CatalogueTest {
     }
 
     @Test
-    public void setItems_Catalogue_FilledToEmpty_Success() {
+    public void setItems_catalogueFilledToEmpty_success() {
         Catalogue actual = new Catalogue();
         Catalogue expected = new Catalogue();
         actual.addItem(new Item("Hi", 200));
@@ -69,7 +68,7 @@ public class CatalogueTest {
     }
 
     @Test
-    public void setItems_ItemList_FilledToEmpty_Failure() {
+    public void setItems_itemListFilledToEmpty_failure() {
         Catalogue test = new Catalogue();
         List<Item> itemList = FXCollections.observableArrayList();
 

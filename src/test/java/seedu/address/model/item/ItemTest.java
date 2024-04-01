@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 public class ItemTest {
     @Test
-    public void isSameItem_and_Equals() {
+    public void isSameItem_and_equals() {
         Item base = new Item("item1", 10);
         Item sameNameSamePoints = new Item("item1", 10);
         Item diffNameSamePoints = new Item("item2", 10);
