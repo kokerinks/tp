@@ -38,8 +38,8 @@ public class AddOrderCommandParserTest {
     @Test
     public void parse_prefixMissing_fails() {
         assertThrows(ParseException.class,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderCommand.MESSAGE_USAGE),
-                () -> parser.parse(NAME_DESC_BOB));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        AddOrderCommand.MESSAGE_USAGE), () -> parser.parse(NAME_DESC_BOB));
     }
 
     @Test
@@ -49,7 +49,7 @@ public class AddOrderCommandParserTest {
 
     @Test
     public void parse_invalidQuantity_fails() {
-        assertThrows(ParseException.class, Order.MESSAGE_INVALID_QUANTITY,
-                () -> parser.parse(NAME_DESC_BOB + ORDER_ITEM_COOKIES + " q/-1"));
+        assertThrows(ParseException.class,
+                Order.MESSAGE_INVALID_QUANTITY, () -> parser.parse(NAME_DESC_BOB + ORDER_ITEM_COOKIES + " q/-1"));
     }
 }

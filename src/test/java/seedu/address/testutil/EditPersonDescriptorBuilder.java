@@ -84,8 +84,8 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code MembershipPoints} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withMemPts(String MemPts) {
-        descriptor.setMembershipPoints(new MembershipPoints(MemPts));
+    public EditPersonDescriptorBuilder withMemPts(String memPts) {
+        descriptor.setMembershipPoints(new MembershipPoints(memPts));
         return this;
     }
 
