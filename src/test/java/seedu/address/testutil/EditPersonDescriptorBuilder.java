@@ -12,6 +12,7 @@ import seedu.address.model.allergen.Allergen;
 import seedu.address.model.item.Item;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MembershipPoints;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -77,6 +78,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
+        return this;
+    }
+
+    /**
+     * Sets the {@code MembershipPoints} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withMemPts(String MemPts) {
+        descriptor.setMembershipPoints(new MembershipPoints(MemPts));
         return this;
     }
 
