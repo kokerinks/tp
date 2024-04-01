@@ -44,7 +44,7 @@ public class Order implements Cloneable {
         this.item = item;
         this.quantity = quantity;
         this.orderDateTime = orderDateTime.withNano(0);
-        assert(quantity != 0);
+        assert(quantity > 0);
     }
 
     /**
