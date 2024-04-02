@@ -83,8 +83,12 @@ public class RedeemPointsCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        if (this == other) return true;
-        if (!(other instanceof RedeemPointsCommand)) return false;
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof RedeemPointsCommand)) {
+            return false;
+        }
 
         RedeemPointsCommand e = (RedeemPointsCommand) other;
         return name.equals(e.name) && pointsToRedeem.equals(e.pointsToRedeem);
