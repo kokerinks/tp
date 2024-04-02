@@ -46,8 +46,6 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane allergens;
     @FXML
     private Label points;
-    @FXML
-    private Label orders;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -61,19 +59,9 @@ public class PersonCard extends UiPart<Region> {
         address.setText("Home Addr.: \t" + person.getAddress().value);
         email.setText("Email Addr.: \t" + person.getEmail().value);
         membership.setText("Membership Tier: \t" + person.getMembershipPoints().toString());
-        orders.setText(buildOrderString(person.getOrders()));
         person.getAllergens().stream()
                 .sorted(Comparator.comparing(allergen -> allergen.allergenName))
                 .forEach(allergen -> allergens.getChildren().add(new Label(allergen.allergenName)));
         points.setText("Redeem Pts: \t" + String.valueOf(person.getPoints().value));
-    }
-
-    private static String buildOrderString(ArrayList<Order> orders) {
-        StringBuilder orderStringBuilder = new StringBuilder("Orders:\n");
-        for (Order order : orders) {
-            orderStringBuilder.append(order.toString());
-            orderStringBuilder.append("\n");
-        }
-        return orderStringBuilder.toString();
     }
 }

@@ -1,15 +1,15 @@
 .root {
     /* Use these to easily change color of the components */
     -fx-primary-color: rgba(0, 0, 0, 0);
-    -fx-secondary-color: #58320d;
+    -fx-secondary-color: #432004;
     -fx-terminal-color: #000000;
-    -fx-contacts-color-odd: #444444;
-    -fx-contacts-color-even: #333333;
+    -fx-contacts-color-odd: #351700;
+    -fx-contacts-color-even: #7E2D00;
     /* Feel free to change other properties/colors below as well =) */
 }
 
 .background {
-    -fx-background-color: -fx-primary-color;
+    -fx-background-color: rgba(0, 0, 0, 0);
     -fx-background-color: #383838; /* Used in the default.html file */
 }
 
@@ -23,14 +23,14 @@
 .label-bright {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-opacity: 1;
 }
 
 .label-header {
     -fx-font-size: 32pt;
     -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-opacity: 1;
 }
 
@@ -47,43 +47,6 @@
     -fx-padding: 0 0 0 0;
     -fx-min-height: 0;
     -fx-max-height: 0;
-}
-
-.table-view {
-    -fx-base: -fx-primary-color;
-    -fx-control-inner-background: -fx-primary-color;
-    -fx-background-color: -fx-primary-color;
-    -fx-table-cell-border-color: transparent;
-    -fx-table-header-border-color: transparent;
-    -fx-padding: 5;
-}
-
-.table-view .column-header-background {
-    -fx-background-color: transparent;
-}
-
-.table-view .column-header, .table-view .filler {
-    -fx-size: 35;
-    -fx-border-width: 0 0 1 0;
-    -fx-background-color: transparent;
-    -fx-border-color:
-        transparent
-        transparent
-        derive(-fx-base, 80%)
-        transparent;
-    -fx-border-insets: 0 10 1 0;
-}
-
-.table-view .column-header .label {
-    -fx-font-size: 20pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
-    -fx-alignment: center-left;
-    -fx-opacity: 1;
-}
-
-.table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: -fx-focus-color;
 }
 
 .split-pane:horizontal .split-pane-divider {
@@ -118,12 +81,12 @@
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-background-color: #D16F04;
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
+    -fx-border-color: black;
+    -fx-border-width: 2;
 }
 
 .list-cell .label {
@@ -170,7 +133,7 @@
 
 .status-bar .label {
     -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
 }
@@ -182,7 +145,7 @@
 }
 
 .status-bar-with-border .label {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 .grid-pane {
@@ -196,11 +159,11 @@
 }
 
 .context-menu {
-    -fx-background-color: derive(-fx-primary-color, 50%);
+    -fx-background-color: #fbc27b;
 }
 
 .context-menu .label {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 .menu-bar {
@@ -209,8 +172,8 @@
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-font-family: "Bodoni MT Black";
+    -fx-text-fill: black;
     -fx-opacity: 0.9;
 }
 
@@ -228,7 +191,7 @@
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
     -fx-background-radius: 0;
-    -fx-background-color: -fx-primary-color;
+    -fx-background-color: -fx-secondary-color;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
@@ -293,11 +256,11 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(-fx-primary-color, 20%);
+    -fx-background-color: transparent;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(-fx-primary-color, 50%);
+    -fx-background-color: -fx-secondary-color;
     -fx-background-insets: 3;
 }
 
@@ -362,4 +325,18 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+#container {
+    -fx-background-color: rgba(255, 255, 255, 0.7);
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+}
+
+#catalogueTitle, #orderTitle {
+    -fx-font-family: "Bodoni MT Black";
+    -fx-font-size: 25px;
+    -fx-text-fill: black;
 }

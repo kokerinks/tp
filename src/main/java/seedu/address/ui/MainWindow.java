@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
@@ -67,6 +68,10 @@ public class MainWindow extends UiPart<Stage> implements PersonSelectionListener
 
     @FXML
     private VBox cataloguePanelPlaceholder;
+    @FXML
+    private VBox centerPortionPlaceholder;
+    @FXML
+    private VBox container;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -128,7 +133,6 @@ public class MainWindow extends UiPart<Stage> implements PersonSelectionListener
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanel.setPersonSelectionListener(this);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
