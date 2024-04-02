@@ -13,6 +13,7 @@ public class HelpCommandParser implements Parser<HelpCommand> {
      * @return the parsed HelpCommand object
      */
     public HelpCommand parse(String args) {
+        args = args.trim();
         String[] argsList = args.split(" ");
         String commandType = null;
         for (String arg : argsList) {

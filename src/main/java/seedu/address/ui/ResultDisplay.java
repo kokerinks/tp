@@ -15,7 +15,7 @@ public class ResultDisplay extends UiPart<Region> {
 
     private static final String STARTING_MESSAGE = "Welcome to SweetRewards!" + "\n"
             + "- Type 'help --commands' to see the list of commands available." + "\n"
-            + "- Type 'help' to view the user guide online." + "\n";
+            + "- Type 'help' to view the user guide online.";
 
     @FXML
     private TextArea resultDisplay;
