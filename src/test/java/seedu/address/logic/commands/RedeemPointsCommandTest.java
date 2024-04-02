@@ -34,7 +34,8 @@ public class RedeemPointsCommandTest {
         Integer newPoints = firstPerson.getPoints().getValue() - Integer.parseInt(POINTS_TO_REDEEM);
         Person editedPerson = new PersonBuilder(firstPerson).withPoints(Integer.toString(newPoints)).build();
 
-        RedeemPointsCommand redeemPointsCommand = new RedeemPointsCommand(firstPerson.getName(), new Points(POINTS_TO_REDEEM));
+        RedeemPointsCommand redeemPointsCommand =
+                new RedeemPointsCommand(firstPerson.getName(), new Points(POINTS_TO_REDEEM));
 
         String expectedMessage = String.format(RedeemPointsCommand.MESSAGE_REDEEMPOINTS_SUCCESS, POINTS_TO_REDEEM,
                 firstPerson.getName());
@@ -56,10 +57,12 @@ public class RedeemPointsCommandTest {
     @Test
     public void equals() {
         final Name firstPersonName = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()).getName();
-        final RedeemPointsCommand standardCommand = new RedeemPointsCommand(firstPersonName, new Points(POINTS_TO_REDEEM));
+        final RedeemPointsCommand standardCommand =
+                new RedeemPointsCommand(firstPersonName, new Points(POINTS_TO_REDEEM));
 
         // same values -> returns true
-        RedeemPointsCommand commandWithSameValues = new RedeemPointsCommand(firstPersonName, new Points(POINTS_TO_REDEEM));
+        RedeemPointsCommand commandWithSameValues =
+                new RedeemPointsCommand(firstPersonName, new Points(POINTS_TO_REDEEM));
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true

@@ -54,6 +54,6 @@ public class RedeemPointsCommandParserTest {
     public void parse_pointsZero_failure() {
         // Redeeming zero points is likely not allowed in your application's logic
         assertParseFailure(parser, " " + PREFIX_NAME + " Alice " + PREFIX_POINTS + " 0",
-                RedeemPointsCommand.MESSAGE_CONSTRAINTS); // Assuming there's a similar constraint message in RedeemPointsCommand
+                RedeemPointsCommand.MESSAGE_CONSTRAINTS);
     }
 }
