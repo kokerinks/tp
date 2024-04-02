@@ -3,16 +3,18 @@ package seedu.address.ui;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import seedu.address.model.item.Item;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.orders.Order;
 
+/**
+ * The Orders Panel. Contains a title and a TableView that displays
+ * orders made by the selected {@code Person} in the {@code PersonListPanel}
+ */
 public class PersonOrdersPanel extends UiPart<Region> {
     private static final String FXML = "PersonOrdersPanel.fxml";
 
@@ -40,6 +42,11 @@ public class PersonOrdersPanel extends UiPart<Region> {
         super(FXML);
     }
 
+    /**
+     * Update this {@code PersonOrdersPanel} to reflect the orders of the given {@code Person}
+     *
+     * @param selectedPerson
+     */
     public void updatePersonDetails(Person selectedPerson) {
         orderTitle.setText(selectedPerson.getName().toString() + " Orders");
         dateTimeColumn.setCellValueFactory(new PropertyValueFactory<>("dateTime"));

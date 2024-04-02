@@ -3,7 +3,6 @@ package seedu.address.ui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -11,6 +10,10 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.item.Item;
 
+/**
+ * The Catalogue Panel. Contains a TableView that displays
+ * the {@code Catalogue} in this {@code AddressBook}
+ */
 public class CataloguePanel extends UiPart<Region> {
 
     private static final String FXML = "CataloguePanel.fxml";
