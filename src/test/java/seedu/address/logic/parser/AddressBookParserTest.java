@@ -27,6 +27,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RedeemPointsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -124,6 +125,17 @@ public class AddressBookParserTest {
         Order order = new Order(VALID_ORDER_CUPCAKES, command.order.orderDateTime);
         assertEquals(new AddOrderCommand(namePred, order), command);
     }
+
+    @Test
+    public void parseCommand_redeemPoints() throws Exception {
+        final Name name = new Name("Alice");
+        final Points points = new Points("50"); // Assuming 50 points to be redeemed
+        String input = RedeemPointsCommand.COMMAND_WORD + " " + PREFIX_NAME + " " + name.fullName + " " + PREFIX_POINTS
+                + " " + points.value;
+        RedeemPointsCommand command = (RedeemPointsCommand) parser.parseCommand(input);
+        assertEquals(new RedeemPointsCommand(name, points), command);
+    }
+
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
