@@ -130,6 +130,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Item> getCatalogue() {
+        return addressBook.getItemList();
+    }
+
+    @Override
     public Item findItem(String item) {
         return addressBook.findItem(item);
     }

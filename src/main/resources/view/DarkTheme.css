@@ -1,6 +1,6 @@
 .root {
     /* Use these to easily change color of the components */
-    -fx-primary-color: #000000;
+    -fx-primary-color: rgba(0, 0, 0, 0);
     -fx-secondary-color: #58320d;
     -fx-terminal-color: #000000;
     -fx-contacts-color-odd: #444444;

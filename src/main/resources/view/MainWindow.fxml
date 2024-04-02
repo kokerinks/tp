@@ -22,43 +22,52 @@
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
-         <SplitPane dividerPositions="0.5">
-            <items>
-      
-            <VBox>
-              <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-                <Menu mnemonicParsing="false" text="File">
-                  <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-                </Menu>
-              </MenuBar>
-      
-              <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
-                <padding>
-                  <Insets bottom="5" left="10" right="10" top="5" />
-                </padding>
-              </StackPane>
-      
-              <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
-                <padding>
-                  <Insets bottom="5" left="10" right="10" top="5" />
-                </padding>
-              </StackPane>
-      
-              <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                <padding>
-                  <Insets bottom="10" left="10" right="10" top="10" />
-                </padding>
-                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-              </VBox>
-      
-              <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-            </VBox>
-               <VBox fx:id="personOrdersPanelPlaceholder" prefHeight="200.0" prefWidth="100.0" />
-            </items>
-         </SplitPane>
+         <StackPane fx:id="root" style="-fx-background-image: url('images/breadyBackground.png'); -fx-background-repeat: repeat; -fx-background-size: cover;">
+            <children>
+               <SplitPane dividerPositions="0.8723021582733813">
+                  <items>
+                     <SplitPane dividerPositions="0.28482328482328484">
+                        <items>
+                           <VBox fx:id="cataloguePanelPlaceholder" prefHeight="200.0" prefWidth="100.0" />
+                  
+                              <VBox>
+                          <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+                            <Menu mnemonicParsing="false" text="File">
+                              <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+                            </Menu>
+                            <Menu mnemonicParsing="false" text="Help">
+                              <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+                            </Menu>
+                          </MenuBar>
+                  
+                                <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                            <padding>
+                              <Insets bottom="5" left="10" right="10" top="5" />
+                            </padding>
+                          </StackPane>
+                  
+                                <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                            <padding>
+                              <Insets bottom="5" left="10" right="10" top="5" />
+                            </padding>
+                          </StackPane>
+                  
+                                <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                            <padding>
+                              <Insets bottom="10" left="10" right="10" top="10" />
+                            </padding>
+                            <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                          </VBox>
+                  
+                                <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+                        </VBox>
+                        </items>
+                     </SplitPane>
+                     <VBox fx:id="personOrdersPanelPlaceholder" prefHeight="200.0" prefWidth="100.0" />
+                  </items>
+               </SplitPane>
+            </children>
+         </StackPane>
     </Scene>
   </scene>
 </fx:root>

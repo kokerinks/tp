@@ -6,8 +6,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -26,7 +31,7 @@ import seedu.address.model.person.Person;
 public class MainWindow extends UiPart<Stage> implements PersonSelectionListener {
 
     private static final String FXML = "MainWindow.fxml";
-
+    private static final Image BACKGROUND_IMAGE = new Image("images/breadyBackground.png");
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
@@ -37,6 +42,10 @@ public class MainWindow extends UiPart<Stage> implements PersonSelectionListener
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private PersonOrdersPanel personOrdersPanel;
+    private CataloguePanel cataloguePanel;
+
+    @FXML
+    private StackPane root;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -55,6 +64,9 @@ public class MainWindow extends UiPart<Stage> implements PersonSelectionListener
 
     @FXML
     private VBox personOrdersPanelPlaceholder;
+
+    @FXML
+    private VBox cataloguePanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -116,6 +128,7 @@ public class MainWindow extends UiPart<Stage> implements PersonSelectionListener
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanel.setPersonSelectionListener(this);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -131,6 +144,9 @@ public class MainWindow extends UiPart<Stage> implements PersonSelectionListener
 
         personOrdersPanel = new PersonOrdersPanel();
         personOrdersPanelPlaceholder.getChildren().add(personOrdersPanel.getRoot());
+
+        cataloguePanel = new CataloguePanel(logic.getCatalogue());
+        cataloguePanelPlaceholder.getChildren().add(cataloguePanel.getRoot());
     }
 
     /**
