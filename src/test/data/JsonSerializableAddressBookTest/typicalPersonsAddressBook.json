@@ -9,8 +9,10 @@
     "allergens" : [ "LF" ],
     "points" : "50",
     "orders" : [ {
-      "items" : "Cupcake x 3",
-      "orderDateTime" : "2007-12-03T10:15:30"
+      "itemName": "Cupcake",
+      "itemPoints": "100",
+      "quantity": "3",
+      "orderDateTime": "2007-12-03T10:15:30"
     } ]
   }, {
     "name" : "Benson Meier",
@@ -21,11 +23,15 @@
     "allergens" : [ "GF", "LF" ],
     "points" : "70",
     "orders" : [ {
-      "items" : "Cookies x 5",
-      "orderDateTime" : "2012-03-21T07:45:01"
+      "itemName": "Cookies",
+      "itemPoints": "100",
+      "quantity": "5",
+      "orderDateTime": "2012-03-21T07:45:01"
     }, {
-      "items" : "Cupcake x 2",
-      "orderDateTime" : "2014-12-11T13:01:02"
+      "itemName": "Cupcake",
+      "itemPoints": "150",
+      "quantity": "2",
+      "orderDateTime": "2014-12-11T13:01:02"
     } ]
   }, {
     "name" : "Carl Kurz",
@@ -36,8 +42,10 @@
     "allergens" : [ ],
     "points" : "0",
     "orders" : [ {
-      "items" : "Kaya Toast x 1",
-      "orderDateTime" : "2024-01-01T07:00"
+      "itemName": "Kaya Toast",
+      "itemPoints": "200",
+      "quantity": "1",
+      "orderDateTime": "2024-01-01T07:00:00"
     } ]
   }, {
     "name" : "Daniel Meier",
@@ -48,8 +56,10 @@
     "allergens" : [ "LF" ],
     "points" : "100",
     "orders" : [ {
-      "items" : "Cheese Tart x 6",
-      "orderDateTime" : "2023-06-30T23:23:23"
+      "itemName": "Cheese Tart",
+      "itemPoints": "300",
+      "quantity": "3",
+      "orderDateTime": "2023-06-30T23:23:23"
     } ]
   }, {
     "name" : "Elle Meyer",
@@ -60,14 +70,20 @@
     "allergens" : [ ],
     "points" : "50",
     "orders" : [ {
-      "items" : "Chocolate Waffle x 1",
-      "orderDateTime" : "2023-01-01T13:13:13"
+      "itemName": "Chocolate Waffle",
+      "itemPoints": "120",
+      "quantity": "2",
+      "orderDateTime": "2023-01-01T13:13:13"
     }, {
-      "items" : "Peanut Butter Waffle x 1",
-      "orderDateTime" : "2023-01-02T14:14:14"
+      "itemName": "Peanut Butter Waffle",
+      "itemPoints": "100",
+      "quantity": "3",
+      "orderDateTime": "2023-01-02T14:14:14"
     }, {
-      "items" : "Kaya Waffle x 1",
-      "orderDateTime" : "2023-01-03T15:15:15"
+      "itemName": "Kaya Waffle",
+      "itemPoints": "110",
+      "quantity": "1",
+      "orderDateTime": "2023-01-03T15:15:15"
     } ]
   }, {
     "name" : "Fiona Kunz",
@@ -87,5 +103,35 @@
     "allergens" : [ ],
     "points" : "70",
     "orders" : [ ]
-  } ]
+  } ],
+  "items": [
+    {
+      "name": "Cupcake",
+      "points": "100"
+    },
+    {
+      "name": "Cookies",
+      "points": "100"
+    },
+    {
+      "name": "Cheese Tart",
+      "points": "300"
+    },
+    {
+      "name": "Chocolate Waffle",
+      "points": "120"
+    },
+    {
+      "name": "Peanut Butter Waffle",
+      "points": "100"
+    },
+    {
+      "name": "Kaya Waffle",
+      "points": "110"
+    },
+    {
+      "name": "Kaya Toast",
+      "points": "200"
+    }
+  ]
 }

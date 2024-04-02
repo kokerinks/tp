@@ -17,6 +17,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.allergen.Allergen;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MembershipPoints;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 
@@ -208,5 +209,21 @@ public class ParserUtilTest {
     public void parseMemPointsToAdd_validPointsToAdd_success() throws Exception {
         int expectedPointsToAdd = Integer.parseInt(VALID_MEM_POINTS);
         assertEquals(expectedPointsToAdd, ParserUtil.parseMemPointsToAdd(VALID_MEM_POINTS));
+    }
+
+    @Test
+    public void parseMembershipPoints_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMembershipPoints(null));
+    }
+
+    @Test
+    public void parseMembershipPoints_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMembershipPoints(INVALID_MEM_POINTS));
+    }
+
+    @Test
+    public void parseMembershipPoints_validValueWithoutWhitespace_returnsMembershipPoints() throws Exception {
+        MembershipPoints expectedMembershipPoints = new MembershipPoints(Integer.parseInt(VALID_MEM_POINTS));
+        assertEquals(expectedMembershipPoints, ParserUtil.parseMembershipPoints(VALID_MEM_POINTS));
     }
 }
