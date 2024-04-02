@@ -26,6 +26,15 @@ public final class Points {
     }
 
     /**
+     * Constructs a {@code Points} object.
+     *
+     * @param points A valid points integer.
+     */
+    public Points(final int points) {
+        this.value = points;
+    }
+
+    /**
      * Returns true if a given string is a valid points amount.
      *
      * @param test The string to test.
@@ -38,6 +47,10 @@ public final class Points {
         } catch (NumberFormatException e) {
             return false; // The string was not an integer.
         }
+    }
+
+    public Points addPoints(int pointsToAdd) {
+        return new Points(this.value + pointsToAdd);
     }
 
     @Override

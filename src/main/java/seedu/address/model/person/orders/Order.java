@@ -1,68 +1,68 @@
 package seedu.address.model.person.orders;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.model.item.Item.ITEM_NAME_VALIDATION_REGEX;
 
 import java.time.LocalDateTime;
+
+import seedu.address.model.item.Item;
 
 /**
  * Represents an order made by a Person
  */
 public class Order implements Cloneable {
 
-    public static final String MESSAGE_CONSTRAINTS = "Orders items can take any values, and it should not be blank";
-
+    public static final String MESSAGE_CONSTRAINTS = "Item name should not be blank";
+    public static final String MESSAGE_INVALID_QUANTITY = "Quantity should be a positive integer";
     public static final String MESSAGE_INVALID_DATETIME = "Order DateTime is invalid";
-
-    /*
-     * The first character of the order must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
-    public final String items;
+    public final Item item;
+    public final int quantity;
     public final LocalDateTime orderDateTime;
 
     /**
      * Constructs an {@code Order}.
      *
-     * @param items A valid order
+     * @param item A valid order
      */
-    public Order(String items) {
-        requireNonNull(items);
-        checkArgument(isValidItems(items), MESSAGE_CONSTRAINTS);
-        this.items = items;
+    public Order(Item item, int quantity) {
+        requireNonNull(item);
+        this.item = item;
+        this.quantity = quantity;
         this.orderDateTime = LocalDateTime.now().withNano(0);
     }
 
     /**
      * Constructs an {@code Order} with a specific {@code LocalDateTime} ordered. Time is rounded down to the second
      *
-     * @param items A valid order
+     * @param item A valid order
+     * @param quantity The quantity of this order
      * @param orderDateTime The time of this order
      */
-    public Order(String items, LocalDateTime orderDateTime) {
-        requireNonNull(items);
+    public Order(Item item, int quantity, LocalDateTime orderDateTime) {
+        requireNonNull(item);
         requireNonNull(orderDateTime);
-        checkArgument(isValidItems(items), MESSAGE_CONSTRAINTS);
-        this.items = items;
+        this.item = item;
+        this.quantity = quantity;
         this.orderDateTime = orderDateTime.withNano(0);
+        assert(quantity > 0);
     }
 
     /**
      * Returns true if a given string is a valid item.
      */
     public static boolean isValidItems(String test) {
-        return test.matches(VALIDATION_REGEX);
+
+        return test.matches(ITEM_NAME_VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return orderDateTime.toString() + " " + items;
+        return orderDateTime.toString() + " " + item + " x" + quantity;
     }
 
     @Override
     public Order clone() {
-        return new Order(items, orderDateTime);
+        return new Order(item, quantity, orderDateTime);
     }
 
     @Override
@@ -77,7 +77,8 @@ public class Order implements Cloneable {
         }
 
         Order otherOrder = (Order) other;
-        return items.equals(otherOrder.items) && orderDateTime.equals(otherOrder.orderDateTime);
+        return item.equals(otherOrder.item) && (quantity == otherOrder.quantity)
+                && orderDateTime.equals(otherOrder.orderDateTime);
     }
 }
 

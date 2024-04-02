@@ -2,8 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QTY;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
@@ -26,9 +27,9 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
     public AddOrderCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_NAME, PREFIX_ORDER);
+                PREFIX_NAME, PREFIX_ITEM, PREFIX_QTY);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ORDER)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ITEM)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderCommand.MESSAGE_USAGE));
         }
@@ -36,9 +37,24 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         String trimmedName = argMultimap.getValue(PREFIX_NAME).get().trim();
         String[] nameKeywords = trimmedName.split("\\s+");
 
-        Order order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_ORDER).get());
+        // Item name should not be empty
+        String trimmedItemName = argMultimap.getValue(PREFIX_ITEM).get().trim();
+        if (!Order.isValidItems(trimmedItemName)) {
+            throw new ParseException(Order.MESSAGE_CONSTRAINTS);
+        }
 
-        return new AddOrderCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)), order);
+        // if quantity not specified, default to 1
+        int quantity = argMultimap.getValue(PREFIX_QTY).isPresent()
+                ? Integer.parseInt(argMultimap.getValue(PREFIX_QTY).get())
+                : 1;
+
+        // Quantity should be a positive integer
+        if (quantity <= 0) {
+            throw new ParseException(Order.MESSAGE_INVALID_QUANTITY);
+        }
+
+        return new AddOrderCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)),
+                trimmedItemName, quantity);
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

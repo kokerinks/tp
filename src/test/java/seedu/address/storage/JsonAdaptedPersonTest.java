@@ -43,8 +43,11 @@ public class JsonAdaptedPersonTest {
             .map(JsonAdaptedAllergen::new)
             .collect(Collectors.toList());
     private static final String VALID_POINTS = BENSON.getPoints().toString();
-    private static final String VALID_ORDERITEM = "Cupcake x 3";
-    private static final String VALID_ORDERDATETIME = "2023-01-03T15:15:15";
+    private static final String VALID_ORDER_ITEM_NAME = "Cupcake";
+    private static final String VALID_ORDER_ITEM_POINTS = "10";
+    private static final String VALID_ORDER_QUANTITY = "1";
+
+    private static final String VALID_ORDER_DATETIME = "2023-01-03T15:15:15";
     private static final List<JsonAdaptedOrder> VALID_ORDERS = BENSON.getOrders().stream()
             .map(JsonAdaptedOrder::new)
             .collect(Collectors.toList());
@@ -153,7 +156,8 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidOrderItem_throwsIllegalValueException() {
         List<JsonAdaptedOrder> invalidOrders = new ArrayList<>(VALID_ORDERS);
-        invalidOrders.add(new JsonAdaptedOrder(INVALID_ORDERITEM, VALID_ORDERDATETIME));
+        invalidOrders.add(new JsonAdaptedOrder(INVALID_ORDERITEM, VALID_ORDER_ITEM_POINTS,
+                VALID_ORDER_QUANTITY, VALID_ORDER_DATETIME));
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                         VALID_MEMBERSHIP, VALID_ALLERGENS, VALID_POINTS, invalidOrders);
@@ -164,7 +168,8 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidOrderDateTime_throwsIllegalValueException() {
         List<JsonAdaptedOrder> invalidOrders = new ArrayList<>(VALID_ORDERS);
-        invalidOrders.add(new JsonAdaptedOrder(VALID_ORDERITEM, INVALID_ORDERDATETIME));
+        invalidOrders.add(new JsonAdaptedOrder(VALID_ORDER_ITEM_NAME, VALID_ORDER_ITEM_POINTS,
+                VALID_ORDER_QUANTITY, INVALID_ORDERDATETIME));
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                         VALID_MEMBERSHIP, VALID_ALLERGENS, VALID_POINTS, invalidOrders);

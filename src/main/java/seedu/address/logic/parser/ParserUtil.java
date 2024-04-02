@@ -17,7 +17,6 @@ import seedu.address.model.person.MembershipPoints;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Points;
-import seedu.address.model.person.orders.Order;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -25,6 +24,8 @@ import seedu.address.model.person.orders.Order;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    public static final String MESSAGE_INVALID_POINTS = "Points should be a non-negative integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -164,19 +165,24 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String order} into an {@code Order}.
+     * Parses a {@code String membershipPoints} into a {@code MembershipPoints}.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code order} is invalid.
+     * @throws ParseException if the given {@code membershipPoints} is invalid (not a non-negative integer).
      */
-    public static Order parseOrder(String order) throws ParseException {
-        requireNonNull(order);
-        String trimmedOrder = order.trim();
-        if (!Address.isValidAddress(trimmedOrder)) {
-            throw new ParseException(Order.MESSAGE_CONSTRAINTS);
+    public static MembershipPoints parseMembershipPoints(String membershipPoints) throws ParseException {
+        requireNonNull(membershipPoints);
+        String trimmedMembershipPoints = membershipPoints.trim();
+        int membershipPointsInt;
+
+        try {
+            membershipPointsInt = Integer.parseInt(trimmedMembershipPoints);
+        } catch (NumberFormatException e) {
+            throw new ParseException(MESSAGE_INVALID_POINTS);
         }
-        return new Order(trimmedOrder);
+
+        if (!MembershipPoints.isValidMembershipPoints(membershipPointsInt)) {
+            throw new ParseException(MESSAGE_INVALID_POINTS);
+        }
+        return new MembershipPoints(trimmedMembershipPoints);
     }
-
-
 }
