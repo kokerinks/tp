@@ -134,6 +134,8 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+
+
         @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
@@ -151,6 +153,11 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Person> getFilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Item> getCatalogue() {
             throw new AssertionError("This method should not be called.");
         }
 
