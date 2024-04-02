@@ -113,10 +113,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public boolean removeItem(String name) {
+        requireNonNull(name);
         return catalogue.removeItem(name);
     }
 
     public boolean hasItem(String name) {
+        requireNonNull(name);
         return catalogue.findItem(name) != null;
     }
 
