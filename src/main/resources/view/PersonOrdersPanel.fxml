@@ -22,10 +22,10 @@
          <children>
             <TableView fx:id="orderTableView" prefWidth="301.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
               <columns>
-                <TableColumn fx:id="dateTimeColumn" prefWidth="75.0" text="Date/Time" />
+                <TableColumn fx:id="dateTimeColumn" minWidth="60.0" prefWidth="60.0" text="Date/Time" />
                 <TableColumn fx:id="itemNameColumn" prefWidth="75.0" text="Item" />
-                  <TableColumn fx:id="quantityColumn" prefWidth="75.0" text="Qty" />
-                  <TableColumn fx:id="pointsColumn" prefWidth="75.0" text="Points" />
+                  <TableColumn fx:id="quantityColumn" minWidth="30.0" prefWidth="30.0" text="Qty" />
+                  <TableColumn fx:id="pointsColumn" minWidth="50.0" prefWidth="50.0" text="Points" />
               </columns>
             </TableView>
          </children>
