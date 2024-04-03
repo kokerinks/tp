@@ -44,8 +44,11 @@ public class Catalogue implements Iterable<Item> {
      * Returns a clone of the item in this catalogue that has a name matching the given String
      */
     public Item findItem(String name) {
+        requireNonNull(name);
+        name = name.toLowerCase();
         for (Item item: internalList) {
-            if (item.getName().equals(name)) {
+            String itemName = item.getName().toLowerCase();
+            if (itemName.equals(name)) {
                 return item.clone();
             }
         }
