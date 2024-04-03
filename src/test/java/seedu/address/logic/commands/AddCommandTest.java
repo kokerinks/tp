@@ -26,6 +26,9 @@ import seedu.address.model.item.Item;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class AddCommandTest {
 
     @Test
@@ -89,6 +92,8 @@ public class AddCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
+
+        final ArrayList<Item> items = new ArrayList<>();
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -170,9 +175,22 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean removeItem(String name) {
-            throw new AssertionError("This method should not be called.");
+        public boolean hasItem(String itemName) {
+            return false;
         }
+
+        @Override
+        public boolean removeItem(String name) {
+            return true;
+        }
+        @Override
+        public ObservableList<Item> getFilteredItemList() {
+            return FXCollections.observableArrayList(items);
+            }
+
+        @Override
+        public void updateFilteredItemList(Predicate<Item> predicate) {}
+
     }
 
     /**

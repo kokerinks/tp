@@ -28,6 +28,16 @@ public class Catalogue implements Iterable<Item> {
     public Catalogue() {}
 
     /**
+     * Returns an unmodifiable view of the item list.
+     * This list will not contain any duplicate items.
+     *
+     * @return an unmodifiable view of the items list.
+     */
+    public ObservableList<Item> getItemList() {
+        return internalUnmodifiableList;
+    }
+
+    /**
      * Returns false if the list contains an item with the same name.
      */
     public boolean addItem(Item newItem) {

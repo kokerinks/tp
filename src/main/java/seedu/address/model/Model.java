@@ -86,6 +86,9 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    ObservableList<Item> getFilteredItemList();
+    void updateFilteredItemList(Predicate<Item> predicate);
+
     /**
      * Searches the address book for an item with the given name.
      * @param name of the item to search for.
@@ -106,5 +109,10 @@ public interface Model {
      * @return true if the item was removed successfully.
      */
     boolean removeItem(String name);
+
+    /**
+     * Returns true if an item with the same name as {@code item} exists in the catalogue.
+     */
+    boolean hasItem(String itemName);
 
 }
