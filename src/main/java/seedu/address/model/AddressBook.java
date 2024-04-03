@@ -112,11 +112,19 @@ public class AddressBook implements ReadOnlyAddressBook {
         return catalogue.addItem(item);
     }
 
+    /**
+     * Removes an item with a given {@code name} from the catalogue.
+     */
     public boolean removeItem(String name) {
+        requireNonNull(name);
         return catalogue.removeItem(name);
     }
 
+    /**
+     * Returns true if an item with the same name as {@code item} exists in the address book.
+     */
     public boolean hasItem(String name) {
+        requireNonNull(name);
         return catalogue.findItem(name) != null;
     }
 

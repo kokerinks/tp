@@ -85,6 +85,38 @@ public class AddressBookTest {
     }
 
     @Test
+    public void removeItem_nullItem_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.removeItem(null));
+    }
+
+    @Test
+    public void removeItem_itemNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.removeItem("nonexistent"));
+    }
+
+    @Test
+    public void removeItem_itemInAddressBook_returnsTrue() {
+        addressBook.addItem(new Item("item", 1));
+        assertTrue(addressBook.removeItem("item"));
+    }
+
+    @Test
+    public void hasItem_nullItem_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasItem(null));
+    }
+
+    @Test
+    public void hasItem_itemNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasItem("nonexistent"));
+    }
+
+    @Test
+    public void hasItem_itemInAddressBook_returnsTrue() {
+        addressBook.addItem(new Item("item", 1));
+        assertTrue(addressBook.hasItem("item"));
+    }
+
+    @Test
     public void toStringMethod() {
         String expected = AddressBook.class.getCanonicalName()
                 + "{persons=" + addressBook.getPersonList() + ", "

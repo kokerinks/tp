@@ -15,7 +15,11 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+<<<<<<< HEAD
 import seedu.address.model.item.Catalogue;
+=======
+import seedu.address.model.item.Item;
+>>>>>>> 2c7c37fe0d7df857728320358905e50d3e451209
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
@@ -87,6 +91,40 @@ public class ModelManagerTest {
     public void hasPerson_personInAddressBook_returnsTrue() {
         modelManager.addPerson(ALICE);
         assertTrue(modelManager.hasPerson(ALICE));
+    }
+
+    @Test
+    public void findItem_nullItem_returnsNull() {
+        assertEquals(modelManager.findItem(null), null);
+    }
+
+    @Test
+    public void findItem_itemNotInAddressBook_returnsNull() {
+        assertEquals(modelManager.findItem("nonexistent"), null);
+    }
+
+    @Test
+    public void findItem_itemInAddressBook_returnsItem() {
+        Item item = new Item("item", 1);
+        modelManager.addItem(item);
+        assertEquals(modelManager.findItem("item"), item);
+    }
+
+    @Test
+    public void removeItem_nullItem_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.removeItem(null));
+    }
+
+    @Test
+    public void removeItem_itemNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.removeItem("nonexistent"));
+    }
+
+    @Test
+    public void removeItem_itemInAddressBook_returnsTrue() {
+        Item item = new Item("item", 1);
+        modelManager.addItem(item);
+        assertTrue(modelManager.removeItem("item"));
     }
 
     @Test
