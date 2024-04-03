@@ -90,8 +90,8 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void findItem_nullItem_returnsNull() {
-        assertEquals(modelManager.findItem(null), null);
+    public void findItem_nullItem_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.findItem(null));
     }
 
     @Test
