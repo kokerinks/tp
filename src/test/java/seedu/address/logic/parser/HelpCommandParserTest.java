@@ -1,9 +1,10 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.HelpCommand;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.HelpCommand;
 
 public class HelpCommandParserTest {
 
