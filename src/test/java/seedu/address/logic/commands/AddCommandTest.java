@@ -14,6 +14,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
@@ -26,8 +27,6 @@ import seedu.address.model.item.Item;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 public class AddCommandTest {
 
@@ -186,7 +185,7 @@ public class AddCommandTest {
         @Override
         public ObservableList<Item> getFilteredItemList() {
             return FXCollections.observableArrayList(items);
-            }
+        }
 
         @Override
         public void updateFilteredItemList(Predicate<Item> predicate) {}

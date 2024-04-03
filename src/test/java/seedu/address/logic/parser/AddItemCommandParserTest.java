@@ -31,7 +31,7 @@ public class AddItemCommandParserTest {
 
     @Test
     public void parse_missingPoints_failure() {
-        String expectedMessage = AddItemCommand.INVALID_COMMAND_FORMAT + "\n" + AddItemCommand.MESSAGE_USAGE; // Assuming you have a specific message for missing points
+        String expectedMessage = AddItemCommand.INVALID_COMMAND_FORMAT + "\n" + AddItemCommand.MESSAGE_USAGE;
         assertParseFailure(parser, " " + PREFIX_ITEM + "Bagel", expectedMessage);
     }
 

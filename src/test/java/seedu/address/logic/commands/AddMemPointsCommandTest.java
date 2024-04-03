@@ -30,7 +30,8 @@ public class AddMemPointsCommandTest {
         String expectedMessage = String.format(AddMemPointsCommand.MESSAGE_ADD_MEMBERSHIP_SUCCESS, POINTS_TO_ADD_STUB,
                 editedPerson.getName());
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(), new Catalogue());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+                new Catalogue());
         System.out.println(expectedModel);
         expectedModel.setPerson(firstPerson, editedPerson);
 

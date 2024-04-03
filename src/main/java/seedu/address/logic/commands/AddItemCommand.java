@@ -1,12 +1,22 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POINTS;
-import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.item.Item;
+
+/**
+ * Adds an item to the application's item catalogue.
+ * This command allows users to add new items, including their names and associated points,
+ * to the catalogue. Each item must have a unique name. If an attempt is made to add an item
+ * with a name that already exists in the catalogue, the command will not be executed, and
+ * an error message will be shown to the user.
+ * Usage example: {@code addItem i/Croissant p/50} - This adds a new item named "Croissant"
+ * with 50 points to the catalogue.
+ */
 public class AddItemCommand extends Command {
 
     public static final String COMMAND_WORD = "additem";

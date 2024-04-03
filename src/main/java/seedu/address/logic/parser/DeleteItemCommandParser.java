@@ -1,12 +1,15 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteItemCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+/**
+ * Parses input arguments and creates a new DeleteItemCommand object.
+ * Input format: {@code delitem i/ITEM_NAME}, where ITEM_NAME is the name of the item to be deleted.
+ */
 public class DeleteItemCommandParser implements Parser<DeleteItemCommand> {
 
     @Override

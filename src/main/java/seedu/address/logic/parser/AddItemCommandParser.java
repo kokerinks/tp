@@ -1,16 +1,22 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POINTS;
 
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddItemCommand;
-import seedu.address.logic.commands.AddMemPointsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.item.Item;
-import seedu.address.model.person.Points;
+
+/**
+ * Parses input arguments and creates a new AddItemCommand object.
+ * Input format: {@code additem i/ITEM_NAME p/POINTS}, where ITEM_NAME is the name of the item to be added
+ * and POINTS is the number of points associated with the item.
+ */
 public class AddItemCommandParser implements Parser<AddItemCommand> {
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddItemCommand
      * and returns an AddItemCommand object for execution.

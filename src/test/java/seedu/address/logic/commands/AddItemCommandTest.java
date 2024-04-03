@@ -8,10 +8,10 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.item.Catalogue;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.item.Catalogue;
 import seedu.address.model.item.Item;
 
 public class AddItemCommandTest {
