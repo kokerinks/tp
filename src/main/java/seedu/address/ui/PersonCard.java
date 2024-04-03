@@ -60,6 +60,6 @@ public class PersonCard extends UiPart<Region> {
         person.getAllergens().stream()
                 .sorted(Comparator.comparing(allergen -> allergen.allergenName))
                 .forEach(allergen -> allergens.getChildren().add(new Label(allergen.allergenName)));
-        points.setText("Redeem Pts: \t" + String.valueOf(person.getPoints().value));
+        points.setText("Reward Pts: \t" + String.valueOf(person.getPoints().value));
     }
 }

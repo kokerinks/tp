@@ -1,5 +1,6 @@
 ignore:
   - "src/main/java/seedu/address/ui/PersonCard.java"
+  - "src/main/java/seedu/address/ui/ResultDisplay.java"
   - "src/main/java/seedu/address/logic/model/person/orders/Order.java"
   - "src/main/java/seedu/address/ui/PersonListPanel.java"
   - "src/main/java/seedu/address/ui/PersonOrdersPanel.java"
