@@ -32,7 +32,7 @@ public class DeleteItemCommandTest {
         expectedModel.removeItem(validItem.getName());
 
         assertCommandSuccess(new DeleteItemCommand(validItem.getName()), model,
-                String.format(DeleteItemCommand.MESSAGE_DELETE_ITEM_SUCCESS, validItem), expectedModel);
+                String.format(DeleteItemCommand.MESSAGE_DELETE_ITEM_SUCCESS, validItem.getName()), expectedModel);
     }
 
     @Test

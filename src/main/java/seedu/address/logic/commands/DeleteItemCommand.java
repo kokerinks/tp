@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.item.Item;
 
 /**
  * Deletes an item by name from the item catalogue.
@@ -36,7 +37,7 @@ public class DeleteItemCommand extends Command {
             throw new CommandException(MESSAGE_ITEM_NOT_FOUND);
         }
 
-        model.removeItem(itemName);
+        Item itemRemoved = model.removeItem(itemName);
         return new CommandResult(String.format(MESSAGE_DELETE_ITEM_SUCCESS, itemName));
     }
 

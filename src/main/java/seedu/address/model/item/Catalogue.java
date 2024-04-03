@@ -65,13 +65,14 @@ public class Catalogue implements Iterable<Item> {
     /**
      * Returns true if the list contains an item with the same name.
      */
-    public boolean removeItem(String name) {
+    public Item removeItem(String name) {
         for (Item item: internalList) {
             if (item.getName().equals(name)) {
-                return internalList.remove(item);
+                internalList.remove(item);
+                return item;
             }
         }
-        return false;
+        return null;
     }
 
     public void setItems(List<Item> items) {

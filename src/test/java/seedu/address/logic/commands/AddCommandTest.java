@@ -179,8 +179,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean removeItem(String name) {
-            return true;
+        public Item removeItem(String name) {
+            return new Item(name, 10);
         }
         @Override
         public ObservableList<Item> getFilteredItemList() {

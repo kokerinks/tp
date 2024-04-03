@@ -108,7 +108,7 @@ public interface Model {
      * @param name of the item to be removed.
      * @return true if the item was removed successfully.
      */
-    boolean removeItem(String name);
+    Item removeItem(String name);
 
     /**
      * Returns true if an item with the same name as {@code item} exists in the catalogue.

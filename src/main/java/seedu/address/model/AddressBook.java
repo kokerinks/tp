@@ -115,7 +115,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Removes an item with a given {@code name} from the catalogue.
      */
-    public boolean removeItem(String name) {
+    public Item removeItem(String name) {
         requireNonNull(name);
         return catalogue.removeItem(name);
     }

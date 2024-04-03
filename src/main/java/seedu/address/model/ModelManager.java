@@ -161,7 +161,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean removeItem(String name) {
+    public Item removeItem(String name) {
         return addressBook.removeItem(name);
     }
 

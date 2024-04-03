@@ -25,7 +25,7 @@ public class AddItemCommandParserTest {
 
     @Test
     public void parse_missingItemName_failure() {
-        String expectedMessage = Item.MESSAGE_CONSTRAINTS + "\n" + AddItemCommand.MESSAGE_USAGE;
+        String expectedMessage = AddItemCommand.INVALID_COMMAND_FORMAT + "\n" + AddItemCommand.MESSAGE_USAGE;
         assertParseFailure(parser, " " + PREFIX_POINTS + "5", expectedMessage);
     }
 

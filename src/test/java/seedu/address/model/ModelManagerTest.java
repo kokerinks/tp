@@ -113,15 +113,15 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void removeItem_itemNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.removeItem("nonexistent"));
+    public void removeItem_itemNotInAddressBook_returnsNull() {
+        assertTrue(modelManager.removeItem("nonexistent") == null);
     }
 
     @Test
-    public void removeItem_itemInAddressBook_returnsTrue() {
+    public void removeItem_itemInAddressBook_returnsItem() {
         Item item = new Item("item", 1);
         modelManager.addItem(item);
-        assertTrue(modelManager.removeItem("item"));
+        assertTrue(modelManager.removeItem("item") == item);
     }
 
     @Test
