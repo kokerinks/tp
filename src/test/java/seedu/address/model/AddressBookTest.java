@@ -90,14 +90,15 @@ public class AddressBookTest {
     }
 
     @Test
-    public void removeItem_itemNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.removeItem("nonexistent"));
+    public void removeItem_itemNotInAddressBook_returnsNull() {
+        assertTrue(addressBook.removeItem("nonexistent") == null);
     }
 
     @Test
-    public void removeItem_itemInAddressBook_returnsTrue() {
-        addressBook.addItem(new Item("item", 1));
-        assertTrue(addressBook.removeItem("item"));
+    public void removeItem_itemInAddressBook_returnsItem() {
+        Item item = new Item("item", 1);
+        addressBook.addItem(item);
+        assertTrue(addressBook.removeItem("item").equals(item));
     }
 
     @Test

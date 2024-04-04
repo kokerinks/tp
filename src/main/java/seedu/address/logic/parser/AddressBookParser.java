@@ -9,12 +9,14 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddItemCommand;
 import seedu.address.logic.commands.AddMemPointsCommand;
 import seedu.address.logic.commands.AddOrderCommand;
 import seedu.address.logic.commands.AddPointsCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteItemCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -94,8 +96,15 @@ public class AddressBookParser {
         case AddOrderCommand.COMMAND_WORD:
             return new AddOrderCommandParser().parse(arguments);
 
+        case AddItemCommand.COMMAND_WORD:
+            return new AddItemCommandParser().parse(arguments);
+
+        case DeleteItemCommand.COMMAND_WORD:
+            return new DeleteItemCommandParser().parse(arguments);
+
         case RedeemPointsCommand.COMMAND_WORD:
             return new RedeemPointsCommandParser().parse(arguments);
+
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

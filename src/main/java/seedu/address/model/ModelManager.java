@@ -7,10 +7,12 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.item.Catalogue;
 import seedu.address.model.item.Item;
 import seedu.address.model.person.Person;
 
@@ -23,24 +25,38 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Item> filteredItems;
+    private final Catalogue catalogue;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, Catalogue catalogue) {
+        requireAllNonNull(addressBook, userPrefs, catalogue);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.catalogue = new Catalogue();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredItems = new FilteredList<>(this.catalogue.getItemList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new Catalogue());
     }
 
+    @Override
+    public ObservableList<Item> getFilteredItemList() {
+        return FXCollections.unmodifiableObservableList(filteredItems);
+    }
+    @Override
+    public void updateFilteredItemList(Predicate<Item> predicate) {
+        requireNonNull(predicate);
+        filteredItems.setPredicate(predicate);
+    }
     //=========== UserPrefs ==================================================================================
 
     @Override
@@ -135,6 +151,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasItem(String itemName) {
+        requireNonNull(itemName);
+        return addressBook.findItem(itemName) != null;
+    }
+    @Override
     public Item findItem(String item) {
         return addressBook.findItem(item);
     }
@@ -145,8 +166,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean removeItem(String item) {
-        return addressBook.removeItem(item);
+    public Item removeItem(String name) {
+        return addressBook.removeItem(name);
     }
 
     @Override
@@ -170,3 +191,4 @@ public class ModelManager implements Model {
         return String.format("%s %s %s", addressBook, userPrefs, filteredPersons);
     }
 }
+

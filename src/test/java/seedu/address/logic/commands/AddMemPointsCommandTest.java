@@ -12,13 +12,14 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.item.Catalogue;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddMemPointsCommandTest {
     private static final int POINTS_TO_ADD_STUB = 10;
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Catalogue());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -29,7 +30,8 @@ public class AddMemPointsCommandTest {
         String expectedMessage = String.format(AddMemPointsCommand.MESSAGE_ADD_MEMBERSHIP_SUCCESS, POINTS_TO_ADD_STUB,
                 editedPerson.getName());
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+                new Catalogue());
         System.out.println(expectedModel);
         expectedModel.setPerson(firstPerson, editedPerson);
 

@@ -21,6 +21,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.item.Catalogue;
 import seedu.address.model.item.Item;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -42,7 +43,7 @@ public class AddOrderCommandTest {
 
     @Test
     public void execute_personFoundInFilteredPersonList_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Catalogue());
 
         String itemName = "Kaya Toast";
         int points = 200;
@@ -68,7 +69,7 @@ public class AddOrderCommandTest {
                 .withMembershipPoints("610")
                 .withPoints("670").build();
 
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Catalogue());
         expectedModel.addItem(new Item(itemName, points));
         expectedModel.setPerson(BENSON, bensonWithAddedOrder);
 
@@ -78,7 +79,7 @@ public class AddOrderCommandTest {
 
     @Test
     public void execute_personNotFoundInFilteredPersonList_throwsCommandException() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Catalogue());
 
         List<String> predicate = Collections.singletonList("nobody");
 
@@ -96,7 +97,7 @@ public class AddOrderCommandTest {
 
     @Test
     public void execute_itemNotInAddressBook_throwsCommandException() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Catalogue());
 
         List<String> predicate = Collections.singletonList("alice");
 
