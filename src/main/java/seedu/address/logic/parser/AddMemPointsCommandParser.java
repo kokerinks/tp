@@ -41,8 +41,7 @@ public class AddMemPointsCommandParser implements Parser<AddMemPointsCommand> {
         try {
             pointsToAdd = ParserUtil.parseMemPointsToAdd(argMultimap.getValue(PREFIX_MEMSHIP_PTS).orElse(""));
         } catch (ParseException pe) {
-            throw new ParseException(AddMemPointsCommand.MESSAGE_CONSTRAINTS
-                    + "\n" + AddMemPointsCommand.MESSAGE_USAGE);
+            throw new ParseException(AddMemPointsCommand.MESSAGE_CONSTRAINTS);
         }
 
         return new AddMemPointsCommand(name, pointsToAdd);

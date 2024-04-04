@@ -50,7 +50,7 @@ public class AddPointsCommandTest {
         Name outOfBoundName = new Name("Nonexistent Name");
         AddPointsCommand addPointsCommand = new AddPointsCommand(outOfBoundName, new Points(POINTS_STUB));
 
-        assertCommandFailure(addPointsCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(addPointsCommand, model, Messages.MESSAGE_PERSON_NOT_FOUND);
     }
 
     @Test

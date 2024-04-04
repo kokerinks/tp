@@ -35,7 +35,7 @@ public class AddMemPointsCommandParserTest {
 
     @Test
     public void parse_invalidMembershipPoints_failure() {
-        String expectedMessage = AddMemPointsCommand.MESSAGE_CONSTRAINTS + "\n" + AddMemPointsCommand.MESSAGE_USAGE;
+        String expectedMessage = AddMemPointsCommand.MESSAGE_CONSTRAINTS;
         assertParseFailure(parser, " n/Alice " + PREFIX_MEMSHIP_PTS + "abc", expectedMessage);
     }
 
