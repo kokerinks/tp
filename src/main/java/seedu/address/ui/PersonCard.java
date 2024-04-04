@@ -39,7 +39,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
+    private Label membership;
+    @FXML
+    private FlowPane allergens;
+    @FXML
+    private Label points;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -49,11 +53,13 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        phone.setText("Contact no.: \t" + person.getPhone().value);
+        address.setText("Home Addr.: \t" + person.getAddress().value);
+        email.setText("Email Addr.: \t" + person.getEmail().value);
+        membership.setText("Membership Tier: \t" + person.getMembershipPoints().toString());
+        person.getAllergens().stream()
+                .sorted(Comparator.comparing(allergen -> allergen.allergenName))
+                .forEach(allergen -> allergens.getChildren().add(new Label(allergen.allergenName)));
+        points.setText("Reward Pts: \t" + String.valueOf(person.getPoints().value));
     }
 }

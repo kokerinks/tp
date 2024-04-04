@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.item.Item;
 import seedu.address.model.person.Person;
 
 /**
@@ -128,6 +129,33 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Catalogue Accessors =============================================================
+
+    @Override
+    public ObservableList<Item> getCatalogue() {
+        return addressBook.getItemList();
+    }
+
+    @Override
+    public boolean hasItem(String itemName) {
+        requireNonNull(itemName);
+        return addressBook.hasItem(itemName);
+    }
+    @Override
+    public Item findItem(String item) {
+        return addressBook.findItem(item);
+    }
+
+    @Override
+    public boolean addItem(Item item) {
+        return addressBook.addItem(item);
+    }
+
+    @Override
+    public Item removeItem(String name) {
+        return addressBook.removeItem(name);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -145,4 +173,8 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s %s %s", addressBook, userPrefs, filteredPersons);
+    }
 }

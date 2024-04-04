@@ -2,13 +2,15 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.allergen.Allergen;
+import seedu.address.model.person.orders.Order;
 
 /**
  * Represents a Person in the address book.
@@ -23,18 +25,27 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Allergen> allergens = new HashSet<>();
+    private final ArrayList<Order> orders = new ArrayList<>();
+
+    // Points and Membership Points can be updated by {@code addPoints} method only
+    private Points points;
+    private MembershipPoints membershipPoints;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, MembershipPoints membershipPoints,
+                  Set<Allergen> allergens, Points points, ArrayList<Order> orders) {
+        requireAllNonNull(name, phone, email, address, membershipPoints, allergens, points, orders);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.membershipPoints = membershipPoints;
+        this.allergens.addAll(allergens);
+        this.points = points;
+        this.orders.addAll(orders);
     }
 
     public Name getName() {
@@ -53,12 +64,46 @@ public class Person {
         return address;
     }
 
+    public MembershipPoints getMembershipPoints() {
+        return membershipPoints;
+    }
+
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable allergen set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Allergen> getAllergens() {
+        return Collections.unmodifiableSet(allergens);
+    }
+
+    public Points getPoints() {
+        return points;
+    }
+
+    /**
+     * Returns a copy of the orders of this Person
+     */
+    public ArrayList<Order> getOrders() {
+        ArrayList<Order> copy = new ArrayList<>();
+        for (Order order : orders) {
+            copy.add(order.clone());
+        }
+        return copy;
+    }
+
+    /**
+     * Adds an Order to the list of orders of this Person
+     */
+    public void addOrders(Order order) {
+        this.orders.add(order);
+    }
+
+    /**
+     * Adds points to the current points and membership points.
+     */
+    public void addPoints(int pointsToAdd) {
+        this.points = this.points.addPoints(pointsToAdd);
+        this.membershipPoints = this.membershipPoints.addPoints(pointsToAdd);
     }
 
     /**
@@ -94,13 +139,16 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && membershipPoints.equals(otherPerson.membershipPoints)
+                && allergens.equals(otherPerson.allergens)
+                && points.equals(otherPerson.points)
+                && orders.equals(otherPerson.orders);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, membershipPoints, allergens, points, orders);
     }
 
     @Override
@@ -110,7 +158,10 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
-                .add("tags", tags)
+                .add("membership", membershipPoints)
+                .add("allergens", allergens)
+                .add("points", points)
+                .add("orders", orders)
                 .toString();
     }
 
