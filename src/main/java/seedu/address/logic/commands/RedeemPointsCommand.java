@@ -19,7 +19,7 @@ import seedu.address.model.person.Points;
  * Redeems points from an existing person in the loyalty program.
  */
 public class RedeemPointsCommand extends Command {
-    public static final String COMMAND_WORD = "redeempoints";
+    public static final String COMMAND_WORD = "redeempts";
     public static final String MESSAGE_CONSTRAINTS = "Points to redeem should be greater than 0.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD

@@ -20,7 +20,7 @@ import seedu.address.model.person.Points;
  * Adds points to an existing person in the loyalty program.
  */
 public class AddPointsCommand extends Command {
-    public static final String COMMAND_WORD = "addpoints";
+    public static final String COMMAND_WORD = "addpts";
     public static final String MESSAGE_CONSTRAINTS = "Points added should be greater than 0.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
