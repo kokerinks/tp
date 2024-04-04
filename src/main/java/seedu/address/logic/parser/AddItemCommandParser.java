@@ -33,9 +33,7 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
         }
 
         String itemName = argMultimap.getValue(PREFIX_ITEM).orElse("");
-        if (!Item.isValidItemName(itemName)) {
-            throw new ParseException(Item.MESSAGE_CONSTRAINTS + "\n" + AddItemCommand.MESSAGE_USAGE);
-        } else if (itemName.isEmpty()) {
+        if (!Item.isValidItemName(itemName) || itemName.isEmpty()) {
             throw new ParseException(Item.MESSAGE_CONSTRAINTS + "\n" + AddItemCommand.MESSAGE_USAGE);
         }
 

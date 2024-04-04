@@ -11,7 +11,6 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.AddMemPointsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.allergen.Allergen;
-import seedu.address.model.item.Item;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MembershipPoints;
@@ -185,21 +184,6 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_POINTS);
         }
         return new MembershipPoints(trimmedMembershipPoints);
-    }
-
-    /**
-     * Parses a {@code String itemName} into an {@code itemName}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code itemName} is invalid.
-     */
-    public static String parseItemName(String itemName) throws ParseException {
-        requireNonNull(itemName);
-        String trimmedItemName = itemName.trim();
-        if (!Item.isValidItemName(trimmedItemName)) {
-            throw new ParseException(Item.MESSAGE_CONSTRAINTS);
-        }
-        return trimmedItemName;
     }
 
 }

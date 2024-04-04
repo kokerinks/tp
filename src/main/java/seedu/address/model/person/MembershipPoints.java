@@ -13,9 +13,9 @@ public class MembershipPoints {
      * Represents the tiers and the minimum points required to reach them, from highest to lowest.
      */
     public static final String[][] TIERS = {
-            {"PLATINUM", "1000"},
-            {"GOLD", "500"},
-            {"SILVER", "200"},
+            {"PLATINUM", "10000"},
+            {"GOLD", "5000"},
+            {"SILVER", "2000"},
             {"BRONZE", "0"},
     };
 

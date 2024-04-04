@@ -55,6 +55,22 @@ public class Order implements Cloneable {
         return test.matches(ITEM_NAME_VALIDATION_REGEX);
     }
 
+    public String getDateTime() {
+        return orderDateTime.toString().replace("T", "\n");
+    }
+
+    public String getItemName() {
+        return item.getName();
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public int getItemPoints() {
+        return item.getPoints();
+    }
+
     @Override
     public String toString() {
         return orderDateTime.toString() + " " + item + " x" + quantity;

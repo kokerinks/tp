@@ -80,14 +80,14 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the catalogue */
+    ObservableList<Item> getCatalogue();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
-
-    ObservableList<Item> getFilteredItemList();
-    void updateFilteredItemList(Predicate<Item> predicate);
 
     /**
      * Searches the address book for an item with the given name.
@@ -104,9 +104,9 @@ public interface Model {
     boolean addItem(Item item);
 
     /**
-     * Removes an item from the address book.
+     * Removes an {@code Item} from the address book.
      * @param name of the item to be removed.
-     * @return true if the item was removed successfully.
+     * @return {@code Item} that was removed
      */
     Item removeItem(String name);
 

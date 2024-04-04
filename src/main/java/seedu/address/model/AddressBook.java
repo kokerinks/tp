@@ -125,7 +125,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasItem(String name) {
         requireNonNull(name);
-        return catalogue.findItem(name) != null;
+        return catalogue.hasItem(name);
     }
 
     //// util methods
