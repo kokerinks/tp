@@ -129,11 +129,18 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Catalogue Accessors =============================================================
+
     @Override
     public ObservableList<Item> getCatalogue() {
         return addressBook.getItemList();
     }
 
+    @Override
+    public boolean hasItem(String itemName) {
+        requireNonNull(itemName);
+        return addressBook.hasItem(itemName);
+    }
     @Override
     public Item findItem(String item) {
         return addressBook.findItem(item);
@@ -145,8 +152,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean removeItem(String item) {
-        return addressBook.removeItem(item);
+    public Item removeItem(String name) {
+        return addressBook.removeItem(name);
     }
 
     @Override
@@ -166,6 +173,7 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+    @Override
     public String toString() {
         return String.format("%s %s %s", addressBook, userPrefs, filteredPersons);
     }

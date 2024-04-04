@@ -34,13 +34,13 @@ public class CatalogueTest {
         Catalogue actual = new Catalogue();
         actual.addItem(new Item("test", 20));
 
-        assertFalse(actual.removeItem("Not In Cat"));
+        assertTrue(actual.removeItem("Not In Cat") == null);
 
         Catalogue expected = new Catalogue();
         expected.addItem(new Item("test", 20));
         assertEquals(actual, expected);
 
-        assertTrue(actual.removeItem("test"));
+        assertTrue(actual.removeItem("test") != null);
         Catalogue empty = new Catalogue();
         assertEquals(actual, empty);
 

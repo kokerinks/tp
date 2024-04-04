@@ -5,7 +5,9 @@ package seedu.address.model.item;
  */
 public class Item implements Cloneable {
 
-    public static final String ITEM_NAME_VALIDATION_REGEX = "[^\\s].*";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Item names should contain alphabets and spaces, and cannot be blank.";
+    public static final String ITEM_NAME_VALIDATION_REGEX = "^[a-zA-Z][a-zA-Z\\s]+$";
 
     private String name;
     private int points;
@@ -44,6 +46,13 @@ public class Item implements Cloneable {
                 || (other instanceof Item // instanceof handles nulls
                 && name.equals(((Item) other).name)
                 && points == ((Item) other).points); // state check
+    }
+
+    /**
+     * Returns true if a given string is a valid item name.
+     */
+    public static boolean isValidItemName(String test) {
+        return test.matches(ITEM_NAME_VALIDATION_REGEX);
     }
 
     @Override

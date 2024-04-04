@@ -185,4 +185,5 @@ public class ParserUtil {
         }
         return new MembershipPoints(trimmedMembershipPoints);
     }
+
 }

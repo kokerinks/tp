@@ -89,7 +89,6 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-
     /**
      * Searches the address book for an item with the given name.
      * @param name of the item to search for.
@@ -105,9 +104,15 @@ public interface Model {
     boolean addItem(Item item);
 
     /**
-     * Removes an item from the address book.
+     * Removes an {@code Item} from the address book.
      * @param name of the item to be removed.
-     * @return true if the item was removed successfully.
+     * @return {@code Item} that was removed
      */
-    boolean removeItem(String name);
+    Item removeItem(String name);
+
+    /**
+     * Returns true if an item with the same name as {@code item} exists in the catalogue.
+     */
+    boolean hasItem(String itemName);
+
 }
