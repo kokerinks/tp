@@ -41,14 +41,27 @@ public class Catalogue implements Iterable<Item> {
     }
 
     /**
+     * Returns if this catalogue contains an item matching the name of the given string
+     */
+    public boolean hasItem(String name) {
+        for (Item item: internalList) {
+            String itemName = item.getName().toLowerCase();
+            if (itemName.equals(name.toLowerCase())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Returns a clone of the item in this catalogue that has a name matching the given String
      */
     public Item findItem(String name) {
         requireNonNull(name);
         name = name.toLowerCase();
         for (Item item: internalList) {
-            String itemName = item.getName().toLowerCase();
-            if (itemName.equals(name)) {
+            String itemName = item.getName();
+            if (itemName.equalsIgnoreCase(name)) {
                 return item.clone();
             }
         }
@@ -56,11 +69,13 @@ public class Catalogue implements Iterable<Item> {
     }
 
     /**
-     * Returns true if the list contains an item with the same name.
+     * Removes the item in this {@code Catalogue} with name matching the given String
+     *
+     * @return {@code Item} removed from the catalogue, or {@code null} if no items were removed
      */
     public Item removeItem(String name) {
         for (Item item: internalList) {
-            if (item.getName().equals(name)) {
+            if (item.getName().equalsIgnoreCase(name)) {
                 internalList.remove(item);
                 return item;
             }

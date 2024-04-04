@@ -139,7 +139,7 @@ public class ModelManager implements Model {
     @Override
     public boolean hasItem(String itemName) {
         requireNonNull(itemName);
-        return addressBook.findItem(itemName) != null;
+        return addressBook.hasItem(itemName);
     }
     @Override
     public Item findItem(String item) {
