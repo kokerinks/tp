@@ -50,10 +50,28 @@ public class SampleDataUtil {
         };
     }
 
+    public static Item[] getSampleCatalogue() {
+        return new Item[] {
+            new Item("Chocolate Croissant", 250),
+            new Item("Blueberry Muffin", 200),
+            new Item("Strawberry Muffin", 200),
+            new Item("Chocolate Muffin", 100),
+            new Item("Chocolate Chip Cookies 100g", 300),
+            new Item("Chocolate Chip Cookies 300g", 1000),
+            new Item("Plain Waffle", 150),
+            new Item("Chocolate Waffle", 250),
+            new Item("Kaya Waffle", 200),
+            new Item("Cheese Waffle", 200),
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+        for (Item sampleItem : getSampleCatalogue()) {
+            sampleAb.addItem(sampleItem);
         }
         return sampleAb;
     }

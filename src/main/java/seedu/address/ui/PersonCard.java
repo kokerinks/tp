@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -9,7 +8,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.orders.Order;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -46,8 +44,6 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane allergens;
     @FXML
     private Label points;
-    @FXML
-    private Label orders;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -61,19 +57,9 @@ public class PersonCard extends UiPart<Region> {
         address.setText("Home Addr.: \t" + person.getAddress().value);
         email.setText("Email Addr.: \t" + person.getEmail().value);
         membership.setText("Membership Tier: \t" + person.getMembershipPoints().toString());
-        orders.setText(buildOrderString(person.getOrders()));
         person.getAllergens().stream()
                 .sorted(Comparator.comparing(allergen -> allergen.allergenName))
                 .forEach(allergen -> allergens.getChildren().add(new Label(allergen.allergenName)));
-        points.setText("Redeem Pts: \t" + String.valueOf(person.getPoints().value));
-    }
-
-    private static String buildOrderString(ArrayList<Order> orders) {
-        StringBuilder orderStringBuilder = new StringBuilder("Order History:\n");
-        for (Order order : orders) {
-            orderStringBuilder.append(order.toString());
-            orderStringBuilder.append("\n");
-        }
-        return orderStringBuilder.toString();
+        points.setText("Reward Pts: \t" + String.valueOf(person.getPoints().value));
     }
 }
