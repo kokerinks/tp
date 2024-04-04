@@ -55,7 +55,7 @@ public class AddPointsCommand extends Command {
 
         if (personOptional.isEmpty()) {
             throw new CommandException(
-                    Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                    Messages.MESSAGE_PERSON_NOT_FOUND);
         }
 
         Person personToEdit = personOptional.get();

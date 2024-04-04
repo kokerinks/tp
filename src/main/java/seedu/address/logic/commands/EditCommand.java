@@ -49,14 +49,13 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "MEMBER_NAME] "
             + "[" + PREFIX_PHONE + "MEMBER_PHONE] "
             + "[" + PREFIX_EMAIL + "MEMBER_EMAIL] "
-            + "[" + PREFIX_ADDRESS + "MEMBER_ADDRESS] "
-            + "[" + PREFIX_ALLERGENS + "ALLERGENS]"
-            + "[" + PREFIX_POINTS + "POINTS]...\n"
+            + "[" + PREFIX_ADDRESS + "MEMBER_ADDRESS] \n"
+            + "\t\t\t[" + PREFIX_ALLERGENS + "ALLERGENS] "
+            + "[" + PREFIX_POINTS + "POINTS] "
             + "[" + PREFIX_MEMSHIP_PTS + "MEMBERSHIP_POINTS]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com\n"
-            + "NOTE: INDEX should be a positive integer.";
+            + PREFIX_EMAIL + "johndoe@example.com\n";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

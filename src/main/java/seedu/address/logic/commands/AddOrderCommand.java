@@ -27,8 +27,8 @@ public class AddOrderCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an order to the order list of the person identified by the given name.\n"
             + "Parameters: n/MEMBER_NAME i/ITEM_NAME [q/QUANTITY]\n"
-            + "Example: " + COMMAND_WORD + " n/Alex Yeoh i/Chocolate Chip Cookies 100g q/3\n"
-            + "NOTE: If quantity is not specified, it will default to 1.";
+            + "NOTE: If quantity is not specified, it will default to 1.\n"
+            + "Example: " + COMMAND_WORD + " n/Alex Yeoh i/Chocolate Chip Cookies 100g q/3";
 
     public static final String MESSAGE_ADD_ORDER_SUCCESS = "Added order to Person: %1$s";
 

@@ -23,14 +23,14 @@ public class RedeemPointsCommand extends Command {
     public static final String MESSAGE_CONSTRAINTS = "Points to redeem should be greater than 0.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Redeems points from the person identified. "
+            + ": Redeems points from the person identified. \n"
             + "Parameters: " + PREFIX_NAME + "NAME " + PREFIX_POINTS + "POINTS \n"
-            + "Example: " + COMMAND_WORD + " John Doe " + PREFIX_POINTS + "30";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "John Doe " + PREFIX_POINTS + "30";
 
     public static final String MESSAGE_REDEEMPOINTS_SUCCESS =
             "Redeemed %1$s points from %2$s";
     public static final String MESSAGE_INSUFFICIENT_POINTS =
-            "Insufficient points. Current points: %1$s";
+            "%s has insufficient points (%s pts) to redeem.";
 
     private final Name name;
     private final Points pointsToRedeem;
@@ -66,7 +66,7 @@ public class RedeemPointsCommand extends Command {
         int pointsToRedeemValue = this.pointsToRedeem.getValue();
 
         if (currentPointsValue < pointsToRedeemValue) {
-            throw new CommandException(String.format(MESSAGE_INSUFFICIENT_POINTS, currentPointsValue));
+            throw new CommandException(String.format(MESSAGE_INSUFFICIENT_POINTS, personToEdit.getName(), currentPointsValue));
         }
 
         Points newPoints = new Points(Integer.toString(currentPointsValue - pointsToRedeemValue));
