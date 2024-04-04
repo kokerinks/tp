@@ -16,7 +16,7 @@ public class DeleteItemCommand extends Command {
     public static final String COMMAND_WORD = "delitem";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the item identified by the name in the displayed item list.\n"
+            + ": Deletes the item with the given name in the catalogue.\n"
             + "Parameters: i/ITEM_NAME\n"
             + "Example: " + COMMAND_WORD + " i/donut";
 

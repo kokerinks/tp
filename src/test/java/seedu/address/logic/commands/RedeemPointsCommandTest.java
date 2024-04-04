@@ -15,7 +15,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.item.Catalogue;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Points;
@@ -27,7 +26,7 @@ import seedu.address.testutil.PersonBuilder;
 public class RedeemPointsCommandTest {
 
     private static final String POINTS_TO_REDEEM = "10";
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Catalogue());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_redeemPointsUnfilteredList_success() {
@@ -41,8 +40,7 @@ public class RedeemPointsCommandTest {
         String expectedMessage = String.format(RedeemPointsCommand.MESSAGE_REDEEMPOINTS_SUCCESS, POINTS_TO_REDEEM,
                 firstPerson.getName());
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
-                new Catalogue());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
 
         assertCommandSuccess(redeemPointsCommand, model, expectedMessage, expectedModel);

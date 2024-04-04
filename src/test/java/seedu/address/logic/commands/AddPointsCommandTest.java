@@ -1,4 +1,5 @@
 package seedu.address.logic.commands;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -14,7 +15,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.item.Catalogue;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Points;
@@ -26,7 +26,7 @@ import seedu.address.testutil.PersonBuilder;
 public class AddPointsCommandTest {
 
     private static final String POINTS_STUB = "20";
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Catalogue());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_addPointsUnfilteredList_success() {
@@ -39,8 +39,7 @@ public class AddPointsCommandTest {
         String expectedMessage = String.format(AddPointsCommand.MESSAGE_ADDPOINTS_SUCCESS, POINTS_STUB,
                 firstPerson.getName());
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
-                new Catalogue());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
 
         assertCommandSuccess(addPointsCommand, model, expectedMessage, expectedModel);

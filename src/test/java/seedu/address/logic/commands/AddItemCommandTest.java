@@ -11,17 +11,15 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.item.Catalogue;
 import seedu.address.model.item.Item;
 
 public class AddItemCommandTest {
-    private Model model = new ModelManager(new AddressBook(), new UserPrefs(), new Catalogue());
+    private Model model = new ModelManager(new AddressBook(), new UserPrefs());
 
     @Test
     public void execute_itemAcceptedByModel_addSuccessful() throws Exception {
         Item validItem = new Item("Bagel", 5);
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
-                new Catalogue());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.addItem(validItem);
 
         assertCommandSuccess(new AddItemCommand(validItem), model,
@@ -47,7 +45,7 @@ public class AddItemCommandTest {
         // same object -> returns true
         assertTrue(addAppleCommand.equals(addAppleCommand));
 
-        // same values -> returns true
+        // same Item -> returns true
         AddItemCommand addAppleCommandCopy = new AddItemCommand(apple);
         assertTrue(addAppleCommand.equals(addAppleCommandCopy));
 

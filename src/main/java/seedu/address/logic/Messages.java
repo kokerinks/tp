@@ -19,9 +19,6 @@ public class Messages {
     public static final String MESSAGE_PERSON_NOT_FOUND = "The specified person is not found";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
-    public static final String MESSAGE_INVALID_ITEM_DISPLAYED_INDEX = "The item index provided is invalid";
-    public static final String MESSAGE_ITEM_NOT_FOUND = "The item is not found";
-
 
     /**
      * Returns an error message indicating the duplicate prefixes.
