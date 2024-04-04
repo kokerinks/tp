@@ -7,13 +7,14 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.item.Item;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.orders.Order;
 
@@ -34,37 +35,37 @@ public class AddOrderCommand extends Command {
 
     public static final String MESSAGE_ITEM_NOT_FOUND = "Item not found in the inventory";
 
-    public final NameContainsKeywordsPredicate personNamePredicate;
+    public final Name name;
     public final String itemName;
     public final int quantity;
 
     public final LocalDateTime orderDateTime;
 
     /**
-     * @param personNamePredicate of the person to add the order to
+     * @param name of the person to add the order to
      * @param itemName name of item ordered
      * @param quantity of specified item ordered
      */
-    public AddOrderCommand(NameContainsKeywordsPredicate personNamePredicate, String itemName, int quantity) {
-        requireAllNonNull(personNamePredicate, itemName, quantity);
+    public AddOrderCommand(Name name, String itemName, int quantity) {
+        requireAllNonNull(name, itemName, quantity);
 
-        this.personNamePredicate = personNamePredicate;
+        this.name = name;
         this.itemName = itemName;
         this.quantity = quantity;
         this.orderDateTime = null;
     }
 
     /**
-     * @param personNamePredicate of the person to add the order to
+     * @param name of the person to add the order to
      * @param itemName name of item ordered
      * @param quantity of specified item ordered
      * @param orderDateTime of the order
      */
-    public AddOrderCommand(NameContainsKeywordsPredicate personNamePredicate, String itemName,
+    public AddOrderCommand(Name name, String itemName,
                            int quantity, LocalDateTime orderDateTime) {
-        requireAllNonNull(personNamePredicate, itemName, quantity, orderDateTime);
+        requireAllNonNull(name, itemName, quantity, orderDateTime);
 
-        this.personNamePredicate = personNamePredicate;
+        this.name = name;
         this.itemName = itemName;
         this.quantity = quantity;
         this.orderDateTime = orderDateTime;
@@ -75,19 +76,14 @@ public class AddOrderCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        // Find first person in filtered list matching the personNamePredicate
-        Person personToUpdate = null;
-        for (Person person : lastShownList) {
-            if (!personNamePredicate.test(person)) {
-                continue;
-            } else {
-                personToUpdate = person;
-                break;
-            }
-        }
-        if (isNull(personToUpdate)) {
+        Optional<Person> personOptional = lastShownList.stream()
+                .filter(person -> person.getName().fullName.toLowerCase().contains(this.name.fullName.toLowerCase()))
+                .findFirst();
+        if (personOptional.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
         }
+
+        Person personToUpdate = personOptional.get();
 
         //Find matching item in catalogue
         AddressBook addressBook = (AddressBook) model.getAddressBook();
@@ -128,14 +124,14 @@ public class AddOrderCommand extends Command {
         }
 
         AddOrderCommand e = (AddOrderCommand) other;
-        return personNamePredicate.equals(e.personNamePredicate)
+        return name.equals(e.name)
                 && itemName.equals(e.itemName) && (quantity == e.quantity);
     }
 
     @Override
     public String toString() {
         return "AddOrderCommand{"
-                + "personNamePredicate=" + personNamePredicate
+                + "personNamePredicate=" + name
                 + ", itemName='" + itemName + '\''
                 + ", quantity=" + quantity
                 + ", orderDateTime=" + orderDateTime

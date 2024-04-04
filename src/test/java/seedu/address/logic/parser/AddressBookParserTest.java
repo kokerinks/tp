@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POINTS;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -118,11 +119,11 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_addOrder() throws Exception {
         AddOrderCommand command = (AddOrderCommand) parser.parseCommand("addorder n/Amy Bee i/Cupcake q/1");
-        NameContainsKeywordsPredicate namePred = new NameContainsKeywordsPredicate(Arrays.asList("Amy", "Bee"));
+        Name name = new Name(VALID_NAME_AMY);
         String itemName = "Cupcake";
         int quantity = 1;
 
-        assertEquals(new AddOrderCommand(namePred, itemName, quantity), command);
+        assertEquals(new AddOrderCommand(name, itemName, quantity), command);
     }
 
     @Test

@@ -5,16 +5,15 @@ import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.ORDER_ITEM_COOKIES;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ORDER_COOKIES;
 import static seedu.address.testutil.Assert.assertThrows;
-
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddOrderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.orders.Order;
 
 public class AddOrderCommandParserTest {
@@ -22,12 +21,9 @@ public class AddOrderCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        NameContainsKeywordsPredicate expectedNamePred =
-                new NameContainsKeywordsPredicate(Arrays.asList("Bob", "Choo"));
-
         try {
             AddOrderCommand actualCommand = parser.parse(NAME_DESC_BOB + ORDER_ITEM_COOKIES);
-            AddOrderCommand expectedCommand = new AddOrderCommand(expectedNamePred, VALID_ORDER_COOKIES, 1);
+            AddOrderCommand expectedCommand = new AddOrderCommand(new Name(VALID_NAME_BOB), VALID_ORDER_COOKIES, 1);
             assertEquals(actualCommand, expectedCommand);
         } catch (ParseException pe) {
             fail("Invalid userInput");
