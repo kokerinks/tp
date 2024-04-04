@@ -71,7 +71,6 @@ Use these icons as a guide to help focus your attention on key information as yo
 
 
 --------------------------------------------------------------------------------------------------------------------
-
 # 2. About SweetRewards
 SweetRewards is not just a contact management tool; it's your partner in cultivating **customer loyalty and enhancing your bakery's membership program**. With SweetRewards, you can:
 
@@ -122,28 +121,32 @@ Members are classified into tiers based on their accumulated membership points. 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `sweetrewards-v1.2.jar` from [here](https://github.com/AY2324S2-CS2103T-T13-4/tp/releases/tag/v1.2). 
+2. Download the latest `sweetrewards.jar` from [here](https://github.com/AY2324S2-CS2103T-T13-4/tp/releases). 
 
 3. Copy the file to the folder you want to use as the _home folder_ for SweetRewards.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar sweetrewards-v1.2.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the `sweetrewards.jar` file to run the application. If the application does not start, see here
+5. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe hp/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `addmem n/John Doe hp/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a member named `John Doe` to the address book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
+   
+   * `addorder n/alex i/plain waffle q/4` : Adds an order of 4 plain waffles to member Alex Yeoh
+   
+   * `additem i/Pain Au Chocolat p/250` : Adds "Pain Au Chocolat" to the catalogue that awards 250 points to a member when purchased
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all contacts and all items in the catalogue.
 
    * `exit` : Exits the app.
 
-6. Refer to the [Features](#4-features) below for details of each command.
+7. Refer to the [Features](#4-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -159,6 +162,7 @@ Members are classified into tiers based on their accumulated membership points. 
     - Example: `[ag/ALLERGEN]...` can be used as ` ` (i.e., 0 times), `ag/GF`, `ag/GF ag/LF`, etc.
 - **Parameters can be in any order**.
     - Example: If the command specifies `n/MEMBER_NAME hp/MEMBER_PHONE`, using `hp/MEMBER_PHONE n/MEMBER_NAME` is also acceptable.
+- **Repeat parameters** (Except for tags) is not allowed and will result in an error.
 - **Extraneous parameters for commands that do not take in parameters** (such as `help`, `list`, `exit`, and `clear`) will be ignored.
     - Example: If the command specifies `help 123`, it will be interpreted as `help`.
 - **When using a PDF version of this document**, be careful when copying and pasting commands that span multiple lines, as space characters surrounding line-breaks may be omitted when copied over to the application.
@@ -195,8 +199,8 @@ Adds a member to the loyalty program.
 Format: `addmem n/MEMBER_NAME hp/PHONE e/MEMBER_EMAIL a/MEMBER_ADDRESS [ag/ALLERGEN]…​`
 
 Examples:
-* `addmember n/John Doe a/John street, block 123, #01-01 hp/98765432 e/johnd@example.com `
-* `addmember n/Betsy Crowe a/Newton Street hp/1234567 e/betsycrowe@example.com ag/GF `
+* `addmem n/John Doe a/John street, block 123, #01-01 hp/98765432 e/johnd@example.com `
+* `addmem n/Betsy Crowe a/Newton Street hp/1234567 e/betsycrowe@example.com ag/GF `
 
 ## 4.4 Listing all members : `list`
 
@@ -220,18 +224,18 @@ Format: `additem n/ITEM_NAME p/POINTS`
 Examples:
 * `additem n/Chocolate Cake p/50` Adds `Chocolate Cake` with `50` points to the catalogue.
 
-## 4.6 Deleting an Item from the Catalogue : `deleteitem`
+## 4.6 Deleting an Item from the Catalogue : `delitem`
 
 Removes an item and its corresponding points from the catalogue.
 
 🌟 **Benefit**: Keep your rewards program relevant and streamlined by removing outdated or less popular items from your catalogue.
 
-Format: `deleteitem n/ITEM_NAME`
+Format: `delitem i/ITEM_NAME`
 
 * ITEM_NAME is the identifier of the item to be removed from the catalogue.
 
 Examples:
-* `deleteitem n/Chocolate Cake` Removes `Chocolate Cake` from the catalogue.
+* `delitem i/Chocolate Cake` Removes `Chocolate Cake` from the catalogue.
 
 ## 4.7 Adding orders to a member: `addorder`
 
@@ -249,50 +253,45 @@ Examples:
 
 💡 **Tip**: Use unique attributes of members when adding points to avoid errors. Partial names are matched to the closest resembling member.
 
-## 4.8 Adding points: `addpoints`
+## 4.8 Adding points: `addpts`
 
 Manually adds points to a member's account within the loyalty program.
 
 🌟 **Benefit**: Encourage repeat business and reward customer loyalty by using addpoints to add reward points to members' accounts. This helps keep your customers engaged and appreciative of the value they get from shopping at your bakery.
 
-Format: `addpoints n/MEMBER_NAME p/POINTS` 
+Format: `addpts n/MEMBER_NAME p/POINTS` 
 
 * Adds the corresponding number of points for a member based on their name to the current points they have.
 * The points **must be a positive integer** 1, 2, 3, … 200
 
 Examples:
-* `addpoints n/John Doe p/50` Adds `50` points to the points `John Doe` initially had
+* `addpts n/John Doe p/50` Adds `50` points to the points `John Doe` initially had
 
 💡 **Tip**: Consider using the addpoints function to manually award extra points for activities that reflect customer loyalty beyond direct purchases. This includes rewarding members for social media mentions, participation in surveys, or as compensation for any service mishaps. It's a versatile tool that allows you to quickly acknowledge and incentivize a wide range of valuable customer interactions, keeping your loyalty program flexible and responsive to your business needs.
 
-## 4.9 Redeeming Points: `redeempoints`
+## 4.9 Redeeming Points: `redeempts`
 
 Allows members to redeem points from their current points tally, without affecting their cumulative membership points.
 
 🌟 **Benefit**: Provide members the flexibility to use their earned points for rewards, enhancing the perceived value of your loyalty program.
 
-Format: `redeempoints n/MEMBER_NAME p/POINTS`
+Format: `redeempts n/MEMBER_NAME p/POINTS`
 
 * Subtracts the specified number of points from the member's current points tally.
 
 Examples:
-* `redeempoints n/John Doe p/100` Subtracts `100` points from `John Doe's` current points.
+* `redeempts n/John Doe p/100` Subtracts `100` points from `John Doe's` current points.
 
-## 4.10 Updating membership: `addmship`
+## 4.10 Adding Membership Points: `addmempts`
 
-Manually updates the membership tier of a member in the loyalty program.
+Manually adds the membership points of a member in the loyalty program, without affecting the reward points.
 
-🌟 **Benefit**: Motivate your customers to keep coming back by using addmship to upgrade their membership tier. Higher tiers can offer better rewards, creating a sense of achievement and encouraging more purchases.
-
-Format: `addmship n/MEMBER_NAME ms/MEMBERSHIP_TIER`
-
-* Updates the membership tier of a member based on their name to the one stated.
-* The membership tier must be one of the following: Platinum, Gold, Silver, Bronze
+Format: `addmempts n/MEMBER_NAME ms/POINTS`
 
 Examples:
-* `addmship n/John Doe ms/Gold` updates the membership of `John Doe` to `Gold`
+* `addmship n/John Doe ms/` updates the membership of `John Doe` to `Gold`
 
-💡 **Tip**: Use the addmship command to manually adjust membership tiers in scenarios where automatic updates based on membership points might not fully capture a member's loyalty or contributions. This can include exceptional circumstances such as rewarding significant engagement that isn't directly tied to purchases, like community involvement or brand advocacy, or correcting tier placements due to system errors. This flexibility ensures every member's loyalty is accurately recognized and rewarded.
+💡 **Tip**: Use this command to manually adjust membership tiers in scenarios where the total points from ordering might not fully capture a member's loyalty or contributions. This can include exceptional circumstances such as rewarding significant engagement that isn't directly tied to purchases, like community involvement or brand advocacy, or correcting tier placements due to system errors. This flexibility ensures every member's loyalty is accurately recognised and rewarded.
 
 ## 4.11 Editing a member : `edit`
 
@@ -337,23 +336,23 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-## 4.13 Deleting a member : `delete`
+## 4.13 Deleting a member : `delmem`
 
 Deletes the specified member from the address book.
 
 🌟 **Benefit**: Maintain a clean and updated member list by using delete to remove profiles that are no longer active or relevant. This helps streamline your loyalty program and keep your data accurate.
 
-Format: `delete INDEX`
+Format: `delmem INDEX`
 
 * Deletes the member at the specified `INDEX`.
 * The index refers to the index number shown in the displayed member list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-⚠️ **Warning**: Be cautious when using the `delete` command as it is irreversible. Always double-check the member index.
+⚠️ **Warning**: Be cautious when using the `delmem` command as it is irreversible. Always double-check the member index.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd member in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st member in the results of the `find` command.
+* `list` followed by `delmem 2` deletes the 2nd member in the address book.
+* `find Betsy` followed by `delmem 1` deletes the 1st member in the results of the `find` command.
 
 ## 4.14 Clearing all entries : `clear`
 
@@ -388,24 +387,19 @@ SweetRewards data are saved automatically as a JSON file `[JAR file location]/da
 ⚠️ **Warning**: If your changes to the data file makes its format invalid, SweetRewards will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause SweetRewards to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 
-## 4.18 Archiving data files
-_Details coming soon ..._
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 # 5. Glossary
-| Term              | Definition                                                                                                                              |
-|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| CLI               | Command Line Interface: An interface that allows users to interact directly with the system by typing commands.                         |
-| GUI               | Graphical User Interface: A visual way for users to interact with the application through graphical elements such as buttons and icons. |
-| JSON              | JavaScript Object Notation: A format for structuring data, used here for saving and loading user data from a file.                      |
-| Membership Tiers  | Designated levels within the loyalty program offering different benefits, determined by the amount of points a member has accumulated.  |
-| Seed Data         | Preloaded data used to demonstrate the application's capabilities without needing to enter new data manually.                           |
-| Allergen          | Allergens that customers have, for the baker to take note when making an order.                                                         |
-| GF                | Gluten-free: An allergen specification.                                                                                                 |
-| LF                | Lactose-free: An allergen specification.                                                                                                |                            |
-| Jar File          | A compressed format for distributing bundled Java applications and libraries.                                                           |
+| Term             | Definition                                                                                                                              |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| CLI              | Command Line Interface: An interface that allows users to interact directly with the system by typing commands.                         |
+| GUI              | Graphical User Interface: A visual way for users to interact with the application through graphical elements such as buttons and icons. |
+| JSON             | JavaScript Object Notation: A format for structuring data, used here for saving and loading user data from a file.                      |
+| Membership Tiers | Designated levels within the loyalty program offering different benefits, determined by the amount of points a member has accumulated.  |
+| Seed Data        | Preloaded data used to demonstrate the application's capabilities without needing to enter new data manually.                           |
+| Allergen         | Allergens that customers have, for the baker to take note when making an order.                                                         |
+| GF, LF, ...      | Gluten-free, Lactose-free, ... : Common allergen specifications.                                                                        |
+| Jar File         | A compressed format for distributing bundled Java applications and libraries.                                                           |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -415,7 +409,7 @@ _Details coming soon ..._
 **A**: Install SweetRewards on the other computer and copy the data file from your original installation directory to the new one. This will replace the empty data file created during the new installation.
 
 **Q**: How do I manually add points to a member's account?<br>
-**A**: Use the addpoints command with the member's name and the desired amount of points. For instance: addpoints n/John Doe p/50 adds 50 points to John Doe's account, useful for promotional points or correcting errors.
+**A**: Use the addpts command with the member's name and the desired amount of points. For instance: addpts n/John Doe p/50 adds 50 points to John Doe's account, useful for promotional points or correcting errors.
 
 **Q**: How can I upgrade a member's tier manually?<br>
 **A**: Employ the addmempts command with the member's name and the points you want to add. For example, addmempts n/John Doe mp/400 manually awards John Doe 400 points. The membership tier of the member will be determined by the number of points they have according to the membership tier table
@@ -426,7 +420,7 @@ _Details coming soon ..._
 **Q**: How do membership points influence tier levels?<br>
 **A**: Membership tiers are determined by the total accumulated membership points. Each tier requires reaching a specific points threshold, which is automatically tracked by the system. Check the "Understanding Membership Tiers and Points System" section for detailed tier requirements.
 
-**Q**: How do I handle points for cancelled orders?
+**Q**: How do I handle points for cancelled orders?<br>
 **A**: For cancelled, use the `redeempoints` command to deduct the equivalent points from the member's account, keeping their points balance accurate with their actual purchases.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -438,7 +432,8 @@ Facing issues with SweetRewards? Here are some common problems and how to resolv
 ## Technical Issues
 1. Application won't start<br>
 🚫 **Problem**: Double-clicking the jar file doesn’t open SweetRewards.<br> 
-✅ **Solution**: Verify that Java 11 or higher is installed. Open a command prompt, navigate to the application's directory, and execute java -jar sweetrewards-v1.2.jar. If issues persist, re-download the jar file to rule out corruption.
+✅ **Solution**: Verify that Java 11 or higher is installed. Open a command prompt, navigate to the application's directory, and type in `java -jar sweetrewards-v1.2.jar` (Note the version number might differ, use the one that is seen in the version of SweetRewards that you have downloaded) and press enter. If issues persist, re-download the jar file to rule out corruption.
+
 
 2. GUI opens off-screen<br>
 🚫 **Problem**:  SweetRewards starts off the visible screen area when using multiple displays.<br>
@@ -449,9 +444,11 @@ Facing issues with SweetRewards? Here are some common problems and how to resolv
 🚫 **Problem**: Points were mistakenly added to the wrong member.<br>
 ✅ **Solution**: Use the edit command to adjust the points for both involved members. Replace the newly updated (wrong) number of points with the initial (correct) number of points and add the points for the new member again. For example, edit 2 p/50 to replace the wrongly updated points and addpoints 3 p/50 to add points to the correct member.<br>
 
+
 2. Incorrect Member Information Entered<br>
 🚫 **Problem**: Incorrect information (e.g., phone number or email) was entered for a member.<br>
 ✅ **Solution**: Correct the mistake by using the `edit` command to adjust points for both the affected and intended members, ensuring accuracy in the loyalty program.<br>
+
 
 3. Orders Not Reflecting in Member's History<br>
 🚫 **Problem**:  Newly added orders are not reflected in a member's history.<br>
@@ -463,20 +460,20 @@ Facing issues with SweetRewards? Here are some common problems and how to resolv
 
 # 8. Command summary
 
-| Command                                                                               | Format                                                                                 | Examples                                                                                      |
-|---------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| **[Add](#43-adding-a-member--addmem)**                                                | `addmem n/MEMBER_NAME hp/MEMBER_PHONE e/MEMBER_EMAIL a/MEMBER_ADDRESS [ag/ALLERGEN]…​` | `addmem n/James Ho hp/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 ag/GF ag/LF` |
-| **[Add Item to Catalogue](#45-adding-an-item-to-the-catalogue--additem)**             | `additem n/ITEM_NAME p/POINTS`                                                         | `additem n/Chocolate Cake p/50`                                                               |
-| **[Delete Item from Catalogue](#46-deleting-an-item-from-the-catalogue--deleteitem)** | `deleteitem n/ITEM_NAME`                                                               | `additem n/Chocolate Cake`                                                                    |
-| **[Add Order](#47-adding-orders-to-a-member--addorder)**                              | `addorder n/MEMBER_NAME i/ITEM_NAME [q/QUANTITY_PURCHASED]`                            | `addorder n/John Doe i/Chocolate Cake q/2`                                                    |
-| **[Add Points](#48-adding-points--addpoints)**                                        | `addpoints n/MEMBER_NAME p/POINTS`                                                     | `addpoints n/John Doe p/50`                                                                   |
-| **[Redeem Points](#49-redeeming-points--redeempoints)**                               | `redeempoints n/MEMBER_NAME p/POINTS`                                                  | `redeempoints n/John Doe p/50`                                                                |
-| **[Update Membership](#410-updating-membership--addmship)**                           | `addmship n/MEMBER_NAME ms/MEMBERSHIP_TIER`                                            | `addmship n/John Doe ms/T2`                                                                   |
-| **[Clear](#414-clearing-all-entries--clear)**                                         | `clear`                                                                                | `clear`                                                                                       |
-| **[Delete](#413-deleting-a-member--delete)**                                          | `delete INDEX`                                                                         | `delete 3`                                                                                    |
-| **[Edit](#411-editing-a-member--edit)**                                               | `edit INDEX [n/NAME] [hp/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ag/ALLERGEN]…​`          | `edit 2 n/James Lee e/jameslee@example.com`                                                   |     
-| **[Find](#412-locating-members-by-name--find)**                                       | `find KEYWORD [MORE_KEYWORDS]`                                                         | `find James Jake`                                                                             |
-| **[List](#44-listing-all-members--list)**                                             | `list`                                                                                 | `list`                                                                                        |
-| **[Help](#41-viewing-help--help)**                                                    | `help`                                                                                 | `help`                                                                                        |
-
-
+| Command                                                                            | Format                                                                                 | Examples                                                                                      |
+|------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| **[Add new member](#43-adding-a-member--addmem)**                                  | `addmem n/MEMBER_NAME hp/MEMBER_PHONE e/MEMBER_EMAIL a/MEMBER_ADDRESS [ag/ALLERGEN]…​` | `addmem n/James Ho hp/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 ag/GF ag/LF` |
+| **[Add Item to Catalogue](#45-adding-an-item-to-the-catalogue--additem)**          | `additem i/ITEM_NAME p/POINTS`                                                         | `additem i/Chocolate Cake p/50`                                                               |
+| **[Delete Item from Catalogue](#46-deleting-an-item-from-the-catalogue--delitem)** | `delitem n/ITEM_NAME`                                                                  | `delitem i/Chocolate Cake`                                                                    |
+| **[Add Order](#47-adding-orders-to-a-member--addorder)**                           | `addorder n/MEMBER_NAME i/ITEM_NAME [q/QUANTITY_PURCHASED]`                            | `addorder n/John Doe i/Chocolate Cake q/2`                                                    |
+| **[Add Reward Points](#48-adding-points--addpts)**                                 | `addpoints n/MEMBER_NAME p/POINTS`                                                     | `addpoints n/John Doe p/50`                                                                   |
+| **[Redeem Points](#49-redeeming-points--redeempts)**                               | `redeempoints n/MEMBER_NAME p/POINTS`                                                  | `redeempoints n/John Doe p/50`                                                                |
+| **[Add Membership Points](#410-adding-membership-points--addmempts)**              | `addmship n/MEMBER_NAME ms/MEMBERSHIP_TIER`                                            | `addmship n/John Doe ms/T2`                                                                   |
+| **[Clear](#414-clearing-all-entries--clear)**                                      | `clear`                                                                                | `clear`                                                                                       |
+| **[Delete member](#413-deleting-a-member--delmem)**                                | `delete INDEX`                                                                         | `delete 3`                                                                                    |
+| **[Seed data](#42-initializing-program-with-seed-data--seedData)**                 | `delete INDEX`                                                                         | `delete 3`                                                                                    |
+| **[Edit](#411-editing-a-member--edit)**                                            | `edit INDEX [n/NAME] [hp/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ag/ALLERGEN]…​`          | `edit 2 n/James Lee e/jameslee@example.com`                                                   |     
+| **[Find](#412-locating-members-by-name--find)**                                    | `find KEYWORD [MORE_KEYWORDS]`                                                         | `find James Jake`                                                                             |
+| **[List](#44-listing-all-members--list)**                                          | `list`                                                                                 | `list`                                                                                        |
+| **[Help](#41-viewing-help--help)**                                                 | `help`                                                                                 | `help`                                                                                        |
+| **[Exit](#415-exiting-the-program--exit)**                                         | `help`                                                                                 | `help`                                                                                        |
