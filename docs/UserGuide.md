@@ -106,7 +106,7 @@ Members are classified into tiers based on their accumulated membership points. 
 
 
 ### Automatic Tier Updates
-* Tiers are **updated automatically** as members reach the necessary membership points for each level. 
+* Tiers are **updated automatically** as members reach the necessary membership points for each level.
 * Ensures members are **rewarded seamlessly** for their loyalty and spending.
 
 💡 **Tip**: By understanding and utilizing the dual-point and tiered membership structure of SweetRewards, you can effectively manage your bakery's loyalty program, ensuring that your customers remain engaged and appreciated.
@@ -121,7 +121,7 @@ Members are classified into tiers based on their accumulated membership points. 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `sweetrewards.jar` from [here](https://github.com/AY2324S2-CS2103T-T13-4/tp/releases). 
+2. Download the latest `sweetrewards.jar` from [here](https://github.com/AY2324S2-CS2103T-T13-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for SweetRewards.
 
@@ -137,9 +137,9 @@ Members are classified into tiers based on their accumulated membership points. 
    * `addmem n/John Doe hp/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a member named `John Doe` to the address book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
-   
+
    * `addorder n/alex i/plain waffle q/4` : Adds an order of 4 plain waffles to member Alex Yeoh
-   
+
    * `additem i/Pain Au Chocolat p/250` : Adds "Pain Au Chocolat" to the catalogue that awards 250 points to a member when purchased
 
    * `clear` : Deletes all contacts and all items in the catalogue.
@@ -187,7 +187,7 @@ Adds a set of pre-defined sample data into the application.
 Format: `seedData`
 * If there is existing data, it will retain the current data on top of the new sample data to be added.
 * `seedData` will only add sample members which do not exist in the application yet.
-* If all members in sample data already exists, it will display the following message:  
+* If all members in sample data already exists, it will display the following message:
   `Every member from seed data already exist in the address book!`
 
 ## 4.3 Adding a member : `addmem`
@@ -218,7 +218,7 @@ Adds an item along with its corresponding points to the catalogue.
 
 Format: `additem n/ITEM_NAME p/POINTS`
 
-* ITEM_NAME must be a unique identifier for the item. 
+* ITEM_NAME must be a unique identifier for the item.
 * POINTS represent the number of points a member earns upon purchasing the item.
 
 Examples:
@@ -245,7 +245,7 @@ Adds an order for a specified item to an existing member in the loyalty program,
 
 Format: `addorder n/MEMBER_NAME i/ITEM_NAME [q/QUANTITY_PURCHASED]`
 
-* ITEM_NAME will be checked in the catalogue; if it exists, the corresponding item points will be added to the member's current points and membership points. 
+* ITEM_NAME will be checked in the catalogue; if it exists, the corresponding item points will be added to the member's current points and membership points.
 * QUANTITY_PURCHASED is optional; if not specified, it defaults to 1.
 
 Examples:
@@ -259,7 +259,7 @@ Manually adds points to a member's account within the loyalty program.
 
 🌟 **Benefit**: Encourage repeat business and reward customer loyalty by using addpoints to add reward points to members' accounts. This helps keep your customers engaged and appreciative of the value they get from shopping at your bakery.
 
-Format: `addpts n/MEMBER_NAME p/POINTS` 
+Format: `addpts n/MEMBER_NAME p/POINTS`
 
 * Adds the corresponding number of points for a member based on their name to the current points they have.
 * The points **must be a positive integer** 1, 2, 3, … 200
@@ -431,7 +431,7 @@ Facing issues with SweetRewards? Here are some common problems and how to resolv
 
 ## Technical Issues
 1. Application won't start<br>
-🚫 **Problem**: Double-clicking the jar file doesn’t open SweetRewards.<br> 
+🚫 **Problem**: Double-clicking the jar file doesn’t open SweetRewards.<br>
 ✅ **Solution**: Verify that Java 11 or higher is installed. Open a command prompt, navigate to the application's directory, and type in `java -jar sweetrewards-v1.2.jar` (Note the version number might differ, use the one that is seen in the version of SweetRewards that you have downloaded) and press enter. If issues persist, re-download the jar file to rule out corruption.
 
 
@@ -472,7 +472,7 @@ Facing issues with SweetRewards? Here are some common problems and how to resolv
 | **[Clear](#414-clearing-all-entries--clear)**                                      | `clear`                                                                                | `clear`                                                                                       |
 | **[Delete member](#413-deleting-a-member--delmem)**                                | `delete INDEX`                                                                         | `delete 3`                                                                                    |
 | **[Seed data](#42-initializing-program-with-seed-data--seedData)**                 | `delete INDEX`                                                                         | `delete 3`                                                                                    |
-| **[Edit](#411-editing-a-member--edit)**                                            | `edit INDEX [n/NAME] [hp/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ag/ALLERGEN]…​`          | `edit 2 n/James Lee e/jameslee@example.com`                                                   |     
+| **[Edit](#411-editing-a-member--edit)**                                            | `edit INDEX [n/NAME] [hp/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ag/ALLERGEN]…​`          | `edit 2 n/James Lee e/jameslee@example.com`                                                   |
 | **[Find](#412-locating-members-by-name--find)**                                    | `find KEYWORD [MORE_KEYWORDS]`                                                         | `find James Jake`                                                                             |
 | **[List](#44-listing-all-members--list)**                                          | `list`                                                                                 | `list`                                                                                        |
 | **[Help](#41-viewing-help--help)**                                                 | `help`                                                                                 | `help`                                                                                        |
