@@ -6,12 +6,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QTY;
 
-import java.util.Arrays;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddOrderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.orders.Order;
 
 /**
@@ -34,8 +33,7 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderCommand.MESSAGE_USAGE));
         }
 
-        String trimmedName = argMultimap.getValue(PREFIX_NAME).get().trim();
-        String[] nameKeywords = trimmedName.split("\\s+");
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).orElse(""));
 
         // Item name should not be empty
         String trimmedItemName = argMultimap.getValue(PREFIX_ITEM).get().trim();
@@ -53,8 +51,7 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
             throw new ParseException(Order.MESSAGE_INVALID_QUANTITY);
         }
 
-        return new AddOrderCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)),
-                trimmedItemName, quantity);
+        return new AddOrderCommand(name, trimmedItemName, quantity);
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
