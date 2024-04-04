@@ -20,7 +20,7 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    public static final String MESSAGE_NO_PERSONS_FOUND = "No persons found!";
+    public static final String MESSAGE_NO_PERSONS_FOUND = "No persons found! Showing all persons instead.";
 
     private final NameContainsKeywordsPredicate predicate;
 
@@ -34,7 +34,7 @@ public class FindCommand extends Command {
         model.updateFilteredPersonList(predicate);
         if (model.getFilteredPersonList().isEmpty()) {
             model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
-            return new CommandResult(MESSAGE_NO_PERSONS_FOUND + " Showing all persons instead.");
+            return new CommandResult(MESSAGE_NO_PERSONS_FOUND);
         }
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));

@@ -15,6 +15,9 @@ public class HelpCommandParser implements Parser<HelpCommand> {
      */
     public HelpCommand parse(String args) throws ParseException {
         args = args.trim();
+        if (args.isEmpty()) {
+            return new HelpCommand();
+        }
         String[] argsList = args.split(" ");
         String commandType = null;
         for (String arg : argsList) {
@@ -25,13 +28,10 @@ public class HelpCommandParser implements Parser<HelpCommand> {
                 commandType = "commands";
                 break;
             default:
-                throw new ParseException(String.format(HelpCommand.INVALID_FLAG_MESSAGE, arg) + "\n" + HelpCommand.MESSAGE_USAGE);
+                throw new ParseException(String.format(HelpCommand.INVALID_FLAG_MESSAGE, arg) + "\n"
+                        + HelpCommand.MESSAGE_USAGE);
             }
         }
-        if (commandType == null) {
-            return new HelpCommand();
-        } else {
-            return new HelpCommand(commandType);
-        }
+        return new HelpCommand(commandType);
     }
 }

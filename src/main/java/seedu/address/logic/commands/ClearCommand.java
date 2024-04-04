@@ -12,8 +12,8 @@ public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
-    public static final String MESSAGE_CONFIRM = "Are you sure you want to clear the address book? \n" +
-            "Use `clear --force` to confirm clearing of the address book.";
+    public static final String MESSAGE_CONFIRM = "Are you sure you want to clear the address book? \n"
+            + "Use `clear --force` to confirm clearing of the address book.";
     private final boolean isForced;
 
     public ClearCommand() {

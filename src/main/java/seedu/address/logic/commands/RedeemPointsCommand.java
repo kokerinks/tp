@@ -66,7 +66,8 @@ public class RedeemPointsCommand extends Command {
         int pointsToRedeemValue = this.pointsToRedeem.getValue();
 
         if (currentPointsValue < pointsToRedeemValue) {
-            throw new CommandException(String.format(MESSAGE_INSUFFICIENT_POINTS, personToEdit.getName(), currentPointsValue));
+            throw new CommandException(
+                    String.format(MESSAGE_INSUFFICIENT_POINTS, personToEdit.getName(), currentPointsValue));
         }
 
         Points newPoints = new Points(Integer.toString(currentPointsValue - pointsToRedeemValue));
