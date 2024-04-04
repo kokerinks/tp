@@ -43,9 +43,11 @@ public class Messages {
                 .append("; Email: ")
                 .append(person.getEmail())
                 .append("; Address: ")
-                .append(person.getAddress())
-                .append("; Allergens: ");
-        person.getAllergens().forEach(builder::append);
+                .append(person.getAddress());
+        if (person.getAllergens().isEmpty()) {
+            builder.append("; Allergens: ");
+            person.getAllergens().forEach(builder::append);
+        }
         return builder.toString();
     }
 

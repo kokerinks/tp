@@ -44,8 +44,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Orders cannot be edited this way.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "NOTE: Orders cannot be edited this way.\n"
+            + "Parameters: INDEX "
             + "[" + PREFIX_NAME + "MEMBER_NAME] "
             + "[" + PREFIX_PHONE + "MEMBER_PHONE] "
             + "[" + PREFIX_EMAIL + "MEMBER_EMAIL] "
@@ -55,7 +55,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_MEMSHIP_PTS + "MEMBERSHIP_POINTS]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_EMAIL + "johndoe@example.com\n"
+            + "NOTE: INDEX should be a positive integer.";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

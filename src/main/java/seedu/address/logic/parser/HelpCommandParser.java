@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new HelpCommand object
@@ -12,7 +13,7 @@ public class HelpCommandParser implements Parser<HelpCommand> {
      * @param args the user input string
      * @return the parsed HelpCommand object
      */
-    public HelpCommand parse(String args) {
+    public HelpCommand parse(String args) throws ParseException {
         args = args.trim();
         String[] argsList = args.split(" ");
         String commandType = null;
@@ -24,7 +25,7 @@ public class HelpCommandParser implements Parser<HelpCommand> {
                 commandType = "commands";
                 break;
             default:
-                break;
+                throw new ParseException(String.format(HelpCommand.INVALID_FLAG_MESSAGE, arg) + "\n" + HelpCommand.MESSAGE_USAGE);
             }
         }
         if (commandType == null) {

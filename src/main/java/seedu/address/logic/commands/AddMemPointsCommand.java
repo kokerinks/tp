@@ -20,15 +20,14 @@ public class AddMemPointsCommand extends Command {
     public static final String COMMAND_WORD = "addmempts";
 
     public static final String INVALID_COMMAND_FORMAT = "Invalid command format.";
-    public static final String MESSAGE_CONSTRAINTS = "Points to add must be a positive integer";
+    public static final String MESSAGE_CONSTRAINTS = "Points to add must be a positive integer.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Add membership points to the person identified "
-            + "by the name of the person in the listing. "
-            + "Existing membership will be overwritten by the input.\n"
-            + "Parameters: n/MEMBER_NAME " + PREFIX_MEMSHIP_PTS + "[POINTS_TO_ADD]\n"
+            + ": Add membership points to the person identified. "
+            + "May upgrade the member's tier after adding points.\n"
+            + "Parameters: n/MEMBER_NAME " + PREFIX_MEMSHIP_PTS + "POINTS_TO_ADD\n"
             + "Example: " + COMMAND_WORD + " n/Alice "
-            + PREFIX_MEMSHIP_PTS + "T1";
+            + PREFIX_MEMSHIP_PTS + "100";
     public static final String MESSAGE_ADD_MEMBERSHIP_SUCCESS = "Added %1$d membership points to Person: %2$s";
     private final Name name;
     private final int pointsToAdd;
