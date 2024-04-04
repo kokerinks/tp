@@ -98,27 +98,21 @@ SweetRewards employs a nuanced points system to foster both immediate and long-t
 ### Membership Tiers: Criteria and Benefits
 Members are classified into tiers based on their accumulated membership points. Each tier unlocks distinct benefits, rewarding members for their loyalty:
 
-* Bronze Tier:
-  * Entry-level for all new members. 
-  * Offers basic rewards and incentives. 
+| Membership Tier | Perks |
+|-----------------|------|
+| Bronze          |   * Entry-level for all new members.<br/> * Offers basic rewards and incentives.  |
+| Silver          |    * Requires members to accumulate a specified threshold of membership points.<br/>  * Unlocks enhanced benefits and rewards.|
+| Gold            |   * A higher tier requiring more membership points. <br/>  * Offers substantial rewards and exclusive offers.  |
+| Platinum        |    * The pinnacle of the membership hierarchy. <br/> * Members enjoy the best rewards and personalized services.  |
 
-* Silver Tier:
-  * Requires members to accumulate a specified threshold of membership points. 
-  * Unlocks enhanced benefits and rewards.
-  
-* Gold Tier:
-  * A higher tier requiring more membership points. 
-  * Offers substantial rewards and exclusive offers. 
-
-* Platinum Tier:
-  * The pinnacle of the membership hierarchy. 
-  * Members enjoy the best rewards and personalized services. 
 
 ### Automatic Tier Updates
 * Tiers are **updated automatically** as members reach the necessary membership points for each level. 
 * Ensures members are **rewarded seamlessly** for their loyalty and spending.
 
 💡 **Tip**: By understanding and utilizing the dual-point and tiered membership structure of SweetRewards, you can effectively manage your bakery's loyalty program, ensuring that your customers remain engaged and appreciated.
+
+💡 **Tip**: In this current iteration, the name, number and point requirement for the tiers are still in development. Hence, instead the users can change the number of points given to their item to suit their use
 
 🌟 **Benefit**: By maintaining and upgrading membership tiers, you foster a stronger relationship with your customers, encouraging them to return to your bakery. This system not only enhances customer loyalty but also drives sales by offering tangible rewards for continued patronage.
 
@@ -251,7 +245,7 @@ Format: `addorder n/MEMBER_NAME i/ITEM_NAME [q/QUANTITY_PURCHASED]`
 * QUANTITY_PURCHASED is optional; if not specified, it defaults to 1.
 
 Examples:
-* `addorder n/John Doe i/Chocolate Cake q/2` Adds `2` orders of `Chocolate Cake` to `John` Doe`, updating points accordingly.
+* `addorder n/John Doe i/Chocolate Cake q/2` Adds `2` orders of `Chocolate Cake` to `John Doe`, updating points accordingly.
 
 💡 **Tip**: Use unique attributes of members when adding points to avoid errors. Partial names are matched to the closest resembling member.
 
@@ -394,8 +388,7 @@ SweetRewards data are saved automatically as a JSON file `[JAR file location]/da
 ⚠️ **Warning**: If your changes to the data file makes its format invalid, SweetRewards will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause SweetRewards to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 
-## 4.18 Archiving data files 
-`[coming in v2.0]`
+## 4.18 Archiving data files
 _Details coming soon ..._
 
 
@@ -411,9 +404,7 @@ _Details coming soon ..._
 | Seed Data         | Preloaded data used to demonstrate the application's capabilities without needing to enter new data manually.                           |
 | Allergen          | Allergens that customers have, for the baker to take note when making an order.                                                         |
 | GF                | Gluten-free: An allergen specification.                                                                                                 |
-| LF                | Lactose-free: An allergen specification.                                                                                                |
-| Order Details     | Information related to purchases made by a member, used for tracking the orders made by the customer.                                   |
-| Points            | A system of credit awarded to members for their purchases, contributing to their membership tier placement.                             |
+| LF                | Lactose-free: An allergen specification.                                                                                                |                            |
 | Jar File          | A compressed format for distributing bundled Java applications and libraries.                                                           |
 
 --------------------------------------------------------------------------------------------------------------------
@@ -427,7 +418,7 @@ _Details coming soon ..._
 **A**: Use the addpoints command with the member's name and the desired amount of points. For instance: addpoints n/John Doe p/50 adds 50 points to John Doe's account, useful for promotional points or correcting errors.
 
 **Q**: How can I upgrade a member's tier manually?<br>
-**A**: Employ the addmship command with the member's name and the intended new tier. For example, addmship n/John Doe ms/Gold manually upgrades John Doe to the Gold tier, ideal for special recognitions.
+**A**: Employ the addmempts command with the member's name and the points you want to add. For example, addmempts n/John Doe mp/400 manually awards John Doe 400 points. The membership tier of the member will be determined by the number of points they have according to the membership tier table
 
 **Q**: Is it possible to remove a member from the loyalty program?<br>
 **A**: Yes, execute the delete command with the index number of the member in the displayed list. E.g., delete 3 removes the third member in the list, used for cleaning up duplicate entries or removing inactive accounts.
@@ -449,7 +440,6 @@ Facing issues with SweetRewards? Here are some common problems and how to resolv
 🚫 **Problem**: Double-clicking the jar file doesn’t open SweetRewards.<br> 
 ✅ **Solution**: Verify that Java 11 or higher is installed. Open a command prompt, navigate to the application's directory, and execute java -jar sweetrewards-v1.2.jar. If issues persist, re-download the jar file to rule out corruption.
 
-
 2. GUI opens off-screen<br>
 🚫 **Problem**:  SweetRewards starts off the visible screen area when using multiple displays.<br>
 ✅ **Solution**:  Locate and delete preferences.json in the application's folder to reset window positioning, then restart the application.
@@ -459,11 +449,9 @@ Facing issues with SweetRewards? Here are some common problems and how to resolv
 🚫 **Problem**: Points were mistakenly added to the wrong member.<br>
 ✅ **Solution**: Use the edit command to adjust the points for both involved members. Replace the newly updated (wrong) number of points with the initial (correct) number of points and add the points for the new member again. For example, edit 2 p/50 to replace the wrongly updated points and addpoints 3 p/50 to add points to the correct member.<br>
 
-
 2. Incorrect Member Information Entered<br>
 🚫 **Problem**: Incorrect information (e.g., phone number or email) was entered for a member.<br>
 ✅ **Solution**: Correct the mistake by using the `edit` command to adjust points for both the affected and intended members, ensuring accuracy in the loyalty program.<br>
-
 
 3. Orders Not Reflecting in Member's History<br>
 🚫 **Problem**:  Newly added orders are not reflected in a member's history.<br>
