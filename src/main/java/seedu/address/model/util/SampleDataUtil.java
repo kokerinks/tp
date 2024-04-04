@@ -52,16 +52,16 @@ public class SampleDataUtil {
 
     public static Item[] getSampleCatalogue() {
         return new Item[] {
-            new Item("Chocolate Croissant", 20),
-            new Item("Blueberry Muffin", 20),
-            new Item("Strawberry Muffin", 20),
-            new Item("Chocolate Muffin", 20),
-            new Item("Chocolate Chip Cookies 100g", 30),
-            new Item("Chocolate Chip Cookies 300g", 100),
-            new Item("Plain Waffle", 20),
-            new Item("Chocolate Waffle", 30),
-            new Item("Kaya Waffle", 30),
-            new Item("Cheese Waffle", 30),
+            new Item("Chocolate Croissant", 250),
+            new Item("Blueberry Muffin", 200),
+            new Item("Strawberry Muffin", 200),
+            new Item("Chocolate Muffin", 100),
+            new Item("Chocolate Chip Cookies 100g", 300),
+            new Item("Chocolate Chip Cookies 300g", 1000),
+            new Item("Plain Waffle", 150),
+            new Item("Chocolate Waffle", 250),
+            new Item("Kaya Waffle", 200),
+            new Item("Cheese Waffle", 200),
         };
     }
 
