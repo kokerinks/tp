@@ -169,6 +169,9 @@ Members are classified into tiers based on their accumulated membership points. 
 - **Extraneous parameters for commands that do not take in parameters** (such as `help`, `list`, `exit`, and `clear`) will be ignored.
     - Example: If the command specifies `help 123`, it will be interpreted as `help`.
 - **When using a PDF version of this document**, be careful when copying and pasting commands that span multiple lines, as space characters surrounding line-breaks may be omitted when copied over to the application.
+- **If there is a repeat parameter**, only last parameter will be taken
+  - Example: `del i/chocolate croissant i/kaya waffle` will only delete kaya waffle from the catalogue. 
+- Commands can only be in **English**
 </div>
 
 ### 4.1 Viewing help : `help`
@@ -200,7 +203,8 @@ Adds a member to the loyalty program.
 
 Format: `addmem n/MEMBER_NAME hp/PHONE e/MEMBER_EMAIL a/MEMBER_ADDRESS [ag/ALLERGEN]…​`
 
-* `MEMBER_NAME` should only contain alphanumeric characters and spaces.
+* `MEMBER_NAME` should only contain alphanumeric characters, spaces, apostrophes, slashes and hyphens.
+  * `MEMBER_NAME` is regarded as unique if it differs in alphabets, numbers, or has a varying number of spaces between characters. It is case-sensitive.
 * `PHONE` should only contain numbers, and it should be at least 3 digits long.
 * `MEMBER_EMAIL` should be of the format local-part@domain and adhere to the following constraints:
   1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
@@ -209,7 +213,8 @@ Format: `addmem n/MEMBER_NAME hp/PHONE e/MEMBER_EMAIL a/MEMBER_ADDRESS [ag/ALLER
       - end with a domain label at least 2 characters long
       - have each domain label start and end with alphanumeric characters
       - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-* `ALLERGEN` names must be alphanumeric. Common allergens that are universally recognised that you may use are 
+* `MEMBER_EMAIL` need not be unique for different members.
+* `ALLERGEN` names must be alphanumeric and doesn't accept spaces. Common allergens that are universally recognised that you may use are 
   - GF: Gluten-Free
   - LF: Lactose-Free
   - DF: Dairy-Free 
@@ -224,6 +229,7 @@ Format: `addmem n/MEMBER_NAME hp/PHONE e/MEMBER_EMAIL a/MEMBER_ADDRESS [ag/ALLER
 * `addmem n/Betsy Crowe a/Newton Street hp/1234567 e/betsycrowe@example.com ag/GF `
 
 🌟 **Benefit**: Grow your bakery's community and keep track of your customers' preferences and purchases by adding them as members. Use addmem to easily enroll new customers into your loyalty program, helping you personalize their experience and encourage repeat business.
+⚠️ **Warning**: Ensure `MEMBER_NAME` is unique if not this might cause trouble in the future when using other commands like `addorder`.
 
 ### 4.4 Listing all members : `list`
 
@@ -282,7 +288,7 @@ Manually adds points to a member's account within the loyalty program.
 Format: `addpts n/MEMBER_NAME p/POINTS`
 
 * Adds the corresponding number of points for a member based on their name to the current points they have.
-* `POINTS` must be a positive integer 1, 2, 3, … 200
+* `POINTS` must be a positive integer 1, 2, 3, … 
 
 Examples:
 * `addpts n/John Doe p/50` Adds `50` points to the points `John Doe` initially had
