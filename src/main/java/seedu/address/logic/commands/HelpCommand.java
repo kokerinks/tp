@@ -10,23 +10,29 @@ public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "help";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
+            + "Parameters: [--commands/-c]\n"
             + "Example: " + COMMAND_WORD;
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
+    public static final String INVALID_FLAG_MESSAGE = "The flag `%s` is invalid.";
+
     public static final String COMMAND_LIST = "Command List " + "\n"
-            + "Add a member: " + AddCommand.COMMAND_WORD + "\n"
-            + "Add membership points: " + AddMemPointsCommand.COMMAND_WORD + "\n"
-            + "Add redemption points:  " + AddPointsCommand.COMMAND_WORD + "\n"
-            + "Add order: " + AddOrderCommand.COMMAND_WORD + "\n"
-            + "Clear all members: " + ClearCommand.COMMAND_WORD + "\n"
-            + "Delete a member: " + DeleteCommand.COMMAND_WORD + "\n"
-            + "Edit member details: " + EditCommand.COMMAND_WORD + "\n"
-            + "Exit the program: " + ExitCommand.COMMAND_WORD + "\n"
-            + "Find members: " + FindCommand.COMMAND_WORD + "\n"
-            + "Access user guide: " + HelpCommand.COMMAND_WORD + "\n"
-            + "List all members: " + ListCommand.COMMAND_WORD + "\n"
-            + "Seed data: " + SeedDataCommand.COMMAND_WORD;
+            + AddCommand.COMMAND_WORD + " : Add a member" + "\n"
+            + AddItemCommand.COMMAND_WORD + " : Add item" + "\n"
+            + AddMemPointsCommand.COMMAND_WORD + " : Add membership points" + "\n"
+            + AddOrderCommand.COMMAND_WORD + " : Add order" + "\n"
+            + AddPointsCommand.COMMAND_WORD + " : Add redemption points" + "\n"
+            + ClearCommand.COMMAND_WORD + " : Clear all members" + "\n"
+            + DeleteCommand.COMMAND_WORD + " : Delete a member" + "\n"
+            + DeleteItemCommand.COMMAND_WORD + " : Delete item" + "\n"
+            + EditCommand.COMMAND_WORD + " : Edit member details" + "\n"
+            + ExitCommand.COMMAND_WORD + " : Exit the program" + "\n"
+            + FindCommand.COMMAND_WORD + " : Find members" + "\n"
+            + HelpCommand.COMMAND_WORD + " : Access user guide" + "\n"
+            + ListCommand.COMMAND_WORD + " : List all members" + "\n"
+            + RedeemPointsCommand.COMMAND_WORD + " : Redeem points" + "\n"
+            + SeedDataCommand.COMMAND_WORD + " : Seed data";
 
     private String helpType;
 

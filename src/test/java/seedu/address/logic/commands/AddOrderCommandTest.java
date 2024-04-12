@@ -11,8 +11,6 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,14 +20,14 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.item.Item;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddOrderCommandTest {
 
     @Test
-    public void constructor_nullNameContainsKeywordsPredicate_throwsNullPointerException() {
+    public void constructor_nullName_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
                 new AddOrderCommand(null, "itemName", 1));
     }
@@ -37,11 +35,11 @@ public class AddOrderCommandTest {
     @Test
     public void constructor_nullOrder_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new AddOrderCommand(new NameContainsKeywordsPredicate(Collections.singletonList("test")), null, 0));
+                new AddOrderCommand(new Name("test"), null, 0));
     }
 
     @Test
-    public void execute_personFoundInFilteredPersonList_success() {
+    public void execute_nameMatchesPersonInFilteredPersonList_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
         String itemName = "Kaya Toast";
@@ -49,14 +47,12 @@ public class AddOrderCommandTest {
 
         model.addItem(new Item(itemName, points));
 
-        List<String> predicate = Collections.singletonList("benson");
-
-        NameContainsKeywordsPredicate bensonPredicate = new NameContainsKeywordsPredicate(predicate);
+        Name name = new Name("benson");
         int quantity = 3;
         LocalDateTime orderDateTime = LocalDateTime.parse("2024-01-01T07:00:00");
 
         AddOrderCommand addOrderToSecondTypicalPerson =
-                new AddOrderCommand(bensonPredicate, itemName, quantity, orderDateTime);
+                new AddOrderCommand(name, itemName, quantity, orderDateTime);
 
         Person bensonWithAddedOrder = new PersonBuilder(BENSON).withOrders(
                 // existing orders
@@ -77,18 +73,17 @@ public class AddOrderCommandTest {
     }
 
     @Test
-    public void execute_personNotFoundInFilteredPersonList_throwsCommandException() {
+    public void execute_nameDoesNotMatchAnyPersonInFilteredPersonList_throwsCommandException() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-        List<String> predicate = Collections.singletonList("nobody");
+        Name name = new Name("nobodyShouldMatchThis");
 
-        NameContainsKeywordsPredicate nobodyPredicate = new NameContainsKeywordsPredicate(predicate);
         String itemName = "Kaya Toast";
         int quantity = 1;
         LocalDateTime orderDateTime = LocalDateTime.parse("2024-01-01T07:00:00");
 
         AddOrderCommand addOrderToSecondTypicalPerson =
-                new AddOrderCommand(nobodyPredicate, itemName, quantity, orderDateTime);
+                new AddOrderCommand(name, itemName, quantity, orderDateTime);
 
         assertThrows(CommandException.class, Messages.MESSAGE_PERSON_NOT_FOUND, () ->
                 addOrderToSecondTypicalPerson.execute(model));
@@ -98,15 +93,12 @@ public class AddOrderCommandTest {
     public void execute_itemNotInAddressBook_throwsCommandException() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-        List<String> predicate = Collections.singletonList("alice");
-
-        NameContainsKeywordsPredicate alicePredicate = new NameContainsKeywordsPredicate(predicate);
         String itemName = "Non-existent Item";
         int quantity = 1;
         LocalDateTime orderDateTime = LocalDateTime.parse("2024-01-01T07:00:00");
 
         AddOrderCommand addOrderToSecondTypicalPerson =
-                new AddOrderCommand(alicePredicate, itemName, quantity, orderDateTime);
+                new AddOrderCommand(ALICE.getName(), itemName, quantity, orderDateTime);
 
         assertThrows(CommandException.class, MESSAGE_ITEM_NOT_FOUND, () ->
                 addOrderToSecondTypicalPerson.execute(model));
@@ -121,9 +113,9 @@ public class AddOrderCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate johnny1 = new NameContainsKeywordsPredicate(Collections.singletonList("Johnny"));
-        NameContainsKeywordsPredicate johnny2 = new NameContainsKeywordsPredicate(Collections.singletonList("Johnny"));
-        NameContainsKeywordsPredicate walker = new NameContainsKeywordsPredicate(Collections.singletonList("Walker"));
+        Name johnny1 = new Name("Johnny");
+        Name johnny2 = new Name("Johnny");
+        Name walker = new Name("Walker");
 
         String itemName1 = "Kaya Toast";
         int quantity1 = 1;

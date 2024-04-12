@@ -22,16 +22,16 @@ public class AddItemCommand extends Command {
     public static final String COMMAND_WORD = "additem";
     public static final String INVALID_COMMAND_FORMAT = "Invalid command format! ";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an item to the catalogue. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an item to the catalogue. \n"
             + "Parameters: "
             + PREFIX_ITEM + "ITEM_NAME "
             + PREFIX_POINTS + "POINTS_PER_UNIT\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ITEM + "Chocolate Cake "
+            + PREFIX_ITEM + "chocolate cake "
             + PREFIX_POINTS + "50";
 
     public static final String MESSAGE_SUCCESS = "New item added: %1$s";
-    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the catalogue";
+    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the catalogue.";
 
     private final Item toAdd;
 

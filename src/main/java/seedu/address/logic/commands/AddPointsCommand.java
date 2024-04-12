@@ -20,13 +20,13 @@ import seedu.address.model.person.Points;
  * Adds points to an existing person in the loyalty program.
  */
 public class AddPointsCommand extends Command {
-    public static final String COMMAND_WORD = "addpoints";
+    public static final String COMMAND_WORD = "addpts";
     public static final String MESSAGE_CONSTRAINTS = "Points added should be greater than 0.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds points to the person identified. "
+            + ": Adds points to the person identified. \n"
             + "Parameters: " + PREFIX_NAME + "NAME " + PREFIX_POINTS + "POINTS \n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " John Doe " + PREFIX_POINTS + "40";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "John Doe " + PREFIX_POINTS + "40";
     public static final String MESSAGE_ADDPOINTS_SUCCESS =
             "Added %1$s points to %2$s";
     private final Name name;
@@ -55,7 +55,7 @@ public class AddPointsCommand extends Command {
 
         if (personOptional.isEmpty()) {
             throw new CommandException(
-                    Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                    Messages.MESSAGE_PERSON_NOT_FOUND);
         }
 
         Person personToEdit = personOptional.get();
