@@ -67,8 +67,8 @@ public class Order implements Cloneable {
         return quantity;
     }
 
-    public int getOrderPoints() {
-        return item.getPoints() * quantity;
+    public int getItemPoints() {
+        return item.getPoints();
     }
 
     @Override

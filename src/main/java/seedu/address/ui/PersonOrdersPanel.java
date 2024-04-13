@@ -52,7 +52,7 @@ public class PersonOrdersPanel extends UiPart<Region> {
         dateTimeColumn.setCellValueFactory(new PropertyValueFactory<>("dateTime"));
         itemNameColumn.setCellValueFactory(new PropertyValueFactory<>("itemName"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        pointsColumn.setCellValueFactory(new PropertyValueFactory<>("orderPoints"));
+        pointsColumn.setCellValueFactory(new PropertyValueFactory<>("itemPoints"));
         orderTableView.setItems(FXCollections.observableArrayList(selectedPerson.getOrders()));
         orderTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
