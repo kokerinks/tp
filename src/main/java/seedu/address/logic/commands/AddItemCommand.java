@@ -43,6 +43,7 @@ public class AddItemCommand extends Command {
         toAdd = item;
     }
 
+    
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
