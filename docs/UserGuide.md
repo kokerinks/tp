@@ -59,7 +59,7 @@ Throughout the guide, you'll encounter various icons that signify different type
 
 💡 **Tip**: This icon indicates a tip, suggestion, or piece of advice to help you use SweetRewards more effectively.
 
-⚠️ **Warning**: This icon alerts you to potential pitfalls or actions that could negatively impact your use of the application.
+⚠  **Warning**: This icon alerts you to potential pitfalls or actions that could negatively impact your use of the application.
 
 🌟 **Benefit**: This icon signifies key benefits and positive outcomes from using a feature within SweetRewards.
 
@@ -183,7 +183,7 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 🌟 **Benefit**: Whenever you feel stuck or need a quick reminder on how to use a specific command, just type help to open up this User Guide. This ensures you're never left in the dark about how to manage your loyalty program effectively.
-💡 **Tip**: Use the `-c` flag (`help-c`) to show you a list of all the commands available in this application without opening an external link!
+💡 **Tip**: Use the `-c` flag (`help -c`) to show you a list of all the commands available in this application without opening an external link!
 
 ### 4.2 Initializing program with seed data : `seeddata`
 
