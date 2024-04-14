@@ -9,7 +9,12 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* The storage of members in SweetRewards was reused with minimal changes from a past project 
+AB3 ([nus-cs2103-AY2324S2/tp](https://github.com/nus-cs2103-AY2324S2/tp))
+* The commands `addmem`, `clear`, `delmem`, `find`, `list`, `help` were reused with some changes from the previously-mentioned
+AB3 ([nus-cs2103-AY2324S2/tp](https://github.com/nus-cs2103-AY2324S2/tp))
+* Code introduced in both `main` and `test` codebase, as well as JavaDocs were produced with the aid of [GitHub Copilot](https://github.com/features/copilot),
+an AI developer tool.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -51,7 +56,7 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delmem 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -94,9 +99,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delmem 1")` API call as an example.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delmem 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
@@ -158,16 +163,16 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Membership feature
-The addmembership command that comes along with the membership feature is implemented like this:
+### Membership Points feature
+The `addmempts` command that comes along with the membership points feature is implemented like this:
 <img src="images/AddMembershipSequenceDiagram.png" width="600" />
 
 ### Points feature
-The addpoints command that comes along with the points feature is implemented like this:
+The `addpoints` command that comes along with the points feature is implemented like this:
 <img src="images/AddPointsSequenceDiagram.png" width="600" />
 
 ### Orders feature
-The addorder command that comes along with the orders feature is implemented like this:
+The `addorder` command that comes along with the orders feature is implemented like this:
 <img src="images/AddOrderSequenceDiagram.png" width="600" />
 
 #### Proposed Implementation
@@ -186,11 +191,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delmem 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delmem 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `addmem n/David …​` to add a new person. The `addmem` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -229,7 +234,7 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `addmem n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -247,7 +252,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delmem`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -356,7 +361,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add a customer by typing the command addmember
+1.  User requests to add a customer by typing the command `addmem`
 2.  SweetRewards shows member added successfully
 3.  User can view added member successfully
 
@@ -375,7 +380,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add a order to a member by typing the command addorder
+1.  User requests to add a order to a member by typing the command `addorder`
 2.  SweetRewards shows order added successfully
 3.  User can view added member successfully
 
@@ -454,7 +459,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file 
+      Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -463,29 +469,57 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Shutdown of application
+
+   1. Enter `exit` into the command box OR click on the `X` button on the top-right hand corner of the window.
+       Expected: The application should close with no other obstructions.
 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+1. Deleting a person
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
+   1. Test case: `delmem 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `delmem 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delmem`, `delmem x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites:
+      1. Launch the application.
+      2. Enter the command `clear --force` into the command box.
+          WARNING: This will clear all existing data from the application which you will not get back!
+      3. Enter the command `seeddata` into the command box.
+      4. Exit the application.
+   
+   2. From the same directory as the application, open the `data` directory, then `addressbook.json` in your preferred editor 
+   3. Remove line 8 (`"points" : "0",`) from the file.
+   4. Re-launch the application.  
+      Expected: Application should open with no visible contacts and items
 
-1. _{ more test cases …​ }_
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+- Our project expanded to include more than one entity type. Namely, we added the `Item` entity type, which stores the
+name and points per quantity for each item stored in the application.
+  
+
+- Multiple new fields were implemented to store additional information for each `Person` entity:
+    - `Points`: stores the redeemable points which the member currently has. (By Kinjal)
+    - `MembershipTier`: stores the current membership tier of the member. (By Khushi)
+      - Later repurposed to `MembershipPoints`, after we noticed it was easier for the application to instead keep track of the
+        cumulative points of the member. (By Kok Liang)
+    - `Orders`: stores the previous orders (as Strings) which were made by the member. (By Billy)
+      - Later enhanced to store `Item` entities.
+    - Each additional field required fixing existing code which used the `Person` entity. This includes:
+      - `Person` constructors
+      - All/most commands which involve members e.g. `addmem`, `editmem`
+      - Existing JSON storage files for testing
+    - Hence, adding these fields introduced additional levels of complexity to our application.
