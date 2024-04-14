@@ -216,14 +216,14 @@ Format: `addmem n/MEMBER_NAME hp/PHONE e/MEMBER_EMAIL a/MEMBER_ADDRESS [ag/ALLER
       - have each domain label start and end with alphanumeric characters
       - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 * `MEMBER_EMAIL` need not be unique for different members.
-* `ALLERGEN` names must be alphanumeric and doesn't accept spaces. Common [allergens](#6-glossary) that are universally recognised that you may use are 
+* `ALLERGEN` names must be alphanumeric and doesn't accept spaces. Common [allergens](#6-glossary) that are universally recognised that you may use are
   - GF: Gluten-Free
   - LF: Lactose-Free
-  - DF: Dairy-Free 
+  - DF: Dairy-Free
   - EG: Egg-Free
-  - NF: Nut-Free 
-  - PF: Peanut-Free 
-  - SF: Soy-Free 
+  - NF: Nut-Free
+  - PF: Peanut-Free
+  - SF: Soy-Free
   - CF: Casein-Free
 
     Examples:
@@ -275,13 +275,13 @@ Adds an order for a specified item to an existing member in the loyalty program,
 Format: `addorder n/MEMBER_NAME i/ITEM_NAME [q/QUANTITY_PURCHASED]`
 
 * `ITEM_NAME` will be checked in the catalogue; if it exists, the corresponding item points will be added to the member's current points and membership points.
-* `QUANTITY_PURCHASED` is optional and must be a positive integer; if not specified, it defaults to 1. Currently, the limit is set to 2 billion. 
+* `QUANTITY_PURCHASED` is optional and must be a positive integer; if not specified, it defaults to 1. Currently, the limit is set to 2 billion.
 
 Examples:
 * `addorder n/John Doe i/Chocolate Cake q/2` Adds `2` orders of `Chocolate Cake` to `John Doe`, updating points accordingly.
 
-🌟 **Benefit**: Streamline the process of tracking purchases and rewarding members by using addorder to add their orders directly into the system. This automatically adjusts their points according to the purchase, fostering a more engaging loyalty experience.
-💡 <span style="color:yellow">**Tip**:</span> Use unique attributes of members when adding points to avoid errors. Partial names are matched to the closest resembling member.
+🌟 **Benefit**: Streamline the process of tracking purchases and rewarding members by using addorder to add their orders directly into the system. This automatically adjusts their points according to the purchase, fostering a more engaging loyalty experience.<br>
+💡 <span style="color:yellow">**Tip**:</span> Use unique attributes of members when adding points to avoid errors. Partial names are matched to the closest resembling member.<br>
 
 ### 4.8 Adding points: `addpts`
 
@@ -290,14 +290,14 @@ Manually adds points to a member's account within the loyalty program.
 Format: `addpts n/MEMBER_NAME p/POINTS`
 
 * Adds the corresponding number of points for a member based on their name to the current points they have.
-* `POINTS` must be a positive integer 1, 2, 3, … 
+* `POINTS` must be a positive integer 1, 2, 3, …
 
 Examples:
 * `addpts n/John Doe p/50` Adds `50` points to the points `John Doe` initially had
 
-🌟 <span style="color:Gold">**Benefit**:</span> Encourage repeat business and reward customer loyalty by using `addpts` to add reward points to members' accounts. This helps keep your customers engaged and appreciative of the value they get from shopping at your bakery.
-💡 <span style="color:yellow">**Tip**:</span> Consider using the `addpts` function to manually award extra points for activities that reflect customer loyalty beyond direct purchases. This includes rewarding members for social media mentions, participation in surveys, or as compensation for any service mishaps. It's a versatile tool that allows you to quickly acknowledge and incentivize a wide range of valuable customer interactions, keeping your loyalty program flexible and responsive to your business needs.
-⚠️ <span style="color:orange">**Warning**:</span> Using the `addpts` command will ONLY increase the `REWARD POINTS` field, `MEMBERSHIP_POINTS` field will not be affected.
+🌟 <span style="color:Gold">**Benefit**:</span> Encourage repeat business and reward customer loyalty by using `addpts` to add reward points to members' accounts. This helps keep your customers engaged and appreciative of the value they get from shopping at your bakery.<br>
+💡 <span style="color:yellow">**Tip**:</span> Consider using the `addpts` function to manually award extra points for activities that reflect customer loyalty beyond direct purchases. This includes rewarding members for social media mentions, participation in surveys, or as compensation for any service mishaps. It's a versatile tool that allows you to quickly acknowledge and incentivize a wide range of valuable customer interactions, keeping your loyalty program flexible and responsive to your business needs.<br>
+⚠️ <span style="color:orange">**Warning**:</span> Using the `addpts` command will ONLY increase the `REWARD POINTS` field, `MEMBERSHIP_POINTS` field will not be affected.<br>
 
 ### 4.9 Redeeming Points: `redeempts`
 
