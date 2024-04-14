@@ -282,6 +282,7 @@ Examples:
 
 🌟 **Benefit**: Streamline the process of tracking purchases and rewarding members by using addorder to add their orders directly into the system. This automatically adjusts their points according to the purchase, fostering a more engaging loyalty experience.<br>
 💡 <span style="color:yellow">**Tip**:</span> Use unique attributes of members when adding points to avoid errors. Partial names are matched to the closest resembling member.<br>
+In the case of similar names like `Betsy Crowead` and `Betsy Croweas`, when adding order to `Betsy Crowe`, the order would be added to the member who was added first in the list.
 
 ### 4.8 Adding points: `addpts`
 
@@ -324,7 +325,9 @@ Format: `addmempts n/MEMBER_NAME mp/POINT_TO_ADDS`
 Examples:
 * `addmempts n/John Doe mp/` adds 100 `membership points` to `John Doe`
 
-💡 <span style="color:yellow">**Tip**:</span> Use this command to manually adjust membership points in scenarios where the total points from ordering might not fully capture a member's loyalty or contributions. This can include exceptional circumstances such as rewarding significant engagement that isn't directly tied to purchases, like community involvement or brand advocacy, or correcting tier placements due to system errors. This flexibility ensures every member's loyalty is accurately recognised and rewarded.
+💡 <span style="color:yellow">**Tip**:</span> Use this command to manually adjust membership points in scenarios where the total points from ordering might not fully capture a member's loyalty or contributions. This can include exceptional circumstances such as rewarding significant engagement that isn't directly tied to purchases, like brand advocacy or correcting tier placements.<br>
+This flexibility ensures every member's loyalty is accurately recognised and rewarded.<br>
+In the case of similar names like `Betsy Crowead` and `Betsy Croweas`, when adding order to `Betsy Crowe`, the order would be added to the member who was added first in the list.
 
 ### 4.11 Editing a member : `edit`
 
@@ -379,8 +382,8 @@ Format: `delmem INDEX`
 * The index refers to the index number shown in the displayed member list.
 * The index must be a positive integer 1, 2, 3, …​
 
-🌟 **Benefit**: Maintain a clean and updated member list by using delete to remove profiles that are no longer active or relevant. This helps streamline your loyalty program and keep your data accurate.
-⚠️ <span style="color:orange">**Warning**:</span> Be cautious when using the `delmem` command as it is irreversible. Always double-check the member index.
+🌟 **Benefit**: Maintain a clean and updated member list by using delete to remove profiles that are no longer active or relevant. This helps streamline your loyalty program and keep your data accurate.<br>
+⚠️ <span style="color:orange">**Warning**:</span> Be cautious when using the `delmem` command as it is irreversible. Always double-check the member index.<br>
 
 Examples:
 * `list` followed by `delmem 2` deletes the 2nd member in the address book.
