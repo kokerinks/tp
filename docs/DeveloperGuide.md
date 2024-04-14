@@ -159,16 +159,16 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Membership feature
-The addmembership command that comes along with the membership feature is implemented like this:
+### Membership Points feature
+The `addmempts` command that comes along with the membership points feature is implemented like this:
 <img src="images/AddMembershipSequenceDiagram.png" width="600" />
 
 ### Points feature
-The addpoints command that comes along with the points feature is implemented like this:
+The `addpoints` command that comes along with the points feature is implemented like this:
 <img src="images/AddPointsSequenceDiagram.png" width="600" />
 
 ### Orders feature
-The addorder command that comes along with the orders feature is implemented like this:
+The `addorder` command that comes along with the orders feature is implemented like this:
 <img src="images/AddOrderSequenceDiagram.png" width="600" />
 
 #### Proposed Implementation
