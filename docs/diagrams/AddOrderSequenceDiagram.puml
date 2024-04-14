@@ -1,90 +1,72 @@
 @startuml
 !include style.puml
 skinparam ArrowFontStyle plain
+skinparam ParticipantPadding 0
 
 box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":AddOrderCommandParser" as AddOrderCommandParser LOGIC_COLOR
-participant "o:Order" as Order LOGIC_COLOR
 participant "a:AddOrderCommand" as AddOrderCommand LOGIC_COLOR
 participant "r:CommandResult" as CommandResult LOGIC_COLOR
-participant "alice:Person" as Person LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
+participant "alice:Person" as Person LOGIC_COLOR
 participant "m:Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute(\n"addorder \nn/Alice \no/Cookies")
-activate LogicManager
-
-LogicManager -> AddressBookParser : parseCommand(\n"addorder \nn/Alice \no/Cookies")
-activate AddressBookParser
-
-create AddOrderCommandParser
-AddressBookParser -> AddOrderCommandParser
+[-> AddOrderCommandParser : parse(\n"n/Alice \ni/Cookies")
 activate AddOrderCommandParser
-
-AddOrderCommandParser --> AddressBookParser
-deactivate AddOrderCommandParser
-
-AddressBookParser -> AddOrderCommandParser : parse(\n"n/Alice \no/Cookies")
-activate AddOrderCommandParser
-
-create Order
-AddOrderCommandParser -> Order
-activate Order
-
-Order --> AddOrderCommandParser : o
-deactivate Order
 
 create AddOrderCommand
-AddOrderCommandParser -> AddOrderCommand : AddOrderCommand(name, o)
+AddOrderCommandParser -> AddOrderCommand
 activate AddOrderCommand
 
 AddOrderCommand --> AddOrderCommandParser : a
 deactivate AddOrderCommand
 
-AddOrderCommandParser --> AddressBookParser : a
+[<-- AddOrderCommandParser : a
 deactivate AddOrderCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddOrderCommandParser -[hidden]-> AddressBookParser
+<-[hidden]- AddOrderCommandParser
 destroy AddOrderCommandParser
 
-AddressBookParser --> LogicManager : a
-deactivate AddressBookParser
-
-LogicManager -> AddOrderCommand : execute(m)
+[-> AddOrderCommand : execute(m)
 activate AddOrderCommand
 
-AddOrderCommand -> Model : getFilteredPersonList()
+AddOrderCommand -> Model
 activate Model
 
-Model --> AddOrderCommand : fpl
+Model --> AddOrderCommand : alice
 deactivate Model
 
-alt "Alice" matches name in fpl
-    AddOrderCommand -> Person : addOrder(o)
-activate Person
+AddOrderCommand -> Model
+activate Model
 
-Person --> AddOrderCommand
-deactivate Person
+Model --> AddOrderCommand : cookies
+deactivate Model
 
-create CommandResult
-AddOrderCommand -> CommandResult
-activate CommandResult
-
-CommandResult --> AddOrderCommand
-deactivate CommandResult
-
-AddOrderCommand --> LogicManager : r
-
-[<--LogicManager
-deactivate LogicManager
-
-else
+alt If "alice" or "cookies" not found
     [<-- AddOrderCommand : commandException
-    deactivate AddOrderCommand
+else
+    AddOrderCommand -> Person : addOrder(new order(cookies))
+    activate Person
+
+    Person --> AddOrderCommand
+    deactivate Person
+
+    AddOrderCommand -> Person : addPoints(...)
+    activate Person
+
+    Person --> AddOrderCommand
+    deactivate Person
+
+    create CommandResult
+    AddOrderCommand -> CommandResult
+    activate CommandResult
+
+    CommandResult --> AddOrderCommand
+    deactivate CommandResult
+
+    [<-- AddOrderCommand : r
 end
 @enduml
