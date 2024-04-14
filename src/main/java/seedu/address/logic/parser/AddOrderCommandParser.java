@@ -41,10 +41,15 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
             throw new ParseException(Order.MESSAGE_CONSTRAINTS);
         }
 
-        // if quantity not specified, default to 1
-        int quantity = argMultimap.getValue(PREFIX_QTY).isPresent()
-                ? Integer.parseInt(argMultimap.getValue(PREFIX_QTY).get())
-                : 1;
+        int quantity;
+        try {
+            // if quantity not specified, default to 1
+            quantity = argMultimap.getValue(PREFIX_QTY).isPresent()
+                    ? Integer.parseInt(argMultimap.getValue(PREFIX_QTY).get())
+                    : 1;
+        } catch (NumberFormatException e) {
+            throw new ParseException(Order.MESSAGE_INVALID_QUANTITY);
+        }
 
         // Quantity should be a positive integer
         if (quantity <= 0) {
