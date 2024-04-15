@@ -116,8 +116,8 @@ SweetRewards employs a nuanced points system to foster both immediate and long-t
 ### Membership Tiers: Criteria and Benefits
 Members are classified into tiers based on their accumulated membership points. Each tier unlocks distinct benefits, rewarding members for their loyalty. These benefits can be defined by you to allow flexibility with what your have to offer.
 
-| `Membership Tier `                             | Perks                                                                                                                       |
-|----------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| `Membership Tier `                               | Perks                                                                                                                       |
+|--------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
 | <span style="color:#E4953C">**Bronze**:</span>   | * Entry-level for all new members.<br/> * Offers basic rewards and incentives.                                              |
 | <span style="color:Grey">**Silver**:</span>      | * Requires members to accumulate a specified threshold of membership points.<br/>  * Unlocks enhanced benefits and rewards. |
 | <span style="color:#B5A03D">**Gold**:</span>     | * A higher tier requiring more membership points. <br/>  * Offers substantial rewards and exclusive offers.                 |
@@ -275,7 +275,7 @@ Format: `addmem n/MEMBER_NAME hp/PHONE e/MEMBER_EMAIL a/MEMBER_ADDRESS [ag/ALLER
   - SF: Soy-Free
   - CF: Casein-Free
 <div style="border: 1px solid #D1478C; margin: 10px 0; padding: 10px; background-color: #FDE4EF; color: #910D47; border-radius: 5px;">
-  🧁 <strong>Benefit:</strong> The purpose of including allergens is to allow you to keep track of the allergies and dietary requirements of your customers. This is so that you can warn your customers when they order an item that contains their allergens or take note of it when customising on order. Nevertheless, this is an optional field that you may omit if you find uncessary.
+  🧁 <strong>Benefit:</strong> The purpose of including allergens is to allow you to keep track of the allergies and dietary requirements of your customers. This is so that you can warn your customers when they order an item that contains their allergens or take note of it when customising on order. Nevertheless, this is an optional field that you may omit if you find unnecessary.
 </div>
 
 Examples:
@@ -356,7 +356,7 @@ Examples:
 </div>
 
 <div style="border: 1px solid #FFA500; margin: 10px 0; padding: 10px; background-color: #FFE8B2; color: #CC6C00; border-radius: 5px;">
-  ⚠️ <strong>Warning:</strong> You are strongly recommended to only use quantities less than 2,000,000,000 amd ensure the total points/membership points a member has remains within the safe range of 0…2,000,000,000.
+  ⚠️ <strong>Warning:</strong> You are strongly recommended to only use quantities less than 2,000,000,000 and ensure the total points/membership points a member has remains within the safe range of 0…2,000,000,000.
 </div>
 
 ### 4.8 Adding points: `addpts`
@@ -376,7 +376,7 @@ Examples:
 </div>
 
 <div style="border: 1px solid #DBAE58; margin: 10px 0; padding: 10px; background-color: #FFF3E0; color: #886B00; border-radius: 5px;">
-  💡 <strong>Tip:</strong> Consider using the `addpts` function to manually award extra points for activities that reflect customer loyalty beyond direct purchases. This includes rewarding members for social media mentions, participation in surveys, or as compensation for any service mishaps. It's a versatile tool that allows you to quickly acknowledge and incentivize a wide range of valuable customer interactions, keeping your loyalty program flexible and responsive to your business needs.<br>
+  💡 <strong>Tip:</strong> Consider using the `addpts` function to manually award extra points for activities that reflect customer loyalty beyond direct purchases. This includes rewarding members for social media mentions, participation in surveys, or as compensation for any service mishaps. It's a versatile tool that allows you to quickly acknowledge and incentivise a wide range of valuable customer interactions, keeping your loyalty program flexible and responsive to your business needs.<br
 </div>
 
 <div style="border: 1px solid #FFA500; margin: 10px 0; padding: 10px; background-color: #FFE8B2; color: #CC6C00; border-radius: 5px;">
@@ -435,7 +435,7 @@ Format: `edit INDEX [n/MEMBER_NAME] [hp/MEMBER_PHONE] [e/MEMBER_EMAIL] [a/MEMBER
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-* When editing [allergens](#6-glossary), the existing allergens of the member will be removed i.e adding of allergens is not cumulative.
+* When editing [allergens](#6-glossary), the existing allergens of the member will be removed i.e. adding of allergens is not cumulative.
 * You can remove all the member’s allergens by typing `ag/` without specifying any allergens after it.
 
 Examples:
@@ -461,7 +461,7 @@ Finds members whose names contain any of the given keywords.
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -580,26 +580,27 @@ This is how a potential bakery could use SweetRewards in their daily operations!
 
 **Jar File**: A compressed format for distributing bundled Java applications and libraries.                                                           |
 
+
 ---------------------------------------------------------------------------------------------------------------------
 
 # 7. FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q: How do I transfer my data to another Computer?<br>**
 **A**: Install SweetRewards on the other computer and copy the data file from your original installation directory to the new one. This will replace the empty data file created during the new installation.
 
-**Q**: How do I manually add points to a member's account?<br>
+**Q: How do I manually add points to a member's account?<br>**
 **A**: Use the addpts command with the member's name and the desired amount of points. For instance: addpts n/John Doe p/50 adds 50 points to John Doe's account, useful for promotional points or correcting errors.
 
-**Q**: How can I upgrade a member's tier manually?<br>
+**Q: How can I upgrade a member's tier manually?<br>**
 **A**: Employ the addmempts command with the member's name and the points you want to add. For example, addmempts n/John Doe mp/400 manually awards John Doe 400 points. The membership tier of the member will be determined by the number of points they have according to the membership tier table
 
-**Q**: Is it possible to remove a member from the loyalty program?<br>
+**Q: Is it possible to remove a member from the loyalty program?<br>**
 **A**:> Yes, execute the delete command with the index number of the member in the displayed list. E.g., delmem 3 removes the third member in the list, used for cleaning up duplicate entries or removing inactive accounts.
 
-**Q**: How do membership points influence tier levels?<br>
+**Q: How do membership points influence tier levels?<br>**
 **A**:> Membership tiers are determined by the total accumulated membership points. Each tier requires reaching a specific points threshold, which is automatically tracked by the system. Check the "Understanding Membership Tiers and Points System" section for detailed tier requirements.
 
-**Q**: How do I handle points for cancelled orders?<br>
+**Q: How do I handle points for cancelled orders?<br>**
 **A**: For cancelled, use the `redeempoints` command to deduct the equivalent points from the member's account, keeping their points balance accurate with their actual purchases.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -609,27 +610,27 @@ This is how a potential bakery could use SweetRewards in their daily operations!
 Facing issues with SweetRewards? Here are some common problems and how to resolve them.
 
 ## Technical Issues
-1. Application won't start<br>
+**1. Application won't start<br>**
 🚫 <span style="color:#D32D41">**Problem**:</span> Double-clicking the [jar file](#6-glossary) doesn’t open SweetRewards.<br>
 ✅ <span style="color:#6AB187">**Solution**:</span> Verify that Java 11 or higher is installed. Open a command prompt, navigate to the application's directory, and type in `java -jar sweetrewards-v1.2.jar` (Note the version number might differ, use the one that is seen in the version of SweetRewards that you have downloaded) and press enter. If issues persist, re-download the [jar file](#6-glossary) to rule out corruption.
 
 
-2. [GUI](#6-glossary) opens off-screen<br>
+**2. [GUI](#6-glossary) opens off-screen<br>**
 🚫 <span style="color:#D32D41">**Problem**:</span>  SweetRewards starts off the visible screen area when using multiple displays.<br>
 ✅ <span style="color:#6AB187">**Solution**:</span>  Locate and delete preferences.json in the application's folder to reset window positioning, then restart the application.
 
 ## Operational Issues
-1. Incorrect Points Allocation<br>
+**1. Incorrect Points Allocation<br>**
 🚫 <span style="color:#D32D41">**Problem**:</span> Points were mistakenly added to the wrong member.<br>
 ✅ <span style="color:#6AB187">**Solution**:</span> Use the edit command to adjust the points for both involved members. Replace the newly updated (wrong) number of points with the initial (correct) number of points and add the points for the new member again. For example, edit 2 p/50 to replace the wrongly updated points and addpoints 3 p/50 to add points to the correct member.<br>
 You could also refer to the [FAQ, Question 2](#7-faq)
 
-2. Incorrect Member Information Entered<br>
+**2. Incorrect Member Information Entered<br>**
 🚫 <span style="color:#D32D41">**Problem**:</span> Incorrect information (e.g., phone number or email) was entered for a member.<br>
 ✅ <span style="color:#6AB187">**Solution**:</span> Correct the mistake by using the `edit` command to adjust points for both the affected and intended members, ensuring accuracy in the loyalty program.<br>
 
 
-3. Orders Not Reflecting in Member's History<br>
+**3. Orders Not Reflecting in Member's History<br>**
 🚫 <span style="color:#D32D41">**Problem**:</span>  Newly added orders are not reflected in a member's history.<br>
 ✅ <span style="color:#6AB187">**Solution**:</span> Verify that `addorder` was used correctly, including the correct member name and order details. This ensures all transactions are accurately recorded.<br>
 
@@ -669,5 +670,5 @@ Not to worry! We have a comprehensive list of planned enhancements we hope to in
 4. **Add a delete order command**: Currently, if a user accidentally adds a wrong order, the only solution is to delete the member using delmem and add the member back using addmem. This is a lot of trouble cause by a simple mistake. As such, we should have a command that allows deletion of orders, which likely works off indexing the orders of a person. For example delorder n/John 2 deletes the second order of John 2. Of course to complement this feature, the index of orders should be displayed in the GUI. Points awarded in the deleted order should also be revoked.
 5. **Allow horizontal scrolling of GUI Person Card**: Currently the person card of the GUI does not allow horizontal scrolling if the details exceed the horizontal width of the UI. This causes extra-long inputs such as a 50 character long name to be not fully visible. This would allow for extra-long inputs for the name, phone number, email address, address, and allergens of added members.
 6. **Make `invalid person error` for `redeempts` more specific**: Currently the error message when a person cannot be found is The person index provided is invalid which is wrong because we are not using an indexing system. It should be changed to The member <USER-ENTERED NAME> cannot be found
-7. **Make `invalid points error` for `additem` more specific**: Currently when adding an item with invalid points (E.g. additem i/Cookies p/aa), the error message shown is the Invalid command format! message, which is too general. It should be made more specific, stating the specific error of invalid points (E.g. Invalid points per unit! Points per unit should a postive integer!).
+7. **Make `invalid points error` for `additem` more specific**: Currently when adding an item with invalid points (E.g. additem i/Cookies p/aa), the error message shown is the Invalid command format! message, which is too general. It should be made more specific, stating the specific error of invalid points (E.g. Invalid points per unit! Points per unit should a positive integer!).
 8. **Add index-based selection for member selection**: Currently in our addorder, addpts, addmempts, redeempts commands, we select the member based on the first member in the list whose name contains the entered string. This might prove as an issue when there are two people with the same or similar names like Wan Lei and Matthew Ang Wan Lei. If the latter is closer to the top of the list (added earlier), there will be no way to select Wan Lei. To prevent this, indexing selection for these commands should be added (E.g. addorder 3 i/Cookies would add the Cookies order to the third person in the current filtered list). This does not get rid of the current name selection, and merely introduces an alternative to member selection.
