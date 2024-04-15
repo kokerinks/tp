@@ -114,7 +114,7 @@ SweetRewards employs a nuanced points system to foster both immediate and long-t
 
 
 ### Membership Tiers: Criteria and Benefits
-Members are classified into tiers based on their accumulated membership points. Each tier unlocks distinct benefits, rewarding members for their loyalty. These benefits can be defined by you to allow flexibility with what your have to offer.
+Members are classified into tiers based on their accumulated membership points. Each tier unlocks distinct benefits, rewarding members for their loyalty. These benefits can be defined by you to allow flexibility with what you have to offer.
 
 | `Membership Tier `                               | Perks                                                                                                                       |
 |--------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
@@ -129,7 +129,7 @@ Members are classified into tiers based on their accumulated membership points. 
 * Ensures members are **rewarded seamlessly** for their loyalty and spending.
 
 <div style="border: 1px solid #DBAE58; margin: 10px 0; padding: 10px; background-color: #FFF3E0; color: #886B00; border-radius: 5px;">
-  💡 <strong>Tip:</strong> In this current iteration, the name, number and point requirement for the tiers are still in development. Hence, instead the users can change the number of points given to their item to suit their use.
+  💡 <strong>Tip:</strong> In this current iteration, the name, number and point requirement for the tiers are still in development. Hence, instead, users can change the number of points given to their item to suit their use.
 </div>
 
 <div style="border: 1px solid #D1478C; margin: 10px 0; padding: 10px; background-color: #FDE4EF; color: #910D47; border-radius: 5px;">
@@ -254,7 +254,7 @@ Adds a member to the loyalty program.
 
 Format: `addmem n/MEMBER_NAME hp/PHONE e/MEMBER_EMAIL a/MEMBER_ADDRESS [ag/ALLERGEN]…​`
 
-* `MEMBER_NAME` should only contain alphanumeric characters and spaces.
+* `MEMBER_NAME` should only contain alphanumeric characters and spaces. Special characters are unfortunately not allowed for now.
   * `MEMBER_NAME` is regarded as unique if it differs in alphabets, numbers, or has a varying number of spaces between characters. It is case-sensitive.
 * `PHONE` should only contain numbers, and it should be at least 3 digits long.
 * `MEMBER_EMAIL` should be of the format local-part@domain and adhere to the following constraints:
@@ -333,7 +333,7 @@ Format: `delitem i/ITEM_NAME`
 </div>
 
 <div style="border: 1px solid #FFA500; margin: 10px 0; padding: 10px; background-color: #FFE8B2; color: #CC6C00; border-radius: 5px;">
-  ⚠️ <strong>Warning:</strong> Deleting and item from the catalogue will not delete the item from a member's order history. This is so that the member's order history and points is not affected if an item is discontinued. As such they are still rewarded for their previous purchases.
+  ⚠️ <strong>Warning:</strong> Deleting an item from the catalogue will not delete the item from a member's order history. This is so that the member's order history and points is not affected if an item is discontinued. As such they are still rewarded for their previous purchases.
 </div>
 
 Examples:
@@ -546,18 +546,30 @@ Furthermore, certain edits can cause SweetRewards to behave in unexpected ways (
 # 5. Example Tutorial
 
 Since SweetRewards has a wide array of functions and commands, it could be overwhelming for first-time users…
-So, we came up with a short tutorial on how we can add a member, items etc. with additional annotations
-1. Adding a Member
+So, we came up with a short tutorial on how we can add a member, items etc. with additional annotations <br>
+
+**1. Adding a Member** <br>
+
 ![adding member](images/addmem.png)
-2. Adding items
+
+**2. Adding items** <br>
+
 ![adding items](images/additem.png)
-3. Adding Orders
+
+**3. Adding Orders** <br>
+
 ![adding orders](images/addorders.png)
-4. Adding Membership Points
+
+**4. Adding Membership Points** <br>
+
 ![adding mempts](images/addmempts.png)
-5. Redeeming Reward Points
-![redeempts](images/redeempts.png)
-6. Deleting Items
+
+**5. Redeeming Reward Points** <br>
+
+![redeempts](images/redeempts.png) 
+
+**6. Deleting Items** <br>
+
 ![deleting items](images/delitem.png)
 
 This is how a potential bakery could use SweetRewards in their daily operations!
@@ -578,7 +590,7 @@ This is how a potential bakery could use SweetRewards in their daily operations!
 
 **Allergen**: Substances that can cause an allergic reaction. In the context of SweetRewards, allergens that customers have, for the baker to take note when making an order.
 
-**Jar File**: A compressed format for distributing bundled Java applications and libraries.                                                           |
+**Jar File**: A compressed format for distributing bundled Java applications and libraries.  
 
 
 ---------------------------------------------------------------------------------------------------------------------
@@ -595,10 +607,10 @@ This is how a potential bakery could use SweetRewards in their daily operations!
 **A**: Employ the addmempts command with the member's name and the points you want to add. For example, addmempts n/John Doe mp/400 manually awards John Doe 400 points. The membership tier of the member will be determined by the number of points they have according to the membership tier table
 
 **Q: Is it possible to remove a member from the loyalty program?<br>**
-**A**:> Yes, execute the delete command with the index number of the member in the displayed list. E.g., delmem 3 removes the third member in the list, used for cleaning up duplicate entries or removing inactive accounts.
+**A**: Yes, execute the delete command with the index number of the member in the displayed list. E.g., delmem 3 removes the third member in the list, used for cleaning up duplicate entries or removing inactive accounts.
 
 **Q: How do membership points influence tier levels?<br>**
-**A**:> Membership tiers are determined by the total accumulated membership points. Each tier requires reaching a specific points threshold, which is automatically tracked by the system. Check the "Understanding Membership Tiers and Points System" section for detailed tier requirements.
+**A**: Membership tiers are determined by the total accumulated membership points. Each tier requires reaching a specific points threshold, which is automatically tracked by the system. Check the "Understanding Membership Tiers and Points System" section for detailed tier requirements.
 
 **Q: How do I handle points for cancelled orders?<br>**
 **A**: For cancelled, use the `redeempoints` command to deduct the equivalent points from the member's account, keeping their points balance accurate with their actual purchases.
