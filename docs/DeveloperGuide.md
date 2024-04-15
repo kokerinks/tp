@@ -63,7 +63,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -109,10 +109,10 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -298,7 +298,7 @@ Priorities: Exists (Exists in this version), High (must have) - `* * *`, Medium 
 
 **MSS**
 
-1.  User requests to add a order to a member by typing the command `addorder`
+1.  User requests to add an order to a member by typing the command `addorder`
 2.  SweetRewards shows order added successfully
 3.  User can view the order that was added to the member successfully
 
@@ -346,14 +346,14 @@ typing the command `redeempts`
 3.  Ensure that all commands are executed and feedback is provided within 2 seconds during normal operation.
 
 #### Accessibility:
-1.  Should support users with different abilities to effectively interact with the system.
+Should support users with different abilities to effectively interact with the system.
 
 #### Security:
-1.  Data stored should not be easily modified by non-authorised users of the application.
+Data stored should not be easily modified by non-authorised users of the application.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **Mainstream OS**: Windows, Linux, Unix, macOS
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -389,30 +389,42 @@ testers are expected to do more *exploratory* testing.
 
 ### App Usage
 1. Adding a Member
+
    1. Test case: `addmem n/Joseph Joestar hp/62226111 e/joseph@example.com a/455 Orchard Road, S(238801) ag/Chocolate` <br>
       Expected: New member named "Joseph Joestar" added. Scrolling to the bottom of the list of members show Joseph's details
 
 2. Adding an item to the catalogue
+
    1. Prerequisites: The catalogue does not currently contain an item called `Pain Au Chocolat`
+   
    2. Test case: `additem i/Pain Au Chocolat p/250` <br>
       Expected: A new item `Pain Au Chocolat` worth 250 points is added to the bottom of the catalogue on the left panel 
+   
    3. Test case: `additem i/Pain Au Chocolat p/300` <br>
       Expected: An error message saying `This item already exists in the catalogue.`
+   
 3. Adding an order to a member
+
    1. Test case: `addorder n/joseph i/pain au chocolat q/2` <br>
       Expected: An order for 2 Pain Au Chocolats added to Joseph's orders. Scroll to Joseph's Person Card and click on it. The order panel on the right should show the order made. Joseph should also have 500 more reward and membership points.
+   
    2. Test case: `addorder n/joseph i/dinosaur meat q/2`<br>
       Expected: An error message saying that the item cannot be found in the inventory
+   
 4. Manual modification and redemption of points
    1. Test case `addpts n/joseph p/100` <br>
       Expected: Joseph's reward points increase by 100. Membership points should stay the same
+   
    2. Test case `addmempts n/joseph mp/10000` <br>
       Expected: Joseph's membership points increase by 10000, and his membership tier should be upgraded to `PLATINUM`. His reward points should stay the same.
+   
    3. Test case `redeempts n/joseph p/100` <br>
       Expected: Joseph's reward points should decrease by 100. Membership points should stay the same
+   
    4. Test case `redeempts n/joseph p/10000` <br>
       Expected: An error message stating that joseph does not have enough reward points
-2. Deleting a Member
+   
+5. Deleting a Member
 
    1. Test case: `delmem 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
@@ -425,10 +437,11 @@ testers are expected to do more *exploratory* testing.
 
 ### Saving data
 1. Saving user data
+
    1. Assuming the previous steps have been done,
-      1. Close the application
-      2. Open the application
-      3. The newly added member `Joseph Joestar` and all his details should remain
+   2. Close the application
+   3. Open the application
+   4. The newly added member `Joseph Joestar` and all his details should remain
 
 2. Dealing with missing/corrupted data files
 
@@ -440,7 +453,9 @@ testers are expected to do more *exploratory* testing.
       4. Exit the application.
    
    2. From the same directory as the application, open the `data` directory, then `addressbook.json` in your preferred editor 
+   
    3. Remove line 8 (`"points" : "0",`) from the file.
+   
    4. Re-launch the application.  
       Expected: Application should open with no visible contacts and items
 
