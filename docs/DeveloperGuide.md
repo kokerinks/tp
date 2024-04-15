@@ -372,37 +372,65 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file 
+   2. Double-click the jar file 
       Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. Shutdown of application
+3. Shutdown of application
 
    1. Enter `exit` into the command box OR click on the `X` button on the top-right hand corner of the window.
        Expected: The application should close with no other obstructions.
 
-### Deleting a person
+### App Usage
+1. Adding a Member
+   1. Test case: `addmem n/Joseph Joestar hp/62226111 e/joseph@example.com a/455 Orchard Road, S(238801) ag/Chocolate` <br>
+      Expected: New member named "Joseph Joestar" added. Scrolling to the bottom of the list of members show Joseph's details
 
-1. Deleting a person
+2. Adding an item to the catalogue
+   1. Prerequisites: The catalogue does not currently contain an item called `Pain Au Chocolat`
+   2. Test case: `additem i/Pain Au Chocolat p/250` <br>
+      Expected: A new item `Pain Au Chocolat` worth 250 points is added to the bottom of the catalogue on the left panel 
+   3. Test case: `additem i/Pain Au Chocolat p/300` <br>
+      Expected: An error message saying `This item already exists in the catalogue.`
+3. Adding an order to a member
+   1. Test case: `addorder n/joseph i/pain au chocolat q/2` <br>
+      Expected: An order for 2 Pain Au Chocolats added to Joseph's orders. Scroll to Joseph's Person Card and click on it. The order panel on the right should show the order made. Joseph should also have 500 more reward and membership points.
+   2. Test case: `addorder n/joseph i/dinosaur meat q/2`<br>
+      Expected: An error message saying that the item cannot be found in the inventory
+4. Manual modification and redemption of points
+   1. Test case `addpts n/joseph p/100` <br>
+      Expected: Joseph's reward points increase by 100. Membership points should stay the same
+   2. Test case `addmempts n/joseph mp/10000` <br>
+      Expected: Joseph's membership points increase by 10000, and his membership tier should be upgraded to `PLATINUM`. His reward points should stay the same.
+   3. Test case `redeempts n/joseph p/100` <br>
+      Expected: Joseph's reward points should decrease by 100. Membership points should stay the same
+   4. Test case `redeempts n/joseph p/10000` <br>
+      Expected: An error message stating that joseph does not have enough reward points
+2. Deleting a Member
 
    1. Test case: `delmem 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
-   1. Test case: `delmem 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   2. Test case: `delmem 0`<br>
+      Expected: No person is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delmem`, `delmem x`, `...` (where x is larger than the list size)<br>
+   3. Other incorrect delete commands to try: `delmem`, `delmem x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### Saving data
+1. Saving user data
+   1. Assuming the previous steps have been done,
+      1. Close the application
+      2. Open the application
+      3. The newly added member `Joseph Joestar` and all his details should remain
 
-1. Dealing with missing/corrupted data files
+2. Dealing with missing/corrupted data files
 
    1. Prerequisites:
       1. Launch the application.
