@@ -2,7 +2,6 @@
 layout: page
 title: SweetRewards User Guide
 ---
-
 ## Table of Contents
 
 1. [Introduction](#1-introduction)<br>
@@ -31,7 +30,6 @@ title: SweetRewards User Guide
    4.14 [Clearing all entries](#414-clearing-all-entries--clear)<br>
    4.15 [Exiting the program](#415-exiting-the-program--exit)<br>
    4.16 [Saving the data](#416-saving-the-data)<br>
-   4.17 [Editing the data file](#417-editing-the-data-file)<br>
 5. [Example Tutorial](#5-example-tutorial)<br>
 6. [Glossary](#6-glossary)<br>
 7. [FAQs](#7-faq)<br>
@@ -96,16 +94,16 @@ SweetRewards features a **dual-point system** designed to enhance customer engag
 ### Points vs. Membership Points
 SweetRewards employs a nuanced points system to foster both immediate and long-term customer loyalty. Below is a comparative overview of the two types of points within the program, showcasing their distinct roles:
 
-| Attribute | `Points`                                                             | `Membership points`                                                   |
-|-----------|----------------------------------------------------------------------|-----------------------------------------------------------------------|
-| Purpose   | Serve as currency within the loyalty program for immediate rewards   | Track long-term customer engagement and determine membership tier     |
-| Earning   | Earned through purchases and specific interactions within the bakery | Earned identically to Points but are cumulative and never decrease    |
-| Redeeming | Can be redeemed for discounts, offers, or products                   | Not redeemable; solely influence tier status                          |
-| Impact    | Affect immediate customer benefits and rewards                       | Determine the member's tier and long-term benefits within the program |
-| Commands  | `addorder` increases points; `redeempoints` decreases points         | Only increased by `addorder`; unaffected by `redeempoints`            |
+| Attribute | `Points`                                                               | `Membership points`                                                        |
+|-----------|------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| Purpose   | Serve as currency within the loyalty program for immediate rewards     | Track long-term customer engagement and determine membership tier          |
+| Earning   | Earned through purchases and specific interactions within the bakery   | Earned identically to Points but are cumulative and never decrease         |
+| Redeeming | Can be redeemed for discounts, offers, or products                     | Not redeemable; solely influence tier status                               |
+| Impact    | Affect immediate customer benefits and rewards                         | Determine the member's tier and long-term benefits within the program      |
+| Commands  | `addorder` and `addpts` increases points; `redeempts` decreases points | Only increased by `addorder` and `addmempts`; unaffected by `redeempoints` |
 
 <div style="border: 1px solid #D1478C; margin: 10px 0; padding: 10px; background-color: #FDE4EF; color: #910D47; border-radius: 5px;">
-  🧁 <strong>Benefit:</strong> While both types of points are earned through purchases, `Points` cater to immediate gratification by being redeemable for rewards. In contrast, `Membership Points` are designed to recognize and reward the cumulative loyalty of customers, influencing their progression through the [Membership Tiers](#6-glossary) without direct redemption for goods or services.
+  🧁 <strong>Benefit:</strong> While both types of points are earned through purchases, Points cater to immediate gratification by being redeemable for rewards. In contrast, Membership Points are designed to recognize and reward the cumulative loyalty of customers, influencing their progression through the Membership Tiers without direct redemption for goods or services.
 </div>
 
 <div style="border: 1px solid #FFA500; margin: 10px 0; padding: 10px; background-color: #FFE8B2; color: #CC6C00; border-radius: 5px;">
@@ -116,12 +114,12 @@ SweetRewards employs a nuanced points system to foster both immediate and long-t
 ### Membership Tiers: Criteria and Benefits
 Members are classified into tiers based on their accumulated membership points. Each tier unlocks distinct benefits, rewarding members for their loyalty. These benefits can be defined by you to allow flexibility with what you have to offer.
 
-| `Membership Tier `                               | Perks                                                                                                                       |
+| `Membership Tier`                                | Perks                                                                                                                       |
 |--------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| <span style="color:#E4953C">**Bronze**:</span>   | * Entry-level for all new members.<br/> * Offers basic rewards and incentives.                                              |
-| <span style="color:Grey">**Silver**:</span>      | * Requires members to accumulate a specified threshold of membership points.<br/>  * Unlocks enhanced benefits and rewards. |
-| <span style="color:#B5A03D">**Gold**:</span>     | * A higher tier requiring more membership points. <br/>  * Offers substantial rewards and exclusive offers.                 |
-| <span style="color:#584F3F">**Platinum**:</span> | * The pinnacle of the membership hierarchy. <br/> * Members enjoy the best rewards and personalized services.               |
+| <span style="color:#E4953C">**Bronze**:</span>   | - Entry-level for all new members.<br/> - Offers basic rewards and incentives.                                              |
+| <span style="color:Grey">**Silver**:</span>      | - Requires members to accumulate a specified threshold of membership points.<br/>  - Unlocks enhanced benefits and rewards. |
+| <span style="color:#B5A03D">**Gold**:</span>     | - A higher tier requiring more membership points. <br/>  - Offers substantial rewards and exclusive offers.                 |
+| <span style="color:#584F3F">**Platinum**:</span> | - The pinnacle of the membership hierarchy. <br/> - Members enjoy the best rewards and personalized services.               |
 
 
 ### Automatic Tier Updates
@@ -141,14 +139,14 @@ The main window of SweetRewards is divided into several panels for easy navigati
 
 ![Uiannotated](images/Uiannotated.png)
 
-* **Menu Bar**: At the top, you'll find the File and Help options. Use these for quick access to saving options, closing the application, and seeking help. 
+* **Menu Bar**: At the top, you'll find the File and Help options. Use these for quick access to closing the application and seeking help. 
 * **Command Input**: This is the text field at the bottom of the GUI where you enter commands to interact with SweetRewards. 
 * **Catalogue Panel**: Displays the list of items available in your bakery along with their corresponding points. 
 * **Member List Panel**: Shows all the members of your loyalty program along with their details like contact number, membership tier, and accumulated points. 
 * **Member Orders Panel**: When you select a member, this panel will show all their past orders including the date, items purchased, and the points earned from each order.
   * Update on Selection: The panel updates to show a member's orders only when a new member is selected from the Member List Panel. 
   * Re-Selection for Refresh: To view updated order information following a change (like a new order addition), you must re-select the member. 
-  * Persistent Display: If a member is deleted or all data is cleared, the Member Orders Panel may still show the last viewed order history until a new member is clicked or the application is refreshed.
+  * Persistent Display: If a member is deleted or all data is cleared, the orders panel may still show the last viewed order history until a new member is clicked or the application is refreshed.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -162,6 +160,7 @@ The main window of SweetRewards is divided into several panels for easy navigati
 
 4. Double-click the `sweetrewards.jar` file to run the application. If the application does not start, see [here](#8-troubleshooting).
 5. A [GUI](#6-glossary) similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+
    ![Ui](images/Ui.png)
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -224,35 +223,35 @@ Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+**Format**: `help`
 
 <div style="border: 1px solid #D1478C; margin: 10px 0; padding: 10px; background-color: #FDE4EF; color: #910D47; border-radius: 5px;">
   🧁 <strong>Benefit:</strong> Whenever you feel stuck or need a quick reminder on how to use a specific command, just type help to open up this User Guide. This ensures you're never left in the dark about how to manage your loyalty program effectively.
 </div>
 
 <div style="border: 1px solid #DBAE58; margin: 10px 0; padding: 10px; background-color: #FFF3E0; color: #886B00; border-radius: 5px;">
-  💡 <strong>Tip:</strong> Use the `-c` flag (`help -c`) to show you a list of all the commands available in this application without opening an external link!
+  💡 <strong>Tip:</strong> Use the -c flag (help -c) to show you a list of all the commands available in this application without opening an external link!
 </div>
 
 ### 4.2 Initializing program with [Seed Data](#6-glossary) : `seeddata`
 
 Adds a set of pre-defined sample data into the application.
 
-Format: `seeddata`
+**Format**: `seeddata`
 * If there is existing data, it will retain the current data on top of the new sample data to be added.
 * `seeddata` will only add sample members which do not exist in the application yet.
 * If all members in sample data already exists, it will display the following message:
   `Every member and items in catalogue from seed data already exist in the address book!`
 
 <div style="border: 1px solid #D1478C; margin: 10px 0; padding: 10px; background-color: #FDE4EF; color: #910D47; border-radius: 5px;">
-  🧁 <strong>Benefit:</strong> If you're new to SweetRewards, using `seeddata` can help you get started by populating your system with example members and transactions. This way, you can see exactly how SweetRewards functions without having to enter data from scratch.
+  🧁 <strong>Benefit:</strong> If you're new to SweetRewards, using seeddata can help you get started by populating your system with example members and transactions. This way, you can see exactly how SweetRewards functions without having to enter data from scratch.
 </div>
 
 ### 4.3 Adding a member : `addmem`
 
 Adds a member to the loyalty program.
 
-Format: `addmem n/MEMBER_NAME hp/PHONE e/MEMBER_EMAIL a/MEMBER_ADDRESS [ag/ALLERGEN]…​`
+**Format**: `addmem n/MEMBER_NAME hp/PHONE e/MEMBER_EMAIL a/MEMBER_ADDRESS [ag/ALLERGEN]…​`
 
 * `MEMBER_NAME` should only contain alphanumeric characters and spaces. Special characters are unfortunately not allowed for now.
   * `MEMBER_NAME` is regarded as unique if it differs in alphabets, numbers, or has a varying number of spaces between characters. It is case-sensitive.
@@ -278,7 +277,7 @@ Format: `addmem n/MEMBER_NAME hp/PHONE e/MEMBER_EMAIL a/MEMBER_ADDRESS [ag/ALLER
   🧁 <strong>Benefit:</strong> The purpose of including allergens is to allow you to keep track of the allergies and dietary requirements of your customers. This is so that you can warn your customers when they order an item that contains their allergens or take note of it when customising on order. Nevertheless, this is an optional field that you may omit if you find unnecessary.
 </div>
 
-Examples:
+**Examples**:
 * `addmem n/John Doe a/John street, block 123, #01-01 hp/98765432 e/johnd@example.com `
 * `addmem n/Betsy Crowe a/Newton Street hp/1234567 e/betsycrowe@example.com ag/GF `
 
@@ -294,7 +293,7 @@ Examples:
 
 Shows a list of all members in the loyalty program.
 
-Format: `list`
+**Format**: `list`
 
 <div style="border: 1px solid #D1478C; margin: 10px 0; padding: 10px; background-color: #FDE4EF; color: #910D47; border-radius: 5px;">
   🧁 <strong>Benefit:</strong> Stay on top of your customer management by using list to view all your loyalty program members at a glance. This can help you quickly access customer information and make informed decisions on rewards and promotions.
@@ -304,12 +303,12 @@ Format: `list`
 
 Adds an item along with its corresponding points to the catalogue.
 
-Format: `additem i/ITEM_NAME p/POINTS_PER_UNIT`
+**Format**: `additem i/ITEM_NAME p/POINTS_PER_UNIT`
 
 * `ITEM_NAME` represents the alphabetical name of the item. Numbers and special characters are unfortunately not allowed for now.
 * `POINTS_PER_UNIT` represent the number of points a member earns upon purchasing the item. It must be a positive integer 1, 2, 3, …
 
-Examples:
+**Examples**:
 * `additem i/Chocolate Cake p/50` Adds `Chocolate Cake` with `50` points to the catalogue.
 
 <div style="border: 1px solid #D1478C; margin: 10px 0; padding: 10px; background-color: #FDE4EF; color: #910D47; border-radius: 5px;">
@@ -324,7 +323,7 @@ Examples:
 
 Removes an item and its corresponding points from the catalogue.
 
-Format: `delitem i/ITEM_NAME`
+**Format**: `delitem i/ITEM_NAME`
 
 * `ITEM_NAME` is the identifier of an existing item to be removed from the catalogue.
 
@@ -336,19 +335,19 @@ Format: `delitem i/ITEM_NAME`
   ⚠️ <strong>Warning:</strong> Deleting an item from the catalogue will not delete the item from a member's order history. This is so that the member's order history and points is not affected if an item is discontinued. As such they are still rewarded for their previous purchases.
 </div>
 
-Examples:
+**Examples**:
 * `delitem i/Chocolate Cake` Removes `Chocolate Cake` from the catalogue.
 
 ### 4.7 Adding orders to a member: `addorder`
 
 Adds an order for a specified item to an existing member in the loyalty program, automatically updating the member's current points and membership points based on the item's points.
 
-Format: `addorder n/MEMBER_NAME i/ITEM_NAME [q/QUANTITY_PURCHASED]`
+**Format**: `addorder n/MEMBER_NAME i/ITEM_NAME [q/QUANTITY_PURCHASED]`
 
 * `ITEM_NAME` will be checked in the catalogue; if it exists, the corresponding item points will be added to the member's current points and membership points.
 * `QUANTITY_PURCHASED` is optional and must be a positive integer; if not specified, it defaults to 1.
 
-Examples:
+**Examples**:
 * `addorder n/John Doe i/Chocolate Cake q/2` Adds `2` orders of `Chocolate Cake` to `John Doe`, updating points accordingly.
 
 <div style="border: 1px solid #D1478C; margin: 10px 0; padding: 10px; background-color: #FDE4EF; color: #910D47; border-radius: 5px;">
@@ -363,12 +362,12 @@ Examples:
 
 Manually adds points to a member's account within the loyalty program.
 
-Format: `addpts n/MEMBER_NAME p/POINTS`
+**Format**: `addpts n/MEMBER_NAME p/POINTS`
 
 * Adds the corresponding number of points for a member based on their name to the current points they have.
 * `POINTS` must be a positive integer 1, 2, 3, …
 
-Examples:
+**Examples**:
 * `addpts n/John Doe p/50` Adds `50` points to the points `John Doe` initially had
 
 <div style="border: 1px solid #D1478C; margin: 10px 0; padding: 10px; background-color: #FDE4EF; color: #910D47; border-radius: 5px;">
@@ -376,7 +375,7 @@ Examples:
 </div>
 
 <div style="border: 1px solid #DBAE58; margin: 10px 0; padding: 10px; background-color: #FFF3E0; color: #886B00; border-radius: 5px;">
-  💡 <strong>Tip:</strong> Consider using the `addpts` function to manually award extra points for activities that reflect customer loyalty beyond direct purchases. This includes rewarding members for social media mentions, participation in surveys, or as compensation for any service mishaps. It's a versatile tool that allows you to quickly acknowledge and incentivise a wide range of valuable customer interactions, keeping your loyalty program flexible and responsive to your business needs.<br
+  💡 <strong>Tip:</strong> Consider using the `addpts` function to manually award extra points for activities that reflect customer loyalty beyond direct purchases. This includes rewarding members for social media mentions, participation in surveys, or as compensation for any service mishaps. It's a versatile tool that allows you to quickly acknowledge and incentivise a wide range of valuable customer interactions, keeping your loyalty program flexible and responsive to your business needs.<br>
 </div>
 
 <div style="border: 1px solid #FFA500; margin: 10px 0; padding: 10px; background-color: #FFE8B2; color: #CC6C00; border-radius: 5px;">
@@ -391,12 +390,12 @@ Examples:
 
 Allows members to redeem points from their current points tally, without affecting their cumulative membership points.
 
-Format: `redeempts n/MEMBER_NAME p/POINTS`
+**Format**: `redeempts n/MEMBER_NAME p/POINTS`
 
 * Subtracts the specified number of points from the member's current points tally.
 * `POINTS` must be a positive integer 1, 2, 3, … up to the maximum number of points the member currently has.
 
-Examples:
+**Examples**:
 * `redeempts n/John Doe p/100` Subtracts `100` points from `John Doe`'s current points.
 
 <div style="border: 1px solid #D1478C; margin: 10px 0; padding: 10px; background-color: #FDE4EF; color: #910D47; border-radius: 5px;">
@@ -407,11 +406,11 @@ Examples:
 
 Manually adds the membership points of a member in the loyalty program, without affecting the reward points.
 
-Format: `addmempts n/MEMBER_NAME mp/POINT_TO_ADDS`
+**Format**: `addmempts n/MEMBER_NAME mp/POINT_TO_ADDS`
 
 * `POINTS` must be a positive integer 1, 2, 3, …
 
-Examples:
+**Examples**:
 * `addmempts n/John Doe mp/` adds 100 `membership points` to `John Doe`
 
 <div style="border: 1px solid #DBAE58; margin: 10px 0; padding: 10px; background-color: #FFF3E0; color: #886B00; border-radius: 5px;">
@@ -428,7 +427,7 @@ In the case of similar names like `Betsy Crowead` and `Betsy Croweas`, when addi
 
 Edits an existing member in the loyalty program.
 
-Format: `edit INDEX [n/MEMBER_NAME] [hp/MEMBER_PHONE] [e/MEMBER_EMAIL] [a/MEMBER_ADDRESS]
+**Format**: `edit INDEX [n/MEMBER_NAME] [hp/MEMBER_PHONE] [e/MEMBER_EMAIL] [a/MEMBER_ADDRESS]
 [ag/ALLERGENS] [p/POINTS] [mp/MEMBERSHIP_POINTS]…​`
 
 * Edits the member at the specified `INDEX`. The index refers to the index number shown in the displayed member list. The index **must be a positive integer** 1, 2, 3, …​
@@ -438,7 +437,7 @@ Format: `edit INDEX [n/MEMBER_NAME] [hp/MEMBER_PHONE] [e/MEMBER_EMAIL] [a/MEMBER
 * When editing [allergens](#6-glossary), the existing allergens of the member will be removed i.e. adding of allergens is not cumulative.
 * You can remove all the member’s allergens by typing `ag/` without specifying any allergens after it.
 
-Examples:
+**Examples**:
 *  `edit 1 hp/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st member to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower ag/` Edits the name of the 2nd member to be `Betsy Crower` and clears all existing [allergens](#6-glossary).
 
@@ -458,8 +457,7 @@ Examples:
 
 Finds members whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
+**Format**: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -476,16 +474,17 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   💡 <strong>Tip:</strong> Use partial names or keywords with the `find` command to quickly locate members.
 </div>
 
-Examples:
+**Examples**:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
+
 ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### 4.13 Deleting a member : `delmem`
 
 Deletes the specified member from the address book.
 
-Format: `delmem INDEX`
+**Format**: `delmem INDEX`
 
 * Deletes the member at the specified `INDEX`.
 * The index refers to the index number shown in the displayed member list.
@@ -496,10 +495,10 @@ Format: `delmem INDEX`
 </div>
 
 <div style="border: 1px solid #FFA500; margin: 10px 0; padding: 10px; background-color: #FFE8B2; color: #CC6C00; border-radius: 5px;">
-  ⚠️ <strong>Warning:</strong> Be cautious when using the `delmem` command as it is irreversible. Always double-check the member index.<br>
+  ⚠️ <strong>Warning:</strong> Be cautious when using the delmem command as it is irreversible. Always double-check the member index.<br>
 </div>
 
-Examples:
+**Examples**:
 * `list` followed by `delmem 2` deletes the 2nd member in the address book.
 * `find Betsy` followed by `delmem 1` deletes the 1st member in the results of the `find` command.
 
@@ -507,7 +506,7 @@ Examples:
 
 Clears all entries from the application.
 
-Format: `clear`
+**Format**: `clear`
 * Deletes all members, including:
   * Members added by you
   * [Seed Data](#6-glossary) added from `seeddata` command
@@ -519,27 +518,18 @@ Format: `clear`
 </div>
 
 <div style="border: 1px solid #FFA500; margin: 10px 0; padding: 10px; background-color: #FFE8B2; color: #CC6C00; border-radius: 5px;">
-  ⚠️ <strong>Warning:</strong> Using `clear` will permanently remove all members and their information. Ensure to back up data before proceeding.
+  ⚠️ <strong>Warning:</strong> Using clear will permanently remove all members and their information. Ensure to back up data before proceeding.
 </div>
 
 ### 4.15 Exiting the program : `exit`
 
 Exits the program.
 
-Format: `exit`
+**Format**: `exit`
 
 ### 4.16 Saving the data
 
 SweetRewards data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### 4.17 Editing the data file
-
-SweetRewards data are saved automatically as a [JSON](#6-glossary) file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div style="border: 1px solid #FFA500; margin: 10px 0; padding: 10px; background-color: #FFE8B2; color: #CC6C00; border-radius: 5px;">
-  ⚠️ <strong>Warning:</strong> If your changes to the data file makes its format invalid, SweetRewards will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause SweetRewards to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -620,21 +610,18 @@ This is how a potential bakery could use SweetRewards in their daily operations!
 # 8. Troubleshooting
 
 Facing issues with SweetRewards? Here are some common problems and how to resolve them.
-
 ## Technical Issues
 **1. Application won't start<br>**
 🚫 <span style="color:#D32D41">**Problem**:</span> Double-clicking the [jar file](#6-glossary) doesn’t open SweetRewards.<br>
 ✅ <span style="color:#6AB187">**Solution**:</span> Verify that Java 11 or higher is installed. Open a command prompt, navigate to the application's directory, and type in `java -jar sweetrewards-v1.2.jar` (Note the version number might differ, use the one that is seen in the version of SweetRewards that you have downloaded) and press enter. If issues persist, re-download the [jar file](#6-glossary) to rule out corruption.
 
-
 **2. [GUI](#6-glossary) opens off-screen<br>**
 🚫 <span style="color:#D32D41">**Problem**:</span>  SweetRewards starts off the visible screen area when using multiple displays.<br>
 ✅ <span style="color:#6AB187">**Solution**:</span>  Locate and delete preferences.json in the application's folder to reset window positioning, then restart the application.
-
 ## Operational Issues
 **1. Incorrect Points Allocation<br>**
 🚫 <span style="color:#D32D41">**Problem**:</span> Points were mistakenly added to the wrong member.<br>
-✅ <span style="color:#6AB187">**Solution**:</span> Use the edit command to adjust the points for both involved members. Replace the newly updated (wrong) number of points with the initial (correct) number of points and add the points for the new member again. For example, edit 2 p/50 to replace the wrongly updated points and addpoints 3 p/50 to add points to the correct member.<br>
+✅ <span style="color:#6AB187">**Solution**:</span> Use the edit command to adjust the points for both involved members. Replace the newly updated (wrong) number of points with the initial (correct) number of points and add the points for the new member again. For example, edit 2 p/50 to replace the wrongly updated points and addpts 3 p/50 to add points to the correct member.<br>
 You could also refer to the [FAQ, Question 2](#7-faq)
 
 **2. Incorrect Member Information Entered<br>**
@@ -658,8 +645,8 @@ You could also refer to the [FAQ, Question 2](#7-faq)
 | **[Add Item to Catalogue](#45-adding-an-item-to-the-catalogue--additem)**          | `additem i/ITEM_NAME p/POINTS_PER_UNIT`                                                | `additem i/Chocolate Cake p/50`                                                               |
 | **[Delete Item from Catalogue](#46-deleting-an-item-from-the-catalogue--delitem)** | `delitem i/ITEM_NAME`                                                                  | `delitem i/Chocolate Cake`                                                                    |
 | **[Add Order](#47-adding-orders-to-a-member--addorder)**                           | `addorder n/MEMBER_NAME i/ITEM_NAME [q/QUANTITY_PURCHASED]`                            | `addorder n/John Doe i/Chocolate Cake q/2`                                                    |
-| **[Add Reward Points](#48-adding-points--addpts)**                                 | `addpoints n/MEMBER_NAME p/POINTS`                                                     | `addpoints n/John Doe p/50`                                                                   |
-| **[Redeem Points](#49-redeeming-points--redeempts)**                               | `redeempoints n/MEMBER_NAME p/POINTS`                                                  | `redeempoints n/John Doe p/50`                                                                |
+| **[Add Reward Points](#48-adding-points--addpts)**                                 | `addpts n/MEMBER_NAME p/POINTS`                                                        | `addpts n/John Doe p/50`                                                                      |
+| **[Redeem Points](#49-redeeming-points--redeempts)**                               | `redeempts n/MEMBER_NAME p/POINTS`                                                     | `redeempts n/John Doe p/50`                                                                   |
 | **[Add Membership Points](#410-adding-membership-points--addmempts)**              | `addmempts n/MEMBER_NAME mp/MEMBERSHIP_POINTS`                                         | `addmempts n/John Doe ms/T2`                                                                  |
 | **[Clear](#414-clearing-all-entries--clear)**                                      | `clear`                                                                                | `clear`                                                                                       |
 | **[Delete member](#413-deleting-a-member--delmem)**                                | `delmem INDEX`                                                                         | `delmem 3`                                                                                    |
