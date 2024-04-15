@@ -40,7 +40,7 @@ title: SweetRewards User Guide
 10. [Planned Enhancements](#10-planned-enhancements)<br>
 
 # 1. Introduction
-Welcome to the SweetRewards User Guide! This guide is your comprehensive manual to navigating and maximizing the SweetRewards application. [SweetRewards](#2-about-sweetrewards) is a dynamic desktop application designed for small bakery owners to **manage their loyalty program memberships** efficiently. By leveraging the robustness of a [Command Line Interface(CLI)](#6-glossary) while retaining the intuitive nature of a [Graphical User Interface (GUI)](#6-glossary), SweetRewards delivers an optimized experience for fast typers and GUI enthusiasts alike.
+Welcome to the SweetRewards User Guide! This guide is your comprehensive manual to navigating and maximizing the SweetRewards application. [SweetRewards](#2-about-sweetrewards) is a dynamic desktop application designed for small bakery owners to **manage their loyalty program memberships** efficiently. By leveraging the robustness of a [Command Line Interface (CLI)](#6-glossary) while retaining the intuitive nature of a [Graphical User Interface (GUI)](#6-glossary), SweetRewards delivers an optimized experience for fast typers and GUI enthusiasts alike.
 
 
 ## 1.1 Target Audience
@@ -376,7 +376,7 @@ Examples:
 </div>
 
 <div style="border: 1px solid #DBAE58; margin: 10px 0; padding: 10px; background-color: #FFF3E0; color: #886B00; border-radius: 5px;">
-  💡 <strong>Tip:</strong> Consider using the `addpts` function to manually award extra points for activities that reflect customer loyalty beyond direct purchases. This includes rewarding members for social media mentions, participation in surveys, or as compensation for any service mishaps. It's a versatile tool that allows you to quickly acknowledge and incentivise a wide range of valuable customer interactions, keeping your loyalty program flexible and responsive to your business needs.<br
+  💡 <strong>Tip:</strong> Consider using the `addpts` function to manually award extra points for activities that reflect customer loyalty beyond direct purchases. This includes rewarding members for social media mentions, participation in surveys, or as compensation for any service mishaps. It's a versatile tool that allows you to quickly acknowledge and incentivise a wide range of valuable customer interactions, keeping your loyalty program flexible and responsive to your business needs.<br>
 </div>
 
 <div style="border: 1px solid #FFA500; margin: 10px 0; padding: 10px; background-color: #FFE8B2; color: #CC6C00; border-radius: 5px;">
@@ -546,7 +546,7 @@ Furthermore, certain edits can cause SweetRewards to behave in unexpected ways (
 # 5. Example Tutorial
 
 Since SweetRewards has a wide array of functions and commands, it could be overwhelming for first-time users…
-So, we came up with a short tutorial on how we can add a member, items etc. with additional annotations <br>
+So, we came up with a short tutorial on how we can add a member, items etc. with additional annotations. <br>
 
 **1. Adding a Member** <br>
 
@@ -589,7 +589,7 @@ This is how a potential bakery could use SweetRewards in their daily operations!
 **Seed Data**: Preloaded data used to demonstrate the application's capabilities without needing to enter new data manually.
 
 **Allergen**: Substances that can cause an allergic reaction. In the context of SweetRewards, allergens that customers have, for the baker to take note when making an order.
-
+ 
 **Jar File**: A compressed format for distributing bundled Java applications and libraries.  
 
 
