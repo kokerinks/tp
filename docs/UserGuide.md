@@ -109,7 +109,7 @@ SweetRewards employs a nuanced points system to foster both immediate and long-t
 </div>
 
 <div style="border: 1px solid #FFA500; margin: 10px 0; padding: 10px; background-color: #FFE8B2; color: #CC6C00; border-radius: 5px;">
-  ⚠️ <strong>Warning:</strong> Ensure that the total number of points/membership points a member has remains within the safe range of 1…2,000,000,000 so that the program does not malfunction.
+  ⚠️ <strong>Warning:</strong> Ensure that the total number of points/membership points a member has remains within the safe range of 0…2,000,000,000 so that the program does not malfunction.
 </div>
 
 
@@ -201,8 +201,8 @@ The main window of SweetRewards is divided into several panels for easy navigati
     - Example: In `add n/MEMBER_NAME`, `MEMBER_NAME` is a parameter that can be used as `add n/John Doe`.
 - **Items in square brackets** are optional.
     - Example: `n/MEMBER_NAME [ag/ALLERGEN]` can be used as `n/John Doe ag/GF` or as `n/John Doe`.
-- **Items followed by an ellipsis (`...`)** can be used multiple times, including zero times.
-    - Example: `[ag/ALLERGEN]...` can be used as ` ` (i.e., 0 times), `ag/GF`, `ag/GF ag/LF`, etc.
+- **Items followed by an ellipsis (`…`)** can be used multiple times, including zero times.
+    - Example: `[ag/ALLERGEN]…` can be used as ` ` (i.e., 0 times), `ag/GF`, `ag/GF ag/LF`, etc.
 - **Parameters can be in any order**.
     - Example: If the command specifies `n/MEMBER_NAME hp/MEMBER_PHONE`, using `hp/MEMBER_PHONE n/MEMBER_NAME` is also acceptable.
 - **Repeat parameters** (Except for allergens) is not allowed and will result in an error.
@@ -211,9 +211,10 @@ The main window of SweetRewards is divided into several panels for easy navigati
 - **When using a PDF version of this document**, be careful when copying and pasting commands that span multiple lines, as space characters surrounding line-breaks may be omitted when copied over to the application.
 - **If there is a repeat parameter**, only last parameter will be taken
   - Example: `delitem i/chocolate croissant i/kaya waffle` will only delete kaya waffle from the catalogue.
+  - Exception: The `addmem` command will give an error if repeat parameters exist to help you make sure that you did not make a mistake!
 - **For commands that accept partial names**, the system matches the input to the member whose name most closely resembles the provided partial name. If the partial name could refer to multiple members, the system will select the first member listed.
   - To minimize confusion and errors, it is strongly recommended to use unique, full names of members when issuing commands. This practice also helps prevent duplicating member entries with similar names.
-  - Example: If there are members named `Betsy Crowead` and `Betsy Croweas`, and you issue a command for `Betsy Crowe`, the system will apply the command to the first `Betsy Crowe` listed in the member directory.
+  - Example: If there are members named `Betsy Crowead` and `Betsy Dredge`, and you issue a command for `Betsy`, the system will apply the command to the first `Betsy Crowe` listed in the member directory.
 - Commands can only be in **English**
 </div>
 
@@ -230,7 +231,7 @@ Format: `help`
 </div>
 
 <div style="border: 1px solid #DBAE58; margin: 10px 0; padding: 10px; background-color: #FFF3E0; color: #886B00; border-radius: 5px;">
-  💡 <strong>Tip:</strong> Use the `-c` flag (`help-c`) to show you a list of all the commands available in this application without opening an external link!
+  💡 <strong>Tip:</strong> Use the `-c` flag (`help -c`) to show you a list of all the commands available in this application without opening an external link!
 </div>
 
 ### 4.2 Initializing program with [Seed Data](#6-glossary) : `seeddata`
@@ -316,7 +317,7 @@ Examples:
 </div>
 
 <div style="border: 1px solid #FFA500; margin: 10px 0; padding: 10px; background-color: #FFE8B2; color: #CC6C00; border-radius: 5px;">
-  ⚠️ <strong>Warning:</strong> You are strongly recommended to only use points less than 1000 to ensure the total points/membership points a member has remains within the safe range of 1…2,000,000,000.
+  ⚠️ <strong>Warning:</strong> You are strongly recommended to only use points less than 10000 to ensure the total points/membership points a member has remains within the safe range of 0…2,000,000,000.
 </div>
 
 ### 4.6 Deleting an Item from the Catalogue : `delitem`
@@ -355,7 +356,7 @@ Examples:
 </div>
 
 <div style="border: 1px solid #FFA500; margin: 10px 0; padding: 10px; background-color: #FFE8B2; color: #CC6C00; border-radius: 5px;">
-  ⚠️ <strong>Warning:</strong> You are strongly recommended to only use quantities less than 100 to ensure the total points/membership points a member has remains within the safe range of 1…2,000,000,000.
+  ⚠️ <strong>Warning:</strong> You are strongly recommended to only use quantities less than 2,000,000,000 amd ensure the total points/membership points a member has remains within the safe range of 0…2,000,000,000.
 </div>
 
 ### 4.8 Adding points: `addpts`
@@ -383,7 +384,7 @@ Examples:
 
 </div>
 <div style="border: 1px solid #FFA500; margin: 10px 0; padding: 10px; background-color: #FFE8B2; color: #CC6C00; border-radius: 5px;">
-  ⚠️ <strong>Warning:</strong> Ensure that the total number of points a member has remains within the safe range of 1…2,000,000,000 so that the program does not malfunction.
+  ⚠️ <strong>Warning:</strong> Ensure that the total number of points a member has remains within the safe range of 0…2,000,000,000 so that the program does not malfunction.
 </div>
 
 ### 4.9 Redeeming Points: `redeempts`
@@ -420,7 +421,7 @@ In the case of similar names like `Betsy Crowead` and `Betsy Croweas`, when addi
 </div>
 
 <div style="border: 1px solid #FFA500; margin: 10px 0; padding: 10px; background-color: #FFE8B2; color: #CC6C00; border-radius: 5px;">
-  ⚠️ <strong>Warning:</strong> Ensure that the total number of membership points a member has remains within the safe range of 1…2,000,000,000 so that the program does not malfunction.
+  ⚠️ <strong>Warning:</strong> Ensure that the total number of membership points a member has remains within the safe range of 0…2,000,000,000 so that the program does not malfunction.
 </div>
 
 ### 4.11 Editing a member : `edit`
@@ -450,7 +451,7 @@ Examples:
 </div>
 
 <div style="border: 1px solid #FFA500; margin: 10px 0; padding: 10px; background-color: #FFE8B2; color: #CC6C00; border-radius: 5px;">
-  ⚠️ <strong>Warning:</strong> Ensure that the total number of points/membership points a member has remains within the safe range of 1…2,000,000,000 so that the program does not malfunction.
+  ⚠️ <strong>Warning:</strong> Ensure that the total number of points/membership points a member has remains within the safe range of 0…2,000,000,000 so that the program does not malfunction.
 </div>
 
 ### 4.12 Locating members by name : `find`
@@ -544,7 +545,7 @@ Furthermore, certain edits can cause SweetRewards to behave in unexpected ways (
 
 # 5. Example Tutorial
 
-Since SweetRewards has a wide array of functions and commands, it could be overwhelming for first-time users...
+Since SweetRewards has a wide array of functions and commands, it could be overwhelming for first-time users…
 So, we came up with a short tutorial on how we can add a member, items etc. with additional annotations
 1. Adding a Member
 ![adding member](images/addmem.png)
@@ -564,37 +565,42 @@ This is how a potential bakery could use SweetRewards in their daily operations!
 --------------------------------------------------------------------------------------------------------------------
 
 # 6. Glossary
-| Term             | Definition                                                                                                                              |
-|------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| CLI              | Command Line Interface: An interface that allows users to interact directly with the system by typing commands.                         |
-| GUI              | Graphical User Interface: A visual way for users to interact with the application through graphical elements such as buttons and icons. |
-| JSON             | JavaScript Object Notation: A format for structuring data, used here for saving and loading user data from a file.                      |
-| Membership Tiers | Designated levels within the loyalty program offering different benefits, determined by the amount of points a member has accumulated.  |
-| Seed Data        | Preloaded data used to demonstrate the application's capabilities without needing to enter new data manually.                           |
-| Allergen         | Allergens that customers have, for the baker to take note when making an order.                                                         |
-| Jar File         | A compressed format for distributing bundled Java applications and libraries.                                                           |
+
+**CLI (Command Line Interface)**: An interface that allows users to interact directly with the system by typing commands.
+
+**GUI (Graphical User Interface)**: A visual way for users to interact with the application through graphical elements such as buttons and icons.
+
+**JSON (JavaScript Object Notation)**: A format for structuring data, used here for saving and loading user data from a file.
+
+**Membership Tiers**: Designated levels within the loyalty program offering different benefits, determined by the amount of points a member has accumulated.
+
+**Seed Data**: Preloaded data used to demonstrate the application's capabilities without needing to enter new data manually.
+
+**Allergen**: Substances that can cause an allergic reaction. In the context of SweetRewards, allergens that customers have, for the baker to take note when making an order.
+
+**Jar File**: A compressed format for distributing bundled Java applications and libraries.                                                           |
 
 ---------------------------------------------------------------------------------------------------------------------
 
 # 7. FAQ
 
-<span style="color:Grey">**Q**:</span> How do I transfer my data to another Computer?<br>
-<span style="color:Teal">**A**:</span> Install SweetRewards on the other computer and copy the data file from your original installation directory to the new one. This will replace the empty data file created during the new installation.
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install SweetRewards on the other computer and copy the data file from your original installation directory to the new one. This will replace the empty data file created during the new installation.
 
-<span style="color:Grey">**Q**:</span> How do I manually add points to a member's account?<br>
-<span style="color:Teal">**A**:</span> Use the addpts command with the member's name and the desired amount of points. For instance: addpts n/John Doe p/50 adds 50 points to John Doe's account, useful for promotional points or correcting errors.
+**Q**: How do I manually add points to a member's account?<br>
+**A**: Use the addpts command with the member's name and the desired amount of points. For instance: addpts n/John Doe p/50 adds 50 points to John Doe's account, useful for promotional points or correcting errors.
 
-<span style="color:Grey">**Q**:</span> How can I upgrade a member's tier manually?<br>
-<span style="color:Teal">**A**:</span> Employ the addmempts command with the member's name and the points you want to add. For example, addmempts n/John Doe mp/400 manually awards John Doe 400 points. The membership tier of the member will be determined by the number of points they have according to the membership tier table
+**Q**: How can I upgrade a member's tier manually?<br>
+**A**: Employ the addmempts command with the member's name and the points you want to add. For example, addmempts n/John Doe mp/400 manually awards John Doe 400 points. The membership tier of the member will be determined by the number of points they have according to the membership tier table
 
-<span style="color:Grey">**Q**:</span> Is it possible to remove a member from the loyalty program?<br>
-<span style="color:Teal">**A**:</span> Yes, execute the delete command with the index number of the member in the displayed list. E.g., delmem 3 removes the third member in the list, used for cleaning up duplicate entries or removing inactive accounts.
+**Q**: Is it possible to remove a member from the loyalty program?<br>
+**A**:> Yes, execute the delete command with the index number of the member in the displayed list. E.g., delmem 3 removes the third member in the list, used for cleaning up duplicate entries or removing inactive accounts.
 
-<span style="color:Grey">**Q**:</span> How do membership points influence tier levels?<br>
-<span style="color:Teal">**A**:</span> Membership tiers are determined by the total accumulated membership points. Each tier requires reaching a specific points threshold, which is automatically tracked by the system. Check the "Understanding Membership Tiers and Points System" section for detailed tier requirements.
+**Q**: How do membership points influence tier levels?<br>
+**A**:> Membership tiers are determined by the total accumulated membership points. Each tier requires reaching a specific points threshold, which is automatically tracked by the system. Check the "Understanding Membership Tiers and Points System" section for detailed tier requirements.
 
-<span style="color:Grey">**Q**:</span> How do I handle points for cancelled orders?<br>
-<span style="color:Teal">**A**:</span> For cancelled, use the `redeempoints` command to deduct the equivalent points from the member's account, keeping their points balance accurate with their actual purchases.
+**Q**: How do I handle points for cancelled orders?<br>
+**A**: For cancelled, use the `redeempoints` command to deduct the equivalent points from the member's account, keeping their points balance accurate with their actual purchases.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -657,9 +663,11 @@ You could also refer to the [FAQ, Question 2](#7-faq)
 
 We understand some of our features and commands might still not be adequate for some bakeries.<br>
 Not to worry! We have a comprehensive list of planned enhancements we hope to include in our future iterations which include: <br>
-1. Including a **maximum character limit** for the phone number, allergens, and extremely long names
-2. Allow easy finding of members with similar names eg. Alex Yeoh, Alexis
-3. Handling **extreme values** for additem command in terms of the points added
-4. **Removal of extra spaces** for names when using the addmem command
-5. Updating the **GUI behaviour** when orders are added to a member
-
+1. **Allow special characters in member names**: Currently, member names can only contain alphanumeric characters and spaces. This might cause problems when users want to add members that have special characters in their names such as Tan Ye-Ming, John or Kumaren s/o Ramasamy. Some special characters to be added includes apostrophes ', brackets (), hyphens -, slashes / and periods ..
+2. **Allow numbers and special characters in item names**: Currently, item names only accept alphabetical characters. This prevents use cases such as items with quantities or special characters (E.g. Chocolate-Chip Cookies 100g) from being entered. We should allow alphanumeric and special characters.
+3. **Have order panel of GUI update when orders are updated**: Currently, the order panel of the GUI updates only when a person card is clicked, so when users add an order to a person or clears all data using the clear --force command, it does not show the updated orders until a person card is clicked. To fix this, either use an ObservableList to store the orders of each Person, or have the addorder and clear command force the order display to update.
+4. **Add a delete order command**: Currently, if a user accidentally adds a wrong order, the only solution is to delete the member using delmem and add the member back using addmem. This is a lot of trouble cause by a simple mistake. As such, we should have a command that allows deletion of orders, which likely works off indexing the orders of a person. For example delorder n/John 2 deletes the second order of John 2. Of course to complement this feature, the index of orders should be displayed in the GUI. Points awarded in the deleted order should also be revoked.
+5. **Allow horizontal scrolling of GUI Person Card**: Currently the person card of the GUI does not allow horizontal scrolling if the details exceed the horizontal width of the UI. This causes extra-long inputs such as a 50 character long name to be not fully visible. This would allow for extra-long inputs for the name, phone number, email address, address, and allergens of added members.
+6. **Make `invalid person error` for `redeempts` more specific**: Currently the error message when a person cannot be found is The person index provided is invalid which is wrong because we are not using an indexing system. It should be changed to The member <USER-ENTERED NAME> cannot be found
+7. **Make `invalid points error` for `additem` more specific**: Currently when adding an item with invalid points (E.g. additem i/Cookies p/aa), the error message shown is the Invalid command format! message, which is too general. It should be made more specific, stating the specific error of invalid points (E.g. Invalid points per unit! Points per unit should a postive integer!).
+8. **Add index-based selection for member selection**: Currently in our addorder, addpts, addmempts, redeempts commands, we select the member based on the first member in the list whose name contains the entered string. This might prove as an issue when there are two people with the same or similar names like Wan Lei and Matthew Ang Wan Lei. If the latter is closer to the top of the list (added earlier), there will be no way to select Wan Lei. To prevent this, indexing selection for these commands should be added (E.g. addorder 3 i/Cookies would add the Cookies order to the third person in the current filtered list). This does not get rid of the current name selection, and merely introduces an alternative to member selection.
