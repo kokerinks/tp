@@ -166,8 +166,6 @@ The `addorder` command that comes along with the orders feature is implemented l
 
 ![AddOrderSequenceDiagram](images/AddOrderSequenceDiagram.png)
 
-#### Proposed Implementation
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -177,6 +175,20 @@ The `addorder` command that comes along with the orders feature is implemented l
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+
+--------------------------------------------------------------------------------------------------------------------
+## **Appendix: Planned Enhancements**
+
+Team Size: 4
+
+1. **Allow special characters in member names:** Currently, member names can only contain alphanumeric characters and spaces. This might cause problems when users want to add members that have special characters in their names such as `Tan Ye-Ming, John` or `Kumaren s/o Ramasamy`. Some special characters to be added includes apostrophes `'`, brackets `()`, hyphens `-`, slashes `/` and periods `.`.
+2. **Allow numbers and special characters in item names:** Currently, item names only accept alphabetical characters. This prevents use cases such as items with quantities or special characters (E.g. `Chocolate-Chip Cookies 100g`) from being entered. We should allow alphanumeric and special characters.
+3. **Have order panel of GUI update when orders are updated:** Currently, the order panel of the GUI updates only when a person card is clicked, so when users add an order to a person or clears all data using the `clear --force` command, it does not show the updated orders until a person card is clicked. To fix this, either use an `ObservableList` to store the orders of each `Person`, or have the `addorder` and `clear` command force the order display to update.
+4. **Add a delete order command:** Currently, if a user accidentally adds a wrong order, the only solution is to delete the member using `delmem` and add the member back using `addmem`. This is a lot of trouble cause by a simple mistake. As such, we should have a command that allows deletion of orders, which likely works off indexing the orders of a person. For example `delorder n/John 2` deletes the second order of John 2. Of course to complement this feature, the index of orders should be displayed in the GUI. Points awarded in the deleted order should also be revoked.
+5. **Allow horizontal scrolling of GUI Person Card:** Currently the person card of the GUI does not allow horizontal scrolling if the details exceed the horizontal width of the UI. This causes extra-long inputs such as a 50 character long name to be not fully visible. This would allow for extra-long inputs for the name, phone number, email address, address, and allergens of added members.
+6. **Make `invalid person error` for `redeempts` more specific:** Currently the error message when a person cannot be found is `The person index provided is invalid` which is wrong because we are not using an indexing system. It should be changed to `The member <USER-ENTERED NAME> cannot be found`
+7. **Make `invalid points error` for `additem` more specific:** Currently when adding an item with invalid points (E.g. `additem i/Cookies p/aa`), the error message shown is the `Invalid command format!` message, which is too general. It should be made more specific, stating the specific error of invalid points (E.g. `Invalid points per unit! Points per unit should a postive integer!`).
+8. **Add index-based selection for member selection:** Currently in our `addorder`, `addpts`, `addmempts`, `redeempts` commands, we select the member based on the first member in the list whose name contains the entered string. This might prove as an issue when there are two people with the same or similar names like `Wan Lei` and `Matthew Ang Wan Lei`. If the latter is closer to the top of the list (added earlier), there will be no way to select `Wan Lei`. To prevent this, indexing selection for these commands should be added (E.g. `addorder 3 i/Cookies` would add the Cookies order to the third person in the current filtered list). This does not get rid of the current name selection, and merely introduces an alternative to member selection.
 
 --------------------------------------------------------------------------------------------------------------------
 
