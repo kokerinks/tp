@@ -9,7 +9,12 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* The storage of members in SweetRewards was reused with minimal changes from a past project 
+AB3 ([nus-cs2103-AY2324S2/tp](https://github.com/nus-cs2103-AY2324S2/tp))
+* The commands `addmem`, `clear`, `delmem`, `find`, `list`, `help` were reused with some changes from the previously-mentioned
+AB3 ([nus-cs2103-AY2324S2/tp](https://github.com/nus-cs2103-AY2324S2/tp))
+* Code introduced in both `main` and `test` codebase, as well as JavaDocs were produced with the aid of [GitHub Copilot](https://github.com/features/copilot),
+an AI developer tool.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -36,7 +41,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2324S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2324S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -51,7 +56,7 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delmem 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -68,11 +73,15 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+Notably, the `MainWindow` also consists of two side panels `CataloguePanel` and `PersonOrdersPanel` which displays the `Catalogue` of the SweetRewards, and the orders of the selected person respectively.
+
+`MainWindow` implements the `PersonSelectionListener` interface, and listens to when a `PersonCard` is clicked in the `PersonListPanel`. It then tells `PersonOrdersPanel` to update the orders displayed.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -84,15 +93,15 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2324S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delmem 1")` API call as an example.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delmem 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
@@ -114,30 +123,23 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2324S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+![ModelClassDiagram](images/ModelClassDiagram.png)
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the SweetRewards data i.e., all `Person` objects (which are contained in a `UniquePersonList` object) and the items for sale (which are contained in a `Catalogue` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
-
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2324S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+![StorageClassDiagram](images/StorageClassDiagram.png)
 
 The `Storage` component,
 * can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
@@ -154,104 +156,15 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Membership feature
-The addmembership command that comes along with the membership feature is implemented like this:
-<img src="images/AddMembershipSequenceDiagram.png" width="600" />
-
 ### Points feature
-The addpoints command that comes along with the points feature is implemented like this:
-<img src="images/AddPointsSequenceDiagram.png" width="600" />
+The `addpoints` command that comes along with the points feature is implemented like this:
+
+![AddPointsSequenceDiagram](images/AddPointsSequenceDiagram.png)
 
 ### Orders feature
-The addorder command that comes along with the orders feature is implemented like this:
-<img src="images/AddOrderSequenceDiagram.png" width="600" />
+The `addorder` command that comes along with the orders feature is implemented like this:
 
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Logic.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-Similarly, how an undo operation goes through the `Model` component is shown below:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Model.png)
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+![AddOrderSequenceDiagram](images/AddOrderSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -264,6 +177,20 @@ _{Explain here how the data archiving feature will be implemented}_
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+## **Appendix: Planned Enhancements**
+
+Team Size: 4
+
+1. **Allow special characters in member names:** Currently, member names can only contain alphanumeric characters and spaces. This might cause problems when users want to add members that have special characters in their names such as `Tan Ye-Ming, John` or `Kumaren s/o Ramasamy`. Some special characters to be added includes apostrophes `'`, brackets `()`, hyphens `-`, slashes `/` and periods `.`.
+2. **Allow numbers and special characters in item names:** Currently, item names only accept alphabetical characters. This prevents use cases such as items with quantities or special characters (E.g. `Chocolate-Chip Cookies 100g`) from being entered. We should allow alphanumeric and special characters.
+3. **Have order panel of GUI update when orders are updated:** Currently, the order panel of the GUI updates only when a person card is clicked, so when users add an order to a person or clears all data using the `clear --force` command, it does not show the updated orders until a person card is clicked. To fix this, either use an `ObservableList` to store the orders of each `Person`, or have the `addorder` and `clear` command force the order display to update.
+4. **Add a delete order command:** Currently, if a user accidentally adds a wrong order, the only solution is to delete the member using `delmem` and add the member back using `addmem`. This is a lot of trouble cause by a simple mistake. As such, we should have a command that allows deletion of orders, which likely works off indexing the orders of a person. For example `delorder n/John 2` deletes the second order of John 2. Of course to complement this feature, the index of orders should be displayed in the GUI. Points awarded in the deleted order should also be revoked.
+5. **Allow horizontal scrolling of GUI Person Card:** Currently the person card of the GUI does not allow horizontal scrolling if the details exceed the horizontal width of the UI. This causes extra-long inputs such as a 50 character long name to be not fully visible. This would allow for extra-long inputs for the name, phone number, email address, address, and allergens of added members.
+6. **Make `invalid person error` for `redeempts` more specific:** Currently the error message when a person cannot be found is `The person index provided is invalid` which is wrong because we are not using an indexing system. It should be changed to `The member <USER-ENTERED NAME> cannot be found`
+7. **Make `invalid points error` for `additem` more specific:** Currently when adding an item with invalid points (E.g. `additem i/Cookies p/aa`), the error message shown is the `Invalid command format!` message, which is too general. It should be made more specific, stating the specific error of invalid points (E.g. `Invalid points per unit! Points per unit should a postive integer!`).
+8. **Add index-based selection for member selection:** Currently in our `addorder`, `addpts`, `addmempts`, `redeempts` commands, we select the member based on the first member in the list whose name contains the entered string. This might prove as an issue when there are two people with the same or similar names like `Wan Lei` and `Matthew Ang Wan Lei`. If the latter is closer to the top of the list (added earlier), there will be no way to select `Wan Lei`. To prevent this, indexing selection for these commands should be added (E.g. `addorder 3 i/Cookies` would add the Cookies order to the third person in the current filtered list). This does not get rid of the current name selection, and merely introduces an alternative to member selection.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
 
@@ -271,52 +198,52 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* is a small-medium scale bakery owner
-* has a need to manage a significant number of patrons' membership details
-* want to keep track of points for each member and can easily allow accumulation and redemption of points
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Is a small-medium scale bakery owner
+* Has a need to manage a significant number of patrons' membership details
+* Want to keep track of points for each member and can easily allow accumulation and redemption of points
+* Prefer desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
 
 **Value proposition**: manage membership subscriptions for a small-medium bakery shop faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: Exists (Exists in this version), High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                             | I want to …​                                                                                             | So that I can…​                                                            |
 |----------|-----------------------------------------------------|----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
-| `* * *`  | Potential user exploring the app                    | See the app populated with sample data                                                                   | I can easily see how the app will look like when it is in use              |
-| `* *`    | Potential user exploring the app                    | Access the user guide easily via a help button                                                           |                                                                            |
-| `* * *`  | User ready to start using the app                   | Purge all current data                                                                                   | I can get rid of the sample data and input my own                          |
-| `* * *`  | User learning to use the app                        | Add a new member                                                                                         |                                                                            |
-| `* *`    | User learning to use the app                        | Check whether a particular member exists                                                                 | I can verify if a patron is a member or not                                |
-| `* * *`  | User learning to use the app                        | Manually add points to a member                                                                          | I can reward them for their patronage                                      |
-| `* * *`  | User learning to use the app                        | Manually subtract points from a member                                                                   | The members can "spend" their points for discounts                         |
-| `* * *`  | User learning to use the app                        | Save all data on every command that changes the data                                                     | Closing the application (intended or not) will not lose my data            |
-| `* *`    | User learning to use the app                        | See help on proper usage when I wrongly use a command                                                    | Easily learn and correct my mistakes                                       |
-| `* * *`  | User slightly familiar with the app                 | Add orders to a particular member (saves current date/time)                                              | I can track their past orders                                              |
-| `* *`    | User slightly familiar with the app                 | Edit member details                                                                                      | When patrons change their name, address or contact, I can easily update it |
-| `* * *`  | User slightly familiar with the app                 | Delete members                                                                                           | I can remove a member from my list when they are not longer subscribed.    |
-| `* *`    | User who likes to be organised                      | Create Tags that can be attached to members                                                              | I can categorise members for different discounts etc.                      |
-| `* *`    | User who likes to be organised                      | Search for a member and see and overview of their profile                                                | I can see and easilly refer to their important details                     |
+| `Exists` | Potential user exploring the app                    | See the app populated with sample data                                                                   | I can easily see how the app will look like when it is in use              |
+| `Exists` | Potential user exploring the app                    | Access the user guide easily via a help button                                                           |                                                                            |
+| `Exists` | User ready to start using the app                   | Purge all current data                                                                                   | I can get rid of the sample data and input my own                          |
+| `Exists` | User learning to use the app                        | Add a new member                                                                                         |                                                                            |
+| `Exists` | User learning to use the app                        | Check whether a particular member exists                                                                 | I can verify if a patron is a member or not                                |
+| `Exists` | User learning to use the app                        | Manually add points to a member                                                                          | I can reward them for their patronage                                      |
+| `Exists` | User learning to use the app                        | Manually subtract points from a member                                                                   | The members can "spend" their points for discounts                         |
+| `Exists` | User learning to use the app                        | Save all data on every command that changes the data                                                     | Closing the application (intended or not) will not lose my data            |
+| `Exists` | User learning to use the app                        | See help on proper usage when I wrongly use a command                                                    | Easily learn and correct my mistakes                                       |
+| `Exists` | User slightly familiar with the app                 | Add orders to a particular member (saves current date/time)                                              | I can track their past orders                                              |
+| `Exists` | User slightly familiar with the app                 | Edit member details                                                                                      | When patrons change their name, address or contact, I can easily update it |
+| `Exists` | User slightly familiar with the app                 | Delete members                                                                                           | I can remove a member from my list when they are not longer subscribed.    |
+| `Exists` | User who likes to be organised                      | Create tags containing allergen information that can be attached to members                              | I can categorise members for different discounts etc.                      |
+| `Exists` | User who likes to be organised                      | Search for a member and see and overview of their profile                                                | I can see and easily refer to their important details                      |
 | `* *`    | User looking to develop the business                | Count the number of members with a certain Tag                                                           | Make business decisions easier by observing my demographics                |
-| `* *`    | User looking to develop the business                | Check the past orders of a member                                                                        | I can refer back to past orders for marketing/accounting purposes          |
-| `* *`    | User with many orders                               | Create and add to a list of products, with the respective points they each reward when bought            | I can input multiple orders quickly                                        |
-| `* *`    | User with many orders                               | Add an order to a member which automatically adds points using one single command                        | I can input multiple orders quickly                                        |
+| `Exists` | User looking to develop the business                | Check the past orders of a member                                                                        | I can refer back to past orders for marketing/accounting purposes          |
+| `Exists` | User with many orders                               | Create and add to a list of products, with the respective points they each reward when bought            | I can input multiple orders quickly                                        |
+| `Exists` | User with many orders                               | Add an order to a member which automatically adds points using one single command                        | I can input multiple orders quickly                                        |
 | `* *`    | User looking to be more efficient                   | Add an order to a member which automatically adds points, and can redeem points using one single command | I can input multiple orders even quicker                                   |
 | `* *`    | User looking to be more efficient                   | Use all points from a member with a feedback to let me know how many was used                            | I can add orders without even looking at how many points a member has      |
 | `* *`    | User looking to expand the business                 | Create membership tiers that increase the amount of points earned                                        | I can expand my loyalty program                                            |
-| `* *`    | User looking to expand the business                 | Seperate members into different tiers manually                                                           | I can expand my loyalty program                                            |
-| `* *`    | User looking to expand the business                 | Create different redemptions using points other than flat discounts (Eg. free small cake)                | I can expand my loyalty program                                            |
-| `* *`    | User looking for more complex membership structures | Create membership tiers using pre-built structures that define prerequisites for a tier                  | Automate the process of "tiering up"                                       |
-| `* *`    | User looking for more complex membership structures | Have members automatically "tier up" when they hit the prequisites for a tier                            | Automate the process of "tiering up"                                       |
-| `* *`    | User looking for more complex membership structures | Have points have an expiry date that I can decide on                                                     | Encourage patrons to spend their points by buying something                |
+| `Exists` | User looking to expand the business                 | Separate members into different tiers manually                                                           | I can expand my loyalty program                                            |
+| `Exists` | User looking to expand the business                 | Create different redemptions using points other than flat discounts (Eg. free small cake)                | I can expand my loyalty program                                            |
+| `*`      | User looking for more complex membership structures | Create membership tiers using pre-built structures that define prerequisites for a tier                  | Automate the process of "tiering up"                                       |
+| `Exists` | User looking for more complex membership structures | Have members automatically "tier up" when they hit the prerequisites for a tier                          | Automate the process of "tiering up"                                       |
+| `*`      | User looking for more complex membership structures | Have points have an expiry date that I can decide on                                                     | Encourage patrons to spend their points by buying something                |
 | `*`      | User looking for more complex membership structures | Automatically SMS members when their points expire soon                                                  | Encourage patrons to spend their points by buying something                |
 | `*`      | User looking for more complex membership structures | Be able to send out announcements via SMS                                                                | Increase advertising to members                                            |
-| `* *`    | Experienced User who is organised                   | Split the graphical interface into different sections contaning members of different tiers               | Have an overview of the members in the different tiers                     |
+| `* *`    | Experienced User who is organised                   | Split the graphical interface into different sections containing members of different tiers              | Have an overview of the members in the different tiers                     |
 | `* *`    | Experienced User who is organised                   | See how many members of each tier there is                                                               | I can understand how my loyalty system is doing                            |
 
 *{More to be added}*
@@ -352,7 +279,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add a customer by typing the command addmember
+1.  User requests to add a customer by typing the command `addmem`
 2.  SweetRewards shows member added successfully
 3.  User can view added member successfully
 
@@ -371,17 +298,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add a order to a member by typing the command addorder
+1.  User requests to add a order to a member by typing the command `addorder`
 2.  SweetRewards shows order added successfully
-3.  User can view added member successfully
+3.  User can view the order that was added to the member successfully
 
     Use case ends.
 
 **Extensions**
-
-* 2a. The order list is empty for the member.
-
-  Use case ends.
 
 * 2a. The compulsory fields are empty
 
@@ -390,20 +313,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-**Use case 4: Delete points for a member**
+**Use case 4: Redeem points for a member**
 
 **MSS**
 
 1.  User requests to delete "x" number of points for a member by
-typing the command subpoints
-2.  SweetRewards shows "x" points deleted for member
-3.  User can view the number of points left for member
+typing the command `redeempts`
+2.  SweetRewards shows "x" points redeemed for member
+3.  User can see that the member has "x" lesser points
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The current number of points is zero
+* 2a. The current number of points is less than "x"
 
     * 2a1. SweetRewards shows an error message.
 
@@ -431,7 +354,6 @@ typing the command subpoints
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -450,38 +372,95 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file 
+      Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. Shutdown of application
 
-### Deleting a person
+   1. Enter `exit` into the command box OR click on the `X` button on the top-right hand corner of the window.
+       Expected: The application should close with no other obstructions.
 
-1. Deleting a person while all persons are being shown
+### App Usage
+1. Adding a Member
+   1. Test case: `addmem n/Joseph Joestar hp/62226111 e/joseph@example.com a/455 Orchard Road, S(238801) ag/Chocolate` <br>
+      Expected: New member named "Joseph Joestar" added. Scrolling to the bottom of the list of members show Joseph's details
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+2. Adding an item to the catalogue
+   1. Prerequisites: The catalogue does not currently contain an item called `Pain Au Chocolat`
+   2. Test case: `additem i/Pain Au Chocolat p/250` <br>
+      Expected: A new item `Pain Au Chocolat` worth 250 points is added to the bottom of the catalogue on the left panel 
+   3. Test case: `additem i/Pain Au Chocolat p/300` <br>
+      Expected: An error message saying `This item already exists in the catalogue.`
+3. Adding an order to a member
+   1. Test case: `addorder n/joseph i/pain au chocolat q/2` <br>
+      Expected: An order for 2 Pain Au Chocolats added to Joseph's orders. Scroll to Joseph's Person Card and click on it. The order panel on the right should show the order made. Joseph should also have 500 more reward and membership points.
+   2. Test case: `addorder n/joseph i/dinosaur meat q/2`<br>
+      Expected: An error message saying that the item cannot be found in the inventory
+4. Manual modification and redemption of points
+   1. Test case `addpts n/joseph p/100` <br>
+      Expected: Joseph's reward points increase by 100. Membership points should stay the same
+   2. Test case `addmempts n/joseph mp/10000` <br>
+      Expected: Joseph's membership points increase by 10000, and his membership tier should be upgraded to `PLATINUM`. His reward points should stay the same.
+   3. Test case `redeempts n/joseph p/100` <br>
+      Expected: Joseph's reward points should decrease by 100. Membership points should stay the same
+   4. Test case `redeempts n/joseph p/10000` <br>
+      Expected: An error message stating that joseph does not have enough reward points
+2. Deleting a Member
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `delmem 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   2. Test case: `delmem 0`<br>
+      Expected: No person is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   3. Other incorrect delete commands to try: `delmem`, `delmem x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
 ### Saving data
+1. Saving user data
+   1. Assuming the previous steps have been done,
+      1. Close the application
+      2. Open the application
+      3. The newly added member `Joseph Joestar` and all his details should remain
 
-1. Dealing with missing/corrupted data files
+2. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites:
+      1. Launch the application.
+      2. Enter the command `clear --force` into the command box.
+          WARNING: This will clear all existing data from the application which you will not get back!
+      3. Enter the command `seeddata` into the command box.
+      4. Exit the application.
+   
+   2. From the same directory as the application, open the `data` directory, then `addressbook.json` in your preferred editor 
+   3. Remove line 8 (`"points" : "0",`) from the file.
+   4. Re-launch the application.  
+      Expected: Application should open with no visible contacts and items
 
-1. _{ more test cases …​ }_
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+- Our project expanded to include more than one entity type. Namely, we added the `Item` entity type, which stores the
+name and points per quantity for each item stored in the application.
+  
+
+- Multiple new fields were implemented to store additional information for each `Person` entity:
+    - `Points`: stores the redeemable points which the member currently has. (By Kinjal)
+    - `MembershipTier`: stores the current membership tier of the member. (By Khushi)
+      - Later repurposed to `MembershipPoints`, after we noticed it was easier for the application to instead keep track of the
+        cumulative points of the member. (By Kok Liang)
+    - `Orders`: stores the previous orders (as Strings) which were made by the member. (By Billy)
+      - Later enhanced to store `Item` entities.
+    - Each additional field required fixing existing code which used the `Person` entity. This includes:
+      - `Person` constructors
+      - All/most commands which involve members e.g. `addmem`, `editmem`
+      - Existing JSON storage files for testing
+    - Hence, adding these fields introduced additional levels of complexity to our application.

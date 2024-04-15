@@ -13,6 +13,7 @@ Class ModelManager
 Class UserPrefs
 
 Class UniquePersonList
+Class Catalogue
 Class Person
 Class Address
 Class Email
@@ -20,8 +21,9 @@ Class Name
 Class Phone
 Class Membership
 Class Points
-Class Tag
+Class Allergen
 Class Order
+Class Item
 
 Class I #FFFFFF
 }
@@ -38,16 +40,21 @@ ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
+AddressBook *--> "1" Catalogue
 AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
+Catalogue --> "*" Item
+
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> Membership
 Person *--> Points
-Person *--> "*" Tag
+Person *--> "*" Allergen
 Person *--> "*" Order
+
+Order *--> "1" Item
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I

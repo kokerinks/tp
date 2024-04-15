@@ -254,7 +254,7 @@ Adds a member to the loyalty program.
 
 Format: `addmem n/MEMBER_NAME hp/PHONE e/MEMBER_EMAIL a/MEMBER_ADDRESS [ag/ALLERGEN]…​`
 
-* `MEMBER_NAME` should only contain alphanumeric characters, spaces, apostrophes, slashes and hyphens.
+* `MEMBER_NAME` should only contain alphanumeric characters and spaces.
   * `MEMBER_NAME` is regarded as unique if it differs in alphabets, numbers, or has a varying number of spaces between characters. It is case-sensitive.
 * `PHONE` should only contain numbers, and it should be at least 3 digits long.
 * `MEMBER_EMAIL` should be of the format local-part@domain and adhere to the following constraints:
@@ -306,7 +306,7 @@ Adds an item along with its corresponding points to the catalogue.
 
 Format: `additem i/ITEM_NAME p/POINTS_PER_UNIT`
 
-* `ITEM_NAME` must be a unique identifier for the item. It should only contain alphabets and spaces.
+* `ITEM_NAME` represents the alphabetical name of the item. Numbers and special characters are unfortunately not allowed for now.
 * `POINTS_PER_UNIT` represent the number of points a member earns upon purchasing the item. It must be a positive integer 1, 2, 3, …
 
 Examples:

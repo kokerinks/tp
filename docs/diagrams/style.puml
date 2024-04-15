@@ -56,7 +56,7 @@ skinparam Actor {
 
 skinparam Sequence {
     MessageAlign center
-    BoxFontSize 15
+    BoxFontSize 20
     BoxPadding 0
     BoxFontColor #FFFFFF
     FontName Arial
