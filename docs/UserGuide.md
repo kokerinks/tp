@@ -21,9 +21,9 @@ title: SweetRewards User Guide
    4.5 [Adding a new Item to the Catalogue](#45-adding-an-item-to-the-catalogue--additem)<br>
    4.6 [Deleting an Item from the Catalogue](#46-deleting-an-item-from-the-catalogue--delitem)<br>
    4.7 [Adding Orders to a member](#47-adding-orders-to-a-member--addorder)<br>
-   4.8 [Adding points to a member](#48-adding-points--addpoints)<br>
-   4.9 [Redeeming Points](#49-redeeming-points--redeempoints)<br>
-   4.10 [Updating Membership Tiers](#410-updating-membership--addmship)<br>
+   4.8 [Adding points to a member](#48-adding-points--addpts)<br>
+   4.9 [Redeeming Points](#49-redeeming-points--redeempts)<br>
+   4.10 [Updating Membership Tiers](#410-adding-membership-points--addmempts)<br>
    4.11 [Editing a member's details](#411-editing-a-member--edit)<br>
    4.12 [Locating a member by name](#412-locating-members-by-name--find)<br>
    4.13 [Deleting a member](#413-deleting-a-member--delmem)<br>
@@ -31,8 +31,7 @@ title: SweetRewards User Guide
    4.15 [Exiting the program](#415-exiting-the-program--exit)<br>
    4.16 [Saving the data](#416-saving-the-data)<br>
    4.17 [Editing the data file](#417-editing-the-data-file)<br>
-   4.18 [Archiving data files](#418-archiving-data-files)<br>
-5. [Example Tutorial](#5-tutorial)<br>
+5. [Example Tutorial](#5-example-tutorial)<br>
 6. [Glossary](#6-glossary)<br>
 7. [FAQs](#7-faq)<br>
 8. [Troubleshooting](#8-troubleshooting)<br>
@@ -40,7 +39,7 @@ title: SweetRewards User Guide
 10. [Planned Enhancements](#10-planned-enhancements)<br>
 
 # 1. Introduction
-Welcome to the SweetRewards User Guide! This guide is your comprehensive manual to navigating and maximizing the SweetRewards application. [SweetRewards](#2-about-sweetrewards) is a dynamic desktop application designed for small bakery owners to **manage their loyalty program memberships** efficiently. By leveraging the robustness of a **[Command Line Interface](#6-glossary)** while retaining the intuitive nature of a Graphical User Interface (GUI), SweetRewards delivers an optimized experience for fast typers and GUI enthusiasts alike.
+Welcome to the SweetRewards User Guide! This guide is your comprehensive manual to navigating and maximizing the SweetRewards application. [SweetRewards](#2-about-sweetrewards) is a dynamic desktop application designed for small bakery owners to **manage their loyalty program memberships** efficiently. By leveraging the robustness of a **[Command Line Interface(CLI)](#6-glossary)** while retaining the intuitive nature of a Graphical User Interface (GUI), SweetRewards delivers an optimized experience for fast typers and GUI enthusiasts alike.
 
 
 ## 1.1 Target Audience
@@ -50,10 +49,10 @@ This guide is intended for **small to medium-sized bakery owners** or staff resp
 The purpose of this User Guide is to assist you in understanding and utilizing the SweetRewards application to its fullest potential. Whether you are looking to onboard new members, track orders, manage reward points or update [Membership Tiers](#6-glossary) this guide will provide step-by-step instructions to ensure a smooth experience.
 
 ## 1.3 Getting Started with SweetRewards
-To begin using SweetRewards, ensure that your device meets the **software’s compatibility requirements**. Follow the installation instructions provided under [Getting Started](#3-getting-started). After installation, familiarize yourself with the GUI elements and practice basic [Command Line Interface](#6-glossary) commands through the introductory tutorial.
+To begin using SweetRewards, ensure that your device meets the **software’s compatibility requirements**. Follow the installation instructions provided under [Getting Started](#3-getting-started). After installation, familiarize yourself with the GUI elements and practice basic CLI commands through the introductory tutorial.
 
 ## 1.4 Navigating this Guide
-This User Guide is structured to help you find information quickly and easily. Use the table of contents to navigate to specific sections. Throughout the guide, you’ll find tips, warnings, and best practices highlighted to draw your attention to important information. If you’re new to [Command Line Interface](#6-glossary), refer to the section on [Command Line Interface](#6-glossary) usage for an explanation of commands and syntax.
+This User Guide is structured to help you find information quickly and easily. Use the table of contents to navigate to specific sections. Throughout the guide, you’ll find tips, warnings, and best practices highlighted to draw your attention to important information. If you’re new to CLI, refer to the section on CLI usage for an explanation of commands and syntax.
 
 By following this guide, you’ll learn how to leverage SweetRewards effectively, ensuring that your bakery’s loyalty program runs smoothly and your customers remain happy and engaged. Let’s get started on making the most out of your SweetRewards experience!
 
@@ -78,7 +77,8 @@ SweetRewards is not just a contact management tool; it's your partner in cultiva
 
 * **Track member information**: Keep a detailed record of each member, including their name, phone number, email, address, [allergens](#6-glossary), points, membership points, membership tier, and order history.
 * **Manage orders and points**: Seamlessly add orders which automatically updates customers' points to reflect customer purchases and interactions.
-* **Update [Membership Tiers](#6-glossary)**: Automatically elevate members' tiers based on their membership points, unlocking new rewards and benefits aligned with each tier.
+* **Update Membership Tiers**: Automatically elevate members' tiers based on their membership points, unlocking new rewards and benefits aligned with each tier.
+* **Update Membership Tiers**: Automatically elevate members' tiers based on their membership points, unlocking new rewards and benefits aligned with each tier.
 
 ## 2.1 Understanding Membership Tiers and Points System
 SweetRewards features a dual-point system designed to enhance customer engagement and loyalty: `points` and `membership points`.
@@ -94,17 +94,19 @@ SweetRewards employs a nuanced points system to foster both immediate and long-t
 | Impact    | Affect immediate customer benefits and rewards                       | Determine the member's tier and long-term benefits within the program |
 | Commands  | `addorder` increases points; `redeempoints` decreases points         | Only increased by `addorder`; unaffected by `redeempoints`            |
 
+Both have a maximum of 2 billion points to ensure that the number of points does not increase unrealistically.
+
 🌟 <span style="color:Gold">**Benefit**:</span> While both types of points are earned through purchases, `Points` cater to immediate gratification by being redeemable for rewards. In contrast, `Membership Points` are designed to recognize and reward the cumulative loyalty of customers, influencing their progression through the [Membership Tiers](#6-glossary) without direct redemption for goods or services.
 
 ### Membership Tiers: Criteria and Benefits
 Members are classified into tiers based on their accumulated membership points. Each tier unlocks distinct benefits, rewarding members for their loyalty:
 
-| Membership Tier                           | Perks |
-|-------------------------------------------|------|
-| <span style="color:DarkOrange">Bronze:</span> |   * Entry-level for all new members.<br/> * Offers basic rewards and incentives.  |
-| <span style="color:Silver">Silver:</span> |    * Requires members to accumulate a specified threshold of membership points.<br/>  * Unlocks enhanced benefits and rewards.|
-| <span style="color:Gold">Gold:</span>     |   * A higher tier requiring more membership points. <br/>  * Offers substantial rewards and exclusive offers.  |
-| <span style="color:Platinum">Platinum:</span> |    * The pinnacle of the membership hierarchy. <br/> * Members enjoy the best rewards and personalized services.  |
+| Membership Tier                               | Perks                                                                                                                       |
+|-----------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| <span style="color:DarkOrange">Bronze:</span> | * Entry-level for all new members.<br/> * Offers basic rewards and incentives.                                              |
+| <span style="color:Silver">Silver:</span>     | * Requires members to accumulate a specified threshold of membership points.<br/>  * Unlocks enhanced benefits and rewards. |
+| <span style="color:Gold">Gold:</span>         | * A higher tier requiring more membership points. <br/>  * Offers substantial rewards and exclusive offers.                 |
+| <span style="color:Platinum">Platinum:</span> | * The pinnacle of the membership hierarchy. <br/> * Members enjoy the best rewards and personalized services.               |
 
 
 ### Automatic Tier Updates
@@ -150,6 +152,7 @@ Members are classified into tiers based on their accumulated membership points. 
 
 7. Refer to the [Features](#4-features) below for details of each command.
 
+💡 <span style="color:yellow">**Tip**:</span>: If you would like more guidance in using the app do consider following our [Example Tutorial](#5-example-tutorial) below!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -167,7 +170,7 @@ Members are classified into tiers based on their accumulated membership points. 
     - Example: `[ag/ALLERGEN]...` can be used as ` ` (i.e., 0 times), `ag/GF`, `ag/GF ag/LF`, etc.
 - **Parameters can be in any order**.
     - Example: If the command specifies `n/MEMBER_NAME hp/MEMBER_PHONE`, using `hp/MEMBER_PHONE n/MEMBER_NAME` is also acceptable.
-- **Repeat parameters** (Except for [allergens](#6-glossary)) is not allowed and will result in an error.
+- **Repeat parameters** (Except for allergens) is not allowed and will result in an error.
 - **Extraneous parameters for commands that do not take in parameters** (such as `help`, `list`, `exit`, and `clear`) will be ignored.
     - Example: If the command specifies `help 123`, it will be interpreted as `help`.
 - **When using a PDF version of this document**, be careful when copying and pasting commands that span multiple lines, as space characters surrounding line-breaks may be omitted when copied over to the application.
@@ -247,8 +250,8 @@ Adds an item along with its corresponding points to the catalogue.
 
 Format: `additem i/ITEM_NAME p/POINTS_PER_UNIT`
 
-* `ITEM_NAME` must be a unique identifier for the item.
-* `POINTS_PER_UNIT` represent the number of points a member earns upon purchasing the item.
+* `ITEM_NAME` must be a unique identifier for the item. It should only contain alphabets and spaces.
+* `POINTS_PER_UNIT` represent the number of points a member earns upon purchasing the item. It must be a positive integer 1, 2, 3, …, 2,000,000,000.
 
 Examples:
 * `additem i/Chocolate Cake p/50` Adds `Chocolate Cake` with `50` points to the catalogue.
@@ -340,8 +343,8 @@ Format: `edit INDEX [n/MEMBER_NAME] [hp/MEMBER_PHONE] [e/MEMBER_EMAIL] [a/MEMBER
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-* When editing [allergens](#6-glossary), the existing [allergens](#6-glossary) of the member will be removed i.e adding of allergens is not cumulative.
-* You can remove all the member’s [allergens](#6-glossary) by typing `ag/` without specifying any allergens after it.
+* When editing [allergens](#6-glossary), the existing allergens of the member will be removed i.e adding of allergens is not cumulative.
+* You can remove all the member’s allergens by typing `ag/` without specifying any allergens after it.
 
 Examples:
 *  `edit 1 hp/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st member to be `91234567` and `johndoe@example.com` respectively.
