@@ -20,10 +20,10 @@ title: SweetRewards User Guide
    4.4 [Listing all members](#44-listing-all-members--list)<br>
    4.5 [Adding a new Item to the Catalogue](#45-adding-an-item-to-the-catalogue--additem)<br>
    4.6 [Deleting an Item from the Catalogue](#46-deleting-an-item-from-the-catalogue--delitem)<br>
-   4.7 [Adding Orders to a member](#47-adding-orders-to-a-member--addorder)<br>
-   4.8 [Adding points to a member](#48-adding-points--addpoints)<br>
-   4.9 [Redeeming Points](#49-redeeming-points--redeempoints)<br>
-   4.10 [Updating Membership Tiers](#410-updating-membership--addmship)<br>
+   4.7 [Adding orders to a member](#47-adding-orders-to-a-member--addorder)<br>
+   4.8 [Adding points](#48-adding-points--addpts)<br>
+   4.9 [Redeeming Points](#49-redeeming-points--redeempts)<br>
+   4.10 [Adding Membership Points](#410-adding-membership-points--addmempts)<br>
    4.11 [Editing a member's details](#411-editing-a-member--edit)<br>
    4.12 [Locating a member by name](#412-locating-members-by-name--find)<br>
    4.13 [Deleting a member](#413-deleting-a-member--delmem)<br>
@@ -31,8 +31,7 @@ title: SweetRewards User Guide
    4.15 [Exiting the program](#415-exiting-the-program--exit)<br>
    4.16 [Saving the data](#416-saving-the-data)<br>
    4.17 [Editing the data file](#417-editing-the-data-file)<br>
-   4.18 [Archiving data files](#418-archiving-data-files)<br>
-5. [Example Tutorial](#5-tutorial)<br>
+5. [Example Tutorial](#5-example-tutorial)<br>
 6. [Glossary](#6-glossary)<br>
 7. [FAQs](#7-faq)<br>
 8. [Troubleshooting](#8-troubleshooting)<br>
@@ -99,12 +98,12 @@ SweetRewards employs a nuanced points system to foster both immediate and long-t
 ### Membership Tiers: Criteria and Benefits
 Members are classified into tiers based on their accumulated membership points. Each tier unlocks distinct benefits, rewarding members for their loyalty:
 
-| Membership Tier                           | Perks |
-|-------------------------------------------|------|
-| <span style="color:DarkOrange">Bronze:</span> |   * Entry-level for all new members.<br/> * Offers basic rewards and incentives.  |
-| <span style="color:Silver">Silver:</span> |    * Requires members to accumulate a specified threshold of membership points.<br/>  * Unlocks enhanced benefits and rewards.|
-| <span style="color:Gold">Gold:</span>     |   * A higher tier requiring more membership points. <br/>  * Offers substantial rewards and exclusive offers.  |
-| <span style="color:Platinum">Platinum:</span> |    * The pinnacle of the membership hierarchy. <br/> * Members enjoy the best rewards and personalized services.  |
+| Membership Tier                               | Perks                                                                                                                       |
+|-----------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| <span style="color:DarkOrange">Bronze:</span> | * Entry-level for all new members.<br/> * Offers basic rewards and incentives.                                              |
+| <span style="color:Silver">Silver:</span>     | * Requires members to accumulate a specified threshold of membership points.<br/>  * Unlocks enhanced benefits and rewards. |
+| <span style="color:Gold">Gold:</span>         | * A higher tier requiring more membership points. <br/>  * Offers substantial rewards and exclusive offers.                 |
+| <span style="color:Platinum">Platinum:</span> | * The pinnacle of the membership hierarchy. <br/> * Members enjoy the best rewards and personalized services.               |
 
 
 ### Automatic Tier Updates
@@ -127,7 +126,7 @@ Members are classified into tiers based on their accumulated membership points. 
 
 3. Copy the file to the folder you want to use as the _home folder_ for SweetRewards.
 
-4. Double-click the `sweetrewards.jar` file to run the application. If the application does not start, see [here](#7-troubleshooting).
+4. Double-click the `sweetrewards.jar` file to run the application. If the application does not start, see [here](#8-troubleshooting).
 5. A [GUI](#6-glossary) similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -187,7 +186,9 @@ Format: `help`
 🌟 <span style="color:Gold">**Benefit**:</span> Whenever you feel stuck or need a quick reminder on how to use a specific command, just type help to open up this User Guide. This ensures you're never left in the dark about how to manage your loyalty program effectively.
 💡 <span style="color:yellow">**Tip**:</span> Use the `-c` flag (`help -c`) to show you a list of all the commands available in this application without opening an external link!
 
-### 4.2 Initializing program with [Seed Data](#6-glossary) : `seeddata`
+### 4.2 Initializing program with Seed Data : `seeddata`
+
+Definition: see [Seed Data](#6-glossary) in glossary.
 
 Adds a set of pre-defined sample data into the application.
 
@@ -268,7 +269,7 @@ Format: `delitem i/ITEM_NAME`
 Examples:
 * `delitem i/Chocolate Cake` Removes `Chocolate Cake` from the catalogue.
 
-### 4.7 Adding orders to a member: `addorder`
+### 4.7 Adding orders to a member : `addorder`
 
 Adds an order for a specified item to an existing member in the loyalty program, automatically updating the member's current points and membership points based on the item's points.
 
@@ -284,7 +285,7 @@ Examples:
 💡 <span style="color:yellow">**Tip**:</span> Use unique attributes of members when adding points to avoid errors. Partial names are matched to the closest resembling member.<br>
 In the case of similar names like `Betsy Crowead` and `Betsy Croweas`, when adding order to `Betsy Crowe`, the order would be added to the member who was added first in the list.
 
-### 4.8 Adding points: `addpts`
+### 4.8 Adding points : `addpts`
 
 Manually adds points to a member's account within the loyalty program.
 
@@ -300,7 +301,7 @@ Examples:
 💡 <span style="color:yellow">**Tip**:</span> Consider using the `addpts` function to manually award extra points for activities that reflect customer loyalty beyond direct purchases. This includes rewarding members for social media mentions, participation in surveys, or as compensation for any service mishaps. It's a versatile tool that allows you to quickly acknowledge and incentivize a wide range of valuable customer interactions, keeping your loyalty program flexible and responsive to your business needs.<br>
 ⚠️ <span style="color:orange">**Warning**:</span> Using the `addpts` command will ONLY increase the `REWARD POINTS` field, `MEMBERSHIP_POINTS` field will not be affected.<br>
 
-### 4.9 Redeeming Points: `redeempts`
+### 4.9 Redeeming Points : `redeempts`
 
 Allows members to redeem points from their current points tally, without affecting their cumulative membership points.
 
@@ -314,7 +315,7 @@ Examples:
 
 🌟 <span style="color:Gold">**Benefit**:</span> Provide members the flexibility to use their earned points for rewards, enhancing the perceived value of your loyalty program.
 
-### 4.10 Adding Membership Points: `addmempts`
+### 4.10 Adding Membership Points : `addmempts`
 
 Manually adds the membership points of a member in the loyalty program, without affecting the reward points.
 
@@ -496,7 +497,9 @@ Facing issues with SweetRewards? Here are some common problems and how to resolv
 ## Operational Issues
 1. Incorrect Points Allocation<br>
 🚫 <span style="color:Red">**Problem**:</span> Points were mistakenly added to the wrong member.<br>
-✅ <span style="color:Green">**Solution**:</span> Use the edit command to adjust the points for both involved members. Replace the newly updated (wrong) number of points with the initial (correct) number of points and add the points for the new member again. For example, edit 2 p/50 to replace the wrongly updated points and addpoints 3 p/50 to add points to the correct member.<br>
+✅ <span style="color:Green">**Solution**:</span> Use the edit command to adjust the points for both involved members.
+Replace the newly updated (wrong) number of points with the initial (correct) number of points and add the points for the new member again. 
+For example, edit 2 p/50 to replace the wrongly updated points and addpoints 3 p/50 to add points to the correct member.<br>
 You could also refer to the [FAQ, Question 2](#7-faq)
 
 2. Incorrect Member Information Entered<br>
